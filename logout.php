@@ -7,5 +7,5 @@ if(isset($_SESSION['auth'])){
 
     $_SESSION['message'] = 'Logged out succesfully';
 }
-header('Location: homepage.php');
+header('Location: login.php');
 ?>

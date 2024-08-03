@@ -5,6 +5,13 @@
 <!-- alertify JavaScript -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
 <script>
+    import * as mdb from 'mdb-ui-kit'; // lib
+    window.mdb = mdb;
+
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
+</script>
+<script>
 
   <?php 
       if(isset($_SESSION['message'])){ ?>

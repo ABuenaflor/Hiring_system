@@ -33,39 +33,44 @@ if($sql_run){
     }
 }
 else if(isset($_POST['login_btn'])){
-    $username = mysqli_real_escape_string ($con,$_POST['username']);
-    $password = mysqli_real_escape_string ($con,$_POST['password']);
+    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
 
-    $login_query = "SELECT * FROM user WHERE username='$username' AND password='$password' ";
-    $login_query_run = mysqli_query( $con, $login_query);  
+    // Constructing the query
+    $login_query = "SELECT * FROM user WHERE username=? AND password=?";
+    $stmt = mysqli_prepare($con, $login_query);
 
-    if(mysqli_num_rows($login_query_run) > 0){
-        $_SESSION['auth']=true;
+    // Binding parameters to prevent SQL injection
+    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
 
-        $userdata = mysqli_fetch_array($login_query_run);
+    // Executing the prepared statement
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if(mysqli_num_rows($result) > 0){
+        $_SESSION['auth'] = true;
+
+        $userdata = mysqli_fetch_array($result);
         $username = $userdata['username'];
         $role_as = $userdata['role_as'];
 
-
-        $_SESSION['auth_user'] = [
-            'username' =>$username
-        ];
-
+        $_SESSION['auth_user'] = ['username' => $username];
         $_SESSION['role_as'] = $role_as;
+
+        // Redirecting based on the user's role
         if($role_as == 1){
-            $_SESSION['message'] = 'Welcome to dashboard'; 
+            $_SESSION['message'] = 'Welcome to dashboard';
             header('Location: ../admin/index.php');
-
-        }else{
-            $_SESSION['message'] = 'Logged in Succesfully'; 
+            exit; // Ensuring no further script execution
+        } else {
+            $_SESSION['message'] = 'Logged in Successfully';
             header('Location: ../index.php');
-    
+            exit; // Ensuring no further script execution
         }
-        }
-
-       else{
+    } else {
         $_SESSION['message'] = "Invalid username or password";
         header('Location: ../login.php');
+        exit; // Ensuring no further script execution
     }
-    }
+}
 ?>
