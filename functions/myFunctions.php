@@ -1,11 +1,9 @@
 <?php
-if (!session_id()) {
-    session_start();
+if(!session_id()) {
+session_start();
 }
 //change from include to require once
 include_once("../config/dbcon.php");
-
-
 //pinasok yung function into !function exist
 if(!function_exists('getAll')){
     function getAll($table){
@@ -15,32 +13,21 @@ if(!function_exists('getAll')){
        return $query_run = mysqli_query($con, $query);
     }
 }
-    
-
     function getByID($table, $id){
 
         global $con;
         $query = "SELECT * FROM $table WHERE id='$id'";
        return $query_run = mysqli_query($con, $query);
     }
-
-
     function redirect($url, $message){
         $_SESSION['message'] = $message; 
         header('Location: '.$url);
         exit();
     }
-
-
-
-
-
     function normalize($value, $max) {
         return $value / $max;
     }
-
-
-    // Function to calculate SAW score
+ // Function to calculate SAW score
 function calculate_saw_score($data, $weights) {
     $experience_normalized = normalize($data['experience'], $weights['experience_max']);
     $education_normalized = normalize($data['education'], $weights['education_max']);
@@ -86,9 +73,6 @@ while ($data = mysqli_fetch_array($credentials)) {
     $update_query = "UPDATE credentials SET saw_score = '$saw_score' WHERE id = " . $data['id'];
     mysqli_query($con, $update_query);
 }
-
-
-
     function get_and_rank_candidates($con) {
         $query = "SELECT * FROM credentials ORDER BY saw_score DESC";
         $result = mysqli_query($con, $query);
@@ -115,7 +99,4 @@ while ($data = mysqli_fetch_array($credentials)) {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
     }
-
-
-
-?>
+    ?>

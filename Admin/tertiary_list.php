@@ -141,8 +141,8 @@ tfoot tr {
    <body>
    
       <header class="cd__intro pt-5">
-         <h1> List of Ranked Faculties </h1>
-         <p> Ranked Faculties from Basic Education and Tertiary Level </p>
+         <h1> List of Basic Education Faculties </h1>
+         <p>Faculties from Basic Education </p>
 
       </header>
       <!--$%adsense%$-->
@@ -156,7 +156,7 @@ tfoot tr {
                 <th>Office</th>
                 <th>Age</th>
                 <th>Start date</th>
-                <th>Salary</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -198,7 +198,7 @@ tfoot tr {
                 <td>Tokyo</td>
                 <td>33</td>
                 <td>2008-11-28</td>
-                <td>$162,700</td>
+                <td><a href="tertiary_ranking.php" class="btn btn-primary">Rank Employee</a></td>
             </tr>
             <tr>
                 <td>Brielle Williamson</td>

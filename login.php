@@ -27,7 +27,11 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background: #ececec;
+    background: url('images/dwcl-bg.png') no-repeat center center fixed; /* Path to your image */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 /*------------ Login container ------------*/
