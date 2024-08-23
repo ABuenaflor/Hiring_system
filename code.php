@@ -60,6 +60,7 @@ if(isset($_POST['submit_credentials'])){
 
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     $filename = time().'.'.$image_ext;
+    $target_file = $path.$filename;
 
     $experience = $_POST['experience'];
     $education = $_POST['education'];
@@ -92,8 +93,7 @@ if(isset($_POST['submit_credentials'])){
     $cred_query_run = mysqli_query($con, $creds_query);
 
     if($cred_query_run){
-        move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
-        redirect('index.php', "Added Succesfully");
+       redirect('index.php', "Added Succesfully");
 
     }else{
         redirect('index.php', "Something went wrong");

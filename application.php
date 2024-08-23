@@ -186,7 +186,7 @@ input {
 
 
 <body>
-<form action="#" class="form">
+<form action="code.php" class="form">
     <h1 class="text-center">Application Form</h1>
         <div class="progressbar">
             <div class="progress" id="progress"></div>
@@ -229,10 +229,10 @@ input {
         </div>
         <div class="col-md-2 mt-4">
                 <label for="">Sex</label>
-                    <select name="sex" id="" class="form-control">
+                    <select  id="" class="form-control">
                         <option selected>Choose</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="male" name="sex">Male</option>
+                        <option value="female" name="sex">Female</option>
                     </select>
         </div>
         <div class="col-md-2 mt-4">
@@ -454,76 +454,42 @@ input {
 <h5>Job Type</h5>
     <div class="form-check" name="job_type">
         <input class="form-check-input" type="radio" name="job_type" value="Academic">
-        <label class="form-check-label" for="flexRadioDefault1">
-            Academic
-        </label>
-    </div>
-    <div class="form-check mb-3" name="job_type">
-        <input class="form-check-input" type="radio" name="job_type" value="Non-Academic">
-        <label class="form-check-label" for="flexRadioDefault2">
-            Non-Academic
-        </label>
+       Academic <br>
+       <input class="form-check-input" type="radio" name="job_type" value="Non-Academic">
+       Non Academic
     </div>  
+
     <h5>Job Schedule</h5>
     <div class="form-check" name="job_schedule">
         <input class="form-check-input" type="radio" name="job_schedule" value="Full Time Faculty">
-        <label class="form-check-label" for="flexRadioDefault1">
-            Full Time Faculty
-        </label>
-    </div>
-    <div class="form-check mb-3" name="job_schedule">
+        Full Time Faculty<br>
         <input class="form-check-input" type="radio" name="job_schedule" value="Part Time Faculty">
-        <label class="form-check-label" for="flexRadioDefault2">
-            Part Time Faculty
-        </label>
+        Part Time Faculty <br>
     </div>
+   
     <div class="cold-md-8">
         <h5>Department</h5>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-check" name="department">
                     <input class="form-check-input" type="radio" name="department" id="Grade School" value="Grade School">
-                    <label class="form-check-label" for="gradeSchool">
-                        Grade School Department
-                    </label>
-                </div>
-                <div class="form-check" name="department">
+                    Grade School Department <br>
                     <input class="form-check-input" type="radio" name="department" id="Junior High" value="Junior High">
-                    <label class="form-check-label" for="juniorHigh">
-                        Junior High School Department
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-check" name="department">
+                    Junior High School Department <br>
                     <input class="form-check-input" type="radio" name="department" id="Senior High" value="Senior High">
-                    <label class="form-check-label" for="seniorHigh">
-                        Senior High School Department
-                    </label>
-                </div>
-                <div class="form-check" name="department">
+                    Senior High School Department <br>
                     <input class="form-check-input" type="radio" name="department" id="College" value="College">
-                    <label class="form-check-label" for="college">
-                        College Department
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-check" name="department">
+                    College Department <br> 
                     <input class="form-check-input" type="radio" name="department" id="Graduate School" value="Graduate School">
-                    <label class="form-check-label" for="graduateSchool">
-                        Graduate School
-                    </label>
+                    Graduate School
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 
         <div class="btns-group">
           <a href="#" class="btn btn-prev">Previous</a>
-          <input type="submit" value="Submit" class="btn" />
+          <input type="submit" value="Submit" name="submit_credentials" class="btn" />
         </div>
       </div>
 

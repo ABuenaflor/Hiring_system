@@ -15,68 +15,50 @@ include("../middleware/admin_middleware.php");
 <body>
     <div class="container mt-5">
         <h2>Add Employee</h2>
-        <form>
+        <form action="code.php" method="POST">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="fullName" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="fullName" placeholder="Enter Full name">
+                    <input type="text" name="fullname" class="form-control" id="fullname" placeholder="Enter Full name">
                 </div>
                 <div class="col-md-6">
                     <label for="department" class="form-label">Department</label>
-                    <input type="text" class="form-control" id="department" placeholder="Enter Department">
+                    <input type="text" name="department" class="form-control" id="department" placeholder="Enter Department">
                 </div>
             </div>
             <div class="row mb-3">
             <div class="col-md-6">
-                    <label for="email" class="form-label">Position</label>
-                    <input type="email" class="form-control" id="position" placeholder="Enter Position">
+                    <label  class="form-label">Position</label>
+                    <input type="text" name="position" class="form-control" id="position" placeholder="Enter Position">
                 </div>
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="mobile" class="form-label">Mobile</label>
-                    <input type="text" class="form-control" id="mobile" placeholder="">
-                </div>
-                <div class="col-md-6">
-                    <label for="photo" class="form-label">Photo</label>
-                    <input type="file" class="form-control" id="photo">
+                    <input type="text" name="mobile_num" class="form-control" id="mobile" placeholder="">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="dob" class="form-label">Date of Birth</label>
-                    <input type="date" class="form-control" id="dob" placeholder="">
+                    <input type="date" name="birth_date" class="form-control" id="dob" placeholder="">
                 </div>
                 <div class="col-md-6">
                     <label for="doj" class="form-label">Date Hired</label>
-                    <input type="date" class="form-control" id="doj" placeholder="">
+                    <input type="date" name="date_hired" class="form-control" id="doj" placeholder="">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="city" class="form-label">City</label>
-                    <input type="text" class="form-control" id="city" placeholder="">
-                </div>
-                <div class="col-md-6">
-                    <label for="state" class="form-label">State</label>
-                    <input type="text" class="form-control" id="state" placeholder="">
+                    <label for="city" class="form-label">Permanent Address</label>
+                    <input type="text" name="address" class="form-control" id="city" placeholder="">
                 </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="country" class="form-label">Country</label>
-                    <input type="text" class="form-control" id="country" placeholder="">
-                </div>
-                <div class="col-md-6">
-                    <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" name="add_employee">Submit</button>
         </form>
     </div>
 

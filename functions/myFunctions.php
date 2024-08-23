@@ -4,6 +4,7 @@ session_start();
 }
 //change from include to require once
 include_once("../config/dbcon.php");
+
 //pinasok yung function into !function exist
 if(!function_exists('getAll')){
     function getAll($table){
@@ -99,4 +100,14 @@ while ($data = mysqli_fetch_array($credentials)) {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
     }
+    
+    // In myFunctions.php
+
+function showMessage() {
+    if(isset($_SESSION['message']) && !empty($_SESSION['message'])) {
+        echo '<script type="text/javascript">alert("' . $_SESSION['message'] . '");</script>';
+        unset($_SESSION['message']); // Clear the message after displaying it
+    }
+}
+    
     ?>
