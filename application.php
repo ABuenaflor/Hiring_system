@@ -1,9 +1,5 @@
 <?php 
 session_start();
-
-
-
-
 include("includes/header.php"); ?>
 
 <style>
@@ -186,7 +182,7 @@ input {
 
 
 <body>
-<form action="code.php" class="form">
+<form action="code.php" class="form" method="POST" enctype="multipart/form-data">
     <h1 class="text-center">Application Form</h1>
         <div class="progressbar">
             <div class="progress" id="progress"></div>
@@ -229,10 +225,10 @@ input {
         </div>
         <div class="col-md-2 mt-4">
                 <label for="">Sex</label>
-                    <select  id="" class="form-control">
+                    <select name="sex" id="" class="form-control">
                         <option selected>Choose</option>
-                        <option value="male" name="sex">Male</option>
-                        <option value="female" name="sex">Female</option>
+                        <option value="male" >Male</option>
+                        <option value="female">Female</option>
                     </select>
         </div>
         <div class="col-md-2 mt-4">
@@ -439,7 +435,7 @@ input {
     </div>
     <div class="col-md-8 mb-3">
         <h3 for="">Certificates</h3>
-        <input  type="file" class="form-control" name="image" id=""></input>
+        <input  type="file" class="form-control" name="image" accept="image/*"></input>
     </div>
     
     <div class="btns-group">
@@ -453,10 +449,8 @@ input {
 <div class="form-step">
 <h5>Job Type</h5>
     <div class="form-check" name="job_type">
-        <input class="form-check-input" type="radio" name="job_type" value="Academic">
-       Academic <br>
-       <input class="form-check-input" type="radio" name="job_type" value="Non-Academic">
-       Non Academic
+        <input class="form-check-input" type="radio" name="job_type" value="Academic">Academic <br>
+       <input class="form-check-input" type="radio" name="job_type" value="Non-Academic">Non Academic
     </div>  
 
     <h5>Job Schedule</h5>

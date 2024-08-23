@@ -1,6 +1,6 @@
 <?php 
 include("includes/header.php"); 
-include("../middleware/admin_middleware.php"); 
+include(__DIR__."../middleware/admin_middleware.php"); 
 //session_start();
 //include("config/dbcon.php"); 
 ?>

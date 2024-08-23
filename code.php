@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include('config/dbcon.php');
 include('functions/myFunctions.php');
 
@@ -54,13 +55,10 @@ if(isset($_POST['submit_credentials'])){
     $past_exp = $_POST['past_exp'];
     $seminars_attended = $_POST['seminars_attended'];
     $special_skills = $_POST['special_skills'];
+
     $image = $_FILES['image']['name'];
 
-    $path = "./uploads";
-
-    $image_ext = pathinfo($image, PATHINFO_EXTENSION);
-    $filename = time().'.'.$image_ext;
-    $target_file = $path.$filename;
+   
 
     $experience = $_POST['experience'];
     $education = $_POST['education'];
@@ -88,15 +86,21 @@ if(isset($_POST['submit_credentials'])){
     '$elem_year_graduated', '$elem_inclusive_dates', '$elem_honors_received', '$sec_school', '$sec_year_graduated', '$sec_inclusive_dates',
     '$sec_honors_received', '$col_school','$course', '$col_year_graduated', '$col_inclusive_dates', '$col_honors_received', '$grad_school',
     '$grad_year_graduated', '$grad_inclusive_dates', '$grad_honors_received', '$past_exp', '$seminars_attended', '$special_skills',
-    '$filename', '$experience', '$education', '$tech_skills' ,'$soft_skills', '$interview', '$saw_score','$date_applied', '$job_type', '$job_schedule', '$department')";
+    '$image_path', '$experience', '$education', '$tech_skills' ,'$soft_skills', '$interview', '$saw_score','$date_applied', '$job_type', '$job_schedule', '$department')";
 
     $cred_query_run = mysqli_query($con, $creds_query);
 
     if($cred_query_run){
-       redirect('index.php', "Added Succesfully");
-
-    }else{
-        redirect('index.php', "Something went wrong");
+        
+        // Set message to session before redirecting
+        $_SESSION['message'] = "Added Successfully";
+        header('location: index.php');
+        exit();
+    } else {
+        // Set error message to session before redirecting
+        $_SESSION['message'] = "Something went wrong";
+        header('location: index.php');
+        exit();
     }
 }else if(isset($_POST['edit_credentials']))
 {

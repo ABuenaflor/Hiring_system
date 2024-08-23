@@ -1,147 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recreated Table with Input Boxes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .table td, .table th {
-            vertical-align: middle;
-            text-align: center;
-        }
-        .table th {
-            font-weight: bold;
-        }
-        .table-input {
-            width: 80px;
-        }
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
 </head>
 <body>
-    <div class="container my-4">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th colspan="7">1.2 Professional Growth (Maximum points – 80)</th>
-                    <th>20</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="7">1.2.1 Advanced Training</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="6">MAM-S - 1 pt/6units</td>
-                    <td>MAM-MS + SO - 40 points</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="7">1.2.2 Seminars (Maximum points – 25)</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td rowspan="2">International</td>
-                    <td>Attended</td>
-                    <td>2pts/8hrs</td>
-                    <td>Echoed</td>
-                    <td>3pts/8hrs</td>
-                    <td>In Related Field</td>
-                    <td>1pt/8hrs</td>
-                    <td rowspan="2"></td>
-                </tr>
-                <tr>
-                    <td>National</td>
-                    <td>1pt/8hrs</td>
-                    <td>2pts/8hrs</td>
-                    <td>1<sup>2</sup> pt/8hrs</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">Regional</td>
-                    <td>0.5pts/8hrs</td>
-                    <td>1pt/8hrs</td>
-                    <td><sup>1</sup>/<sub>4</sub> pt/8hrs</td>
-                    <td rowspan="2"></td>
-                </tr>
-                <tr>
-                    <td>Local</td>
-                    <td>0.25pts/8hrs</td>
-                    <td>0.5pts/8hrs</td>
-                    <td><sup>1</sup>/<sub>8</sub> pt/8hrs</td>
-                </tr>
-                <tr>
-                    <td colspan="7">1.2.3 As Resource Speaker (Maximum points – 15)</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td rowspan="2">Trainer / day</td>
-                    <td>Nat'l</td>
-                    <td>10</td>
-                    <td>Reg'l</td>
-                    <td>8</td>
-                    <td>Prov'l</td>
-                    <td>6</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>Resource Speaker/topic</td>
-                    <td>8</td>
-                    <td>6</td>
-                    <td>5</td>
-                    <td>3</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td colspan="7">1.2.4 Completed Certificate of Proficiency (Maximum of 5 points)</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td colspan="7">2. TEACHING EXPERIENCE</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td colspan="7">2.1 Status of Employment (Maximum points – 100)</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="8">
-                        <div class="d-flex justify-content-center">
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="8">
-                        <div class="d-flex justify-content-center">
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="8">
-                        <div class="d-flex justify-content-center">
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                            <input type="text" class="form-control table-input mx-1" />
-                        </div>
-                    </td>
-                </tr>
-                <!-- Repeat the input rows as needed -->
-            </tbody>
-        </table>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<div class="sidenav">
+  <a href="index.php">Dashboard</a>
+
+  <button class="dropdown-btn">Applications 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="applications.php">Show Applicants</a>
+    <a href="filter_applicants.php">Filter Applicants</a>
+  </div>
+
+  <button class="dropdown-btn">Ranking 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="add_employee_ranking.php">Add Employee</a>
+    <a href="ranking.php">Show List of Employee</a>
+    <a href="rank_employee_ranking.php">Rank Employee</a>
+  </div>
+  <a href="#contact">Search</a>
+</div>
+
+
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+</script>
+
 </body>
-</html>
+</html> 
