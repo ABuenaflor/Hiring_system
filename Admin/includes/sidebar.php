@@ -51,11 +51,24 @@
                     <a href="add_employee_ranking.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Add Employee</span></a>
                 </li>
                 <li>
+                    <a href="department.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Department</span></a>
+                </li>
+                <li>
+                    <a href="campus.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Campus</span></a>
+                </li>
+                <li>
+                    <a href="academic_rank.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Academic Rank</span></a>
+                </li>
+                <li>
+                    <a href="position.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Add Position</span></a>
+                </li>
+                <li>
                     <a href="ranking.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Show List of Employees</span></a>
                 </li>
                 <li>
                     <a href="rank_employee_ranking.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Rank Employee</span></a>
                 </li>
+                
             </ul>
         </li>
 

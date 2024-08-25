@@ -319,73 +319,36 @@ require_once("includes/header.php"); ?>
                             <div class="card-body">
                             <h5>Job Type</h5>
                                 <div class="form-check" name="job_type">
-                                    <input class="form-check-input" type="radio" name="job_type" value="<?=$data['job_type']?>" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Academic
-                                    </label>
+                                    <input class="form-check-input" type="radio" name="job_type"  value="<?=$data['job_type']?>">Academic <br>
+                                    <input class="form-check-input" type="radio" name="job_type"  value="<?=$data['job_type']?>">Non Academic
                                 </div>
-                                <div class="form-check mb-3" name="job_type">
-                                    <input class="form-check-input" type="radio" name="job_type" vale="<?=$data['job_type']?>" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Non-Academic
-                                    </label>
-                                </div>  
+                                 
                                 <h5>Job Schedule</h5>
                                 <div class="form-check" name="job_schedule">
-                                    <input class="form-check-input" type="radio" name="job_schedule" value="<?=$data['job_schedule']?>" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Full Time Faculty
-                                    </label>
+                                    <input class="form-check-input" type="radio" name="job_schedule" value="<?=$data['job_schedule']?>">
+                                    Full Time Faculty<br>
+                                    <input class="form-check-input" type="radio" name="job_schedule" value="<?=$data['job_schedule']?>">
+                                    Part Time Faculty <br>
                                 </div>
-                                <div class="form-check mb-3" name="job_schedule">
-                                    <input class="form-check-input" type="radio" name="job_schedule" value="<?=$data['job_schedule']?>" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Part Time Faculty
-                                    </label>
-                                </div>
+                                
                                 <div class="cold-md-8">
                                     <h5>Department</h5>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-check" name="department">
-                                                <input class="form-check-input" type="radio" name="department"  id="gradeSchool" value="<?=$data['department']?>">
-                                                <label class="form-check-label" for="gradeSchool">
-                                                    Grade School Department
-                                                </label>
-                                            </div>
-                                            <div class="form-check" name="department">
-                                                <input class="form-check-input" type="radio" name="department"  id="juniorHigh" value="<?=$data['department']?>">
-                                                <label class="form-check-label" for="juniorHigh">
-                                                    Junior High School Department
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-check" name="department">
-                                                <input class="form-check-input" type="radio" name="department"   id="seniorHigh" value="<?=$data['department']?>">
-                                                <label class="form-check-label" for="seniorHigh">
-                                                    Senior High School Department
-                                                </label>
-                                            </div>
-                                            <div class="form-check" name="department">
-                                                <input class="form-check-input" type="radio" name="department"   id="college" value="<?=$data['department']?>">
-                                                <label class="form-check-label" for="college">
-                                                    College Department
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-check" name="department">
-                                                <input class="form-check-input" type="radio" name="department"   id="graduateSchool" value="<?=$data['department']?>">
-                                                <label class="form-check-label" for="graduateSchool">
-                                                    Graduate School
-                                                </label>
-                                            </div>
+                                            <input class="form-check-input" type="radio" name="department" id="Grade School" value="<?=$data['department']?>">
+                                            Grade School Department <br>
+                                            <input class="form-check-input" type="radio" name="department" id="Junior High" value="<?=$data['department']?>">
+                                            Junior High School Department <br>
+                                            <input class="form-check-input" type="radio" name="department" id="Senior High"value="<?=$data['department']?>">
+                                            Senior High School Department <br>
+                                            <input class="form-check-input" type="radio" name="department" id="College" value="<?=$data['department']?>">
+                                            College Department <br> 
+                                            <input class="form-check-input" type="radio" name="department" id="Graduate School" value="Graduate School">
+                                            Graduate School
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                             <div class="card">

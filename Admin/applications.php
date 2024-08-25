@@ -1,6 +1,6 @@
 <?php 
 include("includes/header.php"); 
-include(__DIR__."../middleware/admin_middleware.php"); 
+include("../middleware/admin_middleware.php"); 
 //session_start();
 //include("config/dbcon.php"); 
 ?>
@@ -199,7 +199,7 @@ display: none;
         <div class="container">
             <header class="cd__intro pt-5">
                 <h1> Ranked by Simple Additive Weighting</h1>
-                <p> Rank List of applications </p>
+                <p> Ranked List of applications </p>
                 
             </header>
             <table id="example2" class="table table-striped" style="width:100%">

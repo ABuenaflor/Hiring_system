@@ -589,4 +589,84 @@ if(isset($_POST['add_employee'])){
 
     }
     
+    if(isset($_POST['add_dept'])){
+        $dept_name = $_POST['dept_name'];
+
+        $add_dept_query = "INSERT INTO department (dept_name) VALUES ('$dept_name')";
+        $add_dept_query_run = mysqli_query($con, $add_dept_query);
+
+        if($add_dept_query){
+            $_SESSION['message'] = "Added Successfully";
+            showMessage();
+    
+            redirect('department.php', "Added Succesfully");
+    
+        }else{
+            $_SESSION['message'] = "Something went wrong";
+            redirect('department.php', "Something went wrong");
+        }
+    }
+
+    if(isset($_POST['edit_dept'])) {
+        $dept_id = $_POST['dept_id']; 
+        $dept_name = $_POST['dept_name'];
+    
+        $update = $con->prepare("UPDATE department SET dept_name = ? WHERE dept_id = ?");
+        $update->execute(array($dept_name, $dept_id));
+        header('location:department.php');
+    
+    }
+
+    if(isset($_POST['add_campus'])){
+        $campus_name = $_POST['campus_name'];
+
+        $add_campus_query = "INSERT INTO campus (campus_name) VALUES ('$campus_name')";
+        $add_campus_query_run = mysqli_query($con, $add_campus_query);
+
+        if($add_campus_query){
+            $_SESSION['message'] = "Added Successfully";
+            showMessage();
+    
+            redirect('campus.php', "Added Succesfully");
+    
+        }else{
+            $_SESSION['message'] = "Something went wrong";
+            redirect('campus.php', "Something went wrong");
+        }
+    }
+    if(isset($_POST['add_position'])){
+        $position_name = $_POST['position_name'];
+
+        $add_position_query = "INSERT INTO position (position_name) VALUES ('$position_name')";
+        $add_position_query_run = mysqli_query($con, $add_position_query);
+
+        if($add_position_query){
+            $_SESSION['message'] = "Added Successfully";
+            showMessage();
+    
+            redirect('position.php', "Added Succesfully");
+    
+        }else{
+            $_SESSION['message'] = "Something went wrong";
+            redirect('position.php', "Something went wrong");
+        }
+    }
+
+    if(isset($_POST['add_acad_rank'])){
+        $acad_rank_name = $_POST['acad_rank_name'];
+
+        $add_acad_rank_query = "INSERT INTO academic_rank (acad_rank_name) VALUES ('$acad_rank_name')";
+        $add_acad_rank_query_run = mysqli_query($con, $add_acad_rank_query);
+
+        if($add_position_query){
+            $_SESSION['message'] = "Added Successfully";
+            showMessage();
+    
+            redirect('academic_rank.php', "Added Succesfully");
+    
+        }else{
+            $_SESSION['message'] = "Something went wrong";
+            redirect('academic_rank.php', "Something went wrong");
+        }
+    }
 ?>

@@ -27,7 +27,8 @@ ob_start();
 </head>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <body class="g-sidenav-show  bg-gray-200">
     <?php include('sidebar.php'); ?>

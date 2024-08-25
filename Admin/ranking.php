@@ -152,42 +152,29 @@ tfoot tr {
         <thead>
             <tr>
                 <th>Index</th>
-                <th>Full Name</th>
                 <th>Department</th>
-                <th>Position</th>
-                <th>Overall Score</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
            <?php
 
-              $sql = "SELECT e.fullname, e.department, e.position, b.grand_score 
-              FROM employees e 
-              INNER JOIN basic_ed_score b ON e.id = b.employee_id";
+                $ranking_query = "SELECT * FROM department";
+                $ranks = mysqli_query($con, $ranking_query);
 
-              $result = mysqli_query($con, $sql);
-              $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                $total_query = "SELECT COUNT(*) FROM department";
+                $total_result = mysqli_query($con, $total_query);
+                $total_ranks = mysqli_fetch_array($total_result)[0];
+                $total_pages = ceil($total_ranks);
 
-              //$rank_query = "SELECT * FROM basic_ed_score";
-              //$rank = mysqli_query($con,$rank_query);
-              
-              $total_query = "SELECT COUNT(*) FROM basic_ed_score";
-              $total_result = mysqli_query($con, $total_query);
-              $total_score = mysqli_fetch_array($total_result)[0];
-              $total_pages = ceil($total_employees);
-
-              if (mysqli_num_rows($rank) > 0) {
-                foreach ($rank as $item) {
-                    ?>
+                if (mysqli_num_rows($ranks) > 0) {
+                    foreach ($ranks as $item) {
+        ?>
                         <tr class="app-row">
-                            <td class="app-row"><?= $item['id']; ?></td>
-                            <td class="app-row"><?= $item['fullname']; ?></td>
-                            <td class="app-row"><?= $item['department']; ?></td>
-                            <td class="app-row"><?= $item['position']; ?></td>
-                            <td class="app-row"><?= $item['grand_score']; ?></td>
+                            <td class="app-row"><?= $item['dept_id']; ?></td>
+                            <td class="app-row"><?= $item['dept_name']; ?></td>
                             <td class="app-row">
-                                <a href="basic_ed_ranking.php?id=<?= $item['id']; ?>" class="btn btn-primary">Rank Employee</a>
+                                <a href="basic_ed_ranking.php?id=<?= $item['dept_id']; ?>" class="btn btn-primary">Rank Employee</a>
                             </td>
                         </tr>
                     <?php
@@ -196,7 +183,6 @@ tfoot tr {
                 echo "<tr><td colspan='6'>No records found</td></tr>";
             }
         ?>
-           ?>
         </tbody>
     </table>
          <!-- END EDMO HTML (Happy Coding!)-->
@@ -218,7 +204,7 @@ tfoot tr {
     $('#example').DataTable({
       //disable sorting on last column
       "columnDefs": [
-        { "orderable": false, "targets": 5 }
+        { "orderable": false, "targets": 2 }
       ],
       language: {
         //customize pagination prev and next buttons: use arrows instead of words

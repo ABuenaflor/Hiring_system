@@ -1,121 +1,67 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body {
-  font-family: "Lato", sans-serif;
+<?php
+// Database connection parameters
+$servername = "localhost"; // Replace with your server name
+$username = "username"; // Replace with your database username
+$password = "password"; // Replace with your database password
+$dbname = "your_database"; // Replace with your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-/* Fixed sidenav, full height */
-.sidenav {
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
+// SQL query to join the tables
+$sql = "
+SELECT 
+    d.dept_id,
+    d.dept_name,
+    ar.rank_id,
+    ar.rank_name,
+    p.position_id,
+    p.position_name,
+    c.campus_id,
+    c.campus_name,
+    co.course_id,
+    co.course_name,
+    s.student_id,
+    s.student_name
+FROM 
+    department d
+JOIN 
+    academic_rank ar ON d.dept_id = ar.dept_id
+JOIN 
+    position p ON ar.rank_id = p.rank_id
+JOIN 
+    campus c ON p.campus_id = c.campus_id  -- Ensure this column exists in the position table
+JOIN 
+    courses co ON c.campus_id = co.campus_id
+JOIN 
+    students s ON co.course_id = s.course_id;
+";
 
-/* Style the sidenav links and the dropdown button */
-.sidenav a, .dropdown-btn {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #818181;
-  display: block;
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  outline: none;
-}
+// Debugging: Print the SQL query
+echo $sql; // Uncomment this line to see the query
 
-/* On mouse-over */
-.sidenav a:hover, .dropdown-btn:hover {
-  color: #f1f1f1;
-}
+// Execute the query
+$result = $conn->query($sql);
 
-/* Main content */
-.main {
-  margin-left: 200px; /* Same as the width of the sidenav */
-  font-size: 20px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
-
-/* Add an active class to the active dropdown button */
-.active {
-  background-color: green;
-  color: white;
-}
-
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-  display: none;
-  background-color: #262626;
-  padding-left: 8px;
-}
-
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-  float: right;
-  padding-right: 8px;
-}
-
-/* Some media queries for responsiveness */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
-</head>
-<body>
-
-<div class="sidenav">
-  <a href="index.php">Dashboard</a>
-
-  <button class="dropdown-btn">Applications 
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown-container">
-    <a href="applications.php">Show Applicants</a>
-    <a href="filter_applicants.php">Filter Applicants</a>
-  </div>
-
-  <button class="dropdown-btn">Ranking 
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown-container">
-    <a href="add_employee_ranking.php">Add Employee</a>
-    <a href="ranking.php">Show List of Employee</a>
-    <a href="rank_employee_ranking.php">Rank Employee</a>
-  </div>
-  <a href="#contact">Search</a>
-</div>
-
-
-<script>
-/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
-
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
+// Check for results
+if ($result) {
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while($row = $result->fetch_assoc()) {
+            echo "Department: " . $row["dept_name"] . " - Rank: " . $row["rank_name"] . " - Position: " . $row["position_name"] . " - Campus: " . $row["campus_name"] . " - Course: " . $row["course_name"] . " - Student: " . $row["student_name"] . "<br>";
+        }
     } else {
-      dropdownContent.style.display = "block";
+        echo "0 results"; // No records found
     }
-  });
+} else {
+    echo "Error: " . $conn->error; // Print the error if the query fails
 }
-</script>
 
-</body>
-</html> 
+// Close the connection
+$conn->close();
+?>

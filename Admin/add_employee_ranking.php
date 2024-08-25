@@ -17,12 +17,16 @@ include("../middleware/admin_middleware.php");
         <h2>Add Employee</h2>
         <form action="code.php" method="POST">
             <div class="row mb-3">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="fullName" class="form-label">Full Name</label>
                     <input type="text" name="fullname" class="form-control" id="fullname" placeholder="Enter Full name">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="department" class="form-label">Department</label>
+                    <input type="text" name="department" class="form-control" id="department" placeholder="Enter Department">
+                </div>
+                <div class="col-md-4">
+                    <label for="department" class="form-label">Campus</label>
                     <input type="text" name="department" class="form-control" id="department" placeholder="Enter Department">
                 </div>
             </div>
