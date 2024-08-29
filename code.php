@@ -70,6 +70,7 @@ if(isset($_POST['submit_credentials'])){
     $date_applied= $_POST['date_applied'];
     $job_type = $_POST['job_type'];
     $job_schedule = $_POST['job_schedule'];
+    $campus = $_POST['campus_name'];
     $department = $_POST['department'];
 
     $creds_query = "INSERT INTO credentials (first_name, middle_name, last_name, date_of_birth, place_of_birth, sex,
@@ -78,7 +79,7 @@ if(isset($_POST['submit_credentials'])){
     elem_school, elem_year_graduated, elem_inclusive_dates, elem_honors_received, sec_school, sec_year_graduated, sec_inclusive_dates,
     sec_honors_received, col_school, course, col_year_graduated, col_inclusive_dates, col_honors_received, grad_school, grad_year_graduated,
     grad_inclusive_dates, grad_honors_received, past_exp, seminars_attended, special_skills, image, experience, education, tech_skills, soft_skills, interview, saw_score,
-    date_applied, job_type, job_schedule, department) 
+    date_applied, job_type, job_schedule, campus_name, department) 
     VALUES ('$first_name', '$middle_name',
     '$last_name', '$date_of_birth', '$place_of_birth', '$sex', '$civil_status', '$citizenship', '$height', '$weight', '$blood_type',
     '$pag_ibig', '$philhealth', '$tin', '$sss', '$residential_address', '$permanent_address', '$contact_number', '$email_address',
@@ -86,7 +87,7 @@ if(isset($_POST['submit_credentials'])){
     '$elem_year_graduated', '$elem_inclusive_dates', '$elem_honors_received', '$sec_school', '$sec_year_graduated', '$sec_inclusive_dates',
     '$sec_honors_received', '$col_school','$course', '$col_year_graduated', '$col_inclusive_dates', '$col_honors_received', '$grad_school',
     '$grad_year_graduated', '$grad_inclusive_dates', '$grad_honors_received', '$past_exp', '$seminars_attended', '$special_skills',
-    '$image_path', '$experience', '$education', '$tech_skills' ,'$soft_skills', '$interview', '$saw_score','$date_applied', '$job_type', '$job_schedule', '$department')";
+    '$image_path', '$experience', '$education', '$tech_skills' ,'$soft_skills', '$interview', '$saw_score','$date_applied', '$job_type', '$job_schedule','$campus', '$department')";
 
     $cred_query_run = mysqli_query($con, $creds_query);
 
@@ -168,6 +169,7 @@ if(isset($_POST['submit_credentials'])){
     $date_applied= $_POST['date_applied'];
     $job_type = $_POST['job_type'];
     $job_schedule = $_POST['job_schedule'];
+    $campus = $_POST['campus_name'];
     $department = $_POST['department'];
 
     if($new_image != "")
@@ -191,7 +193,7 @@ if(isset($_POST['submit_credentials'])){
      grad_school = '$grad_school', grad_year_graduated = '$grad_year_graduated', grad_inclusive_dates = '$grad_inclusive_dates',
      grad_honors_received = '$grad_honors_received', past_exp = '$past_exp', seminars_attended='$seminars_attended', special_skills = '$special_skills',
      image = '$update_filename' , experience='$experience', education='$education', tech_skills='$tech_skills', soft_skills='$soft_skills',
-     interview='$interview', saw_score='$saw_score', date_applied='$date_applied', job_type='$job_type', job_schedule='$job_schedule',
+     interview='$interview', saw_score='$saw_score', date_applied='$date_applied', job_type='$job_type', job_schedule='$job_schedule', campus_name='$campus',
      department = '$department' WHERE id = '$credentials_id' ";
 
      $update_query_run = mysqli_query($con, $update_query);

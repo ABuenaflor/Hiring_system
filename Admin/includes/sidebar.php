@@ -60,26 +60,38 @@
                     <a href="academic_rank.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Academic Rank</span></a>
                 </li>
                 <li>
-                    <a href="position.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Add Position</span></a>
+                    <a href="position.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Add Academic Role</span></a>
                 </li>
                 <li>
                     <a href="ranking.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Show List of Employees</span></a>
                 </li>
+                <!--
                 <li>
                     <a href="rank_employee_ranking.php" class="nav-link text-white"> <span class="nav-link-text ms-1">Rank Employee</span></a>
                 </li>
+-->
                 
             </ul>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/tables.html">
+          <a class="nav-link text-white " href="add_inst_role.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="nav-link-text ms-1">Institutional Role</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white " href="generate_report.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
             <span class="nav-link-text ms-1">Generation of Reports</span>
           </a>
         </li>
+         <!--
         <li class="nav-item">
           <a class="nav-link text-white " href="../pages/tables.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -88,6 +100,7 @@
             <span class="nav-link-text ms-1">Accounts</span>
           </a>
         </li>
+-->
       </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">

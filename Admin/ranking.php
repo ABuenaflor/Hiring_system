@@ -141,28 +141,33 @@ tfoot tr {
    <body>
    
       <header class="cd__intro pt-5">
-         <h1> List of Ranked Faculties </h1>
+         <h1> List of  Faculties </h1>
          <p> Ranked Faculties from Basic Education and Tertiary Level </p>
 
       </header>
       <!--$%adsense%$-->
       <main class="wrapper">
          
-         <table id="example" class="table table-striped" style="width:100%">
+         <table id="example" class="table table-striped" style="width:180%">
         <thead>
             <tr>
                 <th>Index</th>
+                <th>Full Name</th>
                 <th>Department</th>
+                <th>Campus</th>
+                <th>Position</th>
+                <th>Date Hired</th>
                 <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
            <?php
 
-                $ranking_query = "SELECT * FROM department";
+                $ranking_query = "SELECT * FROM employees";
                 $ranks = mysqli_query($con, $ranking_query);
 
-                $total_query = "SELECT COUNT(*) FROM department";
+                $total_query = "SELECT COUNT(*) FROM employees";
                 $total_result = mysqli_query($con, $total_query);
                 $total_ranks = mysqli_fetch_array($total_result)[0];
                 $total_pages = ceil($total_ranks);
@@ -171,10 +176,20 @@ tfoot tr {
                     foreach ($ranks as $item) {
         ?>
                         <tr class="app-row">
-                            <td class="app-row"><?= $item['dept_id']; ?></td>
-                            <td class="app-row"><?= $item['dept_name']; ?></td>
+                            <td class="app-row"><?= $item['id']; ?></td>
+                            <td class="app-row"><?= $item['fullname']; ?></td>
+                            <td class="app-row"><?= $item['department_id']; ?></td>
+                            <td class="app-row"><?= $item['campus_id']; ?></td>
+                            <td class="app-row"><?= $item['position_id']; ?></td>
+                            <td class="app-row"><?= $item['date_hired']; ?></td>
                             <td class="app-row">
-                                <a href="basic_ed_ranking.php?id=<?= $item['dept_id']; ?>" class="btn btn-primary">Rank Employee</a>
+                                <!--<a href="edit_employee.php?id=<?= $item['id']; ?>" class="btn btn-primary">Edit Employee</a>-->
+                                <select class="form-select mySelect" data-id="<?= $item['id']; ?>">
+                                  <option value="A">Basic Education</option>
+                                  <option value="B">Tertiary Level</option>
+                                </select><br>
+                                  <a href="basic_ed_ranking.php"><button class="btn btn-primary buttonA" type="button" style="display: none;">Basic Education Ranking</button></a>
+                                  <a href="tertiary_ranking.php"><button class="btn btn-primary buttonB" type="button" style="display: none;">Tertiary Ranking</button></a>  
                             </td>
                         </tr>
                     <?php
@@ -204,7 +219,7 @@ tfoot tr {
     $('#example').DataTable({
       //disable sorting on last column
       "columnDefs": [
-        { "orderable": false, "targets": 2 }
+        { "orderable": false, "targets": 6 }
       ],
       language: {
         //customize pagination prev and next buttons: use arrows instead of words
@@ -225,5 +240,22 @@ tfoot tr {
     })  
 } );
       </script>
+      <script>
+    document.querySelectorAll('.mySelect').forEach(selectElement => {
+    const buttonA = selectElement.parentElement.querySelector('.buttonA');
+    const buttonB = selectElement.parentElement.querySelector('.buttonB');
+
+    selectElement.addEventListener('change', () => {
+        const selectedValue = selectElement.value;
+        if (selectedValue === 'A') {
+            buttonA.style.display = 'block';
+            buttonB.style.display = 'none';
+        } else if (selectedValue === 'B') {
+            buttonA.style.display = 'none';
+            buttonB.style.display = 'block';
+        }
+    });
+});
+</script>
    </body>
 </html>

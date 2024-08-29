@@ -17,7 +17,7 @@ include("../middleware/admin_middleware.php");
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                <th></th>
+                <th>Index</th>
                 <th>Department</th>
                 <th>Action</th>
                
@@ -62,7 +62,7 @@ include("../middleware/admin_middleware.php");
     $('#example').DataTable({
       //disable sorting on last column
       "columnDefs": [
-        { "orderable": false, "targets": 5 }
+        { "orderable": false, "targets": 0 }
       ],
       language: {
         //customize pagination prev and next buttons: use arrows instead of words
@@ -82,29 +82,7 @@ include("../middleware/admin_middleware.php");
         '</select> results'
       }
     })  
-    $('#example2').DataTable({
-      //disable sorting on last column
-      "columnDefs": [
-        { "orderable": false, "targets": 3 }
-      ],
-      language: {
-        //customize pagination prev and next buttons: use arrows instead of words
-        'paginate': {
-          'previous': '<span class="fa fa-chevron-left"></span>',
-          'next': '<span class="fa fa-chevron-right"></span>'
-        },
-        //customize number of elements to be displayed
-        "lengthMenu": 'Display <select class="form-control input-sm">'+
-        '<option value="5">5</option>'+
-        '<option value="10">10</option>'+
-        '<option value="20">20</option>'+
-        '<option value="30">30</option>'+
-        '<option value="40">40</option>'+
-        '<option value="50">50</option>'+
-        '<option value="-1">All</option>'+
-        '</select> results'
-      }
-    })  
+     
 } );
       </script>
 

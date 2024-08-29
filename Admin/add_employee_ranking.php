@@ -15,26 +15,52 @@ include("../middleware/admin_middleware.php");
 <body>
     <div class="container mt-5">
         <h2>Add Employee</h2>
+
         <form action="code.php" method="POST">
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="fullName" class="form-label">Full Name</label>
                     <input type="text" name="fullname" class="form-control" id="fullname" placeholder="Enter Full name">
                 </div>
+
                 <div class="col-md-4">
                     <label for="department" class="form-label">Department</label>
-                    <input type="text" name="department" class="form-control" id="department" placeholder="Enter Department">
+                    <select class="form-select" name="department" id="">
+                        <?php
+                            $department = mysqli_query($con, "SELECT dept_name FROM department");
+                            while ($d =mysqli_fetch_array($department)){
+                        ?>
+                        <option value="<?php echo $d['dept_name']?>"> <?php echo $d['dept_name']?></option>
+                        <?php } ?>
+                    </select>
                 </div>
+                 
                 <div class="col-md-4">
-                    <label for="department" class="form-label">Campus</label>
-                    <input type="text" name="department" class="form-control" id="department" placeholder="Enter Department">
+                    <label for="department" class="form-label">Campus</label> <br>
+                    <select class="form-select" name="campus" id="">
+                        <?php
+                            $campus = mysqli_query($con, "SELECT campus_name FROM campus");
+                            while ($c =mysqli_fetch_array($campus)){
+                        ?>
+                        <option value="<?php echo $c['campus_name']?>"> <?php echo $c['campus_name']?></option>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
+
             <div class="row mb-3">
             <div class="col-md-6">
-                    <label  class="form-label">Position</label>
-                    <input type="text" name="position" class="form-control" id="position" placeholder="Enter Position">
+                    <label  class="form-label">Position</label> 
+                    <select class="form-select" name="position" id="">
+                        <?php
+                            $position = mysqli_query($con, "SELECT position_name FROM position");
+                            while ($p =mysqli_fetch_array($position)){
+                        ?>
+                        <option value="<?php echo $p['position_name']?>"> <?php echo $p['position_name']?></option>
+                        <?php } ?>
+                    </select>
                 </div>
+
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="">

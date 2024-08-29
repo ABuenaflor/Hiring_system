@@ -252,6 +252,7 @@ if(isset($_POST['add_employee'])){
 
     $fullName = $_POST['fullname'];
     $department = $_POST['department'];
+    $campus = $_POST['campus'];
     $position = $_POST['position'];
     $email = $_POST['email'];
     $mobile_num = $_POST['mobile_num'];
@@ -259,12 +260,13 @@ if(isset($_POST['add_employee'])){
     $date_hired= $_POST['date_hired'];
     $address= $_POST['address'];
 
-    $add_emp_query = "INSERT INTO employees (fullName, department, position, email, mobile_num, birth_date, date_hired, address)
-    VALUES ('$fullName', '$department', '$position', '$email', '$mobile_num', '$birth_date', '$date_hired', '$address')";
+    $add_emp_query = "INSERT INTO employees (fullName, department_id, campus_id, position_id, email, mobile_num, birth_date, date_hired, address)
+    VALUES ('$fullName', '$department', '$campus', '$position', '$email', '$mobile_num', '$birth_date', '$date_hired', '$address')";
     
     $add_emp_query_run = mysqli_query($con, $add_emp_query);
 
     if($add_emp_query_run){
+        echo "<script>alert('Added Succesfully')</script>";
         $_SESSION['message'] = "Added Successfully";
         showMessage();
 
@@ -667,6 +669,40 @@ if(isset($_POST['add_employee'])){
         }else{
             $_SESSION['message'] = "Something went wrong";
             redirect('academic_rank.php', "Something went wrong");
+        }
+    }
+    if(isset($_POST['add_inst_role'])){
+        $inst_role_name = $_POST['inst_role_name'];
+
+        $add_inst_query = "INSERT INTO institutional_roles (inst_role_name) VALUES ('$inst_role_name')";
+        $add_inst_query_run = mysqli_query($con, $add_inst_query);
+
+        if($add_inst_query){
+            $_SESSION['message'] = "Added Successfully";
+            showMessage();
+    
+            redirect('add_inst_role.php', "Added Succesfully");
+    
+        }else{
+            $_SESSION['message'] = "Something went wrong";
+            redirect('add_inst_role.php', "Something went wrong");
+        }
+    }
+    if(isset($_POST['add_acad_role'])){
+        $acad_role_name = $_POST['acad_role_name'];
+
+        $add_acad_query = "INSERT INTO academic_roles (acad_role_name) VALUES ('$acad_role_name')";
+        $add_acad_query_run = mysqli_query($con, $add_acad_query);
+
+        if($add_acad_query){
+            $_SESSION['message'] = "Added Successfully";
+            showMessage();
+    
+            redirect('add_acad_role.php', "Added Succesfully");
+    
+        }else{
+            $_SESSION['message'] = "Something went wrong";
+            redirect('add_acad_role.php', "Something went wrong");
         }
     }
 ?>

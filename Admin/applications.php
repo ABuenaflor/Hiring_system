@@ -13,8 +13,6 @@ include("../middleware/admin_middleware.php");
     <title>Document</title>
 
     <link rel="stylesheet" href="./css/style.css">
-      <!-- Demo CSS (No need to include it into your project) -->
-      <link rel="stylesheet" href="./css/demo.css">
       <!-- Bootstrap 5 CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
       <!-- Data Table CSS -->
@@ -22,12 +20,12 @@ include("../middleware/admin_middleware.php");
       <!-- Font Awesome CSS -->
       <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 
-          <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.7.0.js'></script>
-    <!-- Data Table JS -->
-    <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
-    <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
-    <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
+    <!-- JQUERY-->
+      <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.1/css/buttons.dataTables.css">
+
+      
+
     <script src="./js/script.js"></script>
     <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
@@ -151,7 +149,7 @@ display: none;
             
     </header>
     <div class="container ">
-    <table id="example" class="table table-striped" style="width:100%">
+    <table id="example" class="table table-striped display nowrap" style="width:190%">
         <thead>
             <tr>
                 <th>Index</th>
@@ -159,6 +157,9 @@ display: none;
                 <th>Last name</th>
                 <th>School</th>
                 <th>Program</th>
+                <th>Desired Institutional Role</th>
+                <th>Desired Academic Role</th>
+                <th>Desired Desired Department</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -183,6 +184,9 @@ display: none;
                                                 <td class="app-row"><?= $item['last_name']; ?></td>
                                                 <td class="app-row"><?= $item['col_school']; ?></td>
                                                 <td class="app-row"><?= $item['course']; ?></td>
+                                                <td class="app-row"><?= $item['job_type']; ?></td>
+                                                <td class="app-row"><?= $item['job_schedule']; ?></td>
+                                                <td class="app-row"><?= $item['department']; ?></td>
                                                 <td class="app-row">
                                                     <a href="show.php?id=<?= $item['id']; ?>" class="btn btn-primary">Show More</a>
                                                 </td>
@@ -198,17 +202,22 @@ display: none;
 
         <div class="container">
             <header class="cd__intro pt-5">
-                <h1> Ranked by Simple Additive Weighting</h1>
+                <h1> Ranked Applicants by Simple Additive Weighting</h1>
                 <p> Ranked List of applications </p>
                 
             </header>
-            <table id="example2" class="table table-striped" style="width:100%">
+            <table id="example2" class="table table-striped" style="width:190%">
                 <thead>
                     <tr>
+                        <th>SAW Score</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>SAW Score</th>
-                        <th>School</th>
+                        <th>School Graduated</th>
+                        <th>Program</th>
+                        <th>Desired Institutional Role</th>
+                        <th>Desired Academic Role</th>
+                        <th>Department</th>
+                        
                     </tr>
                 </thead>
 
@@ -220,13 +229,18 @@ display: none;
                         if (mysqli_num_rows($candidates) > 0) {
                             foreach ($candidates as $candidate) {
                                 $normalizedSawScore = calculate_saw_score($candidate, $weights);
+
                                 update_candidate_saw_score($con, $candidate['id'], $normalizedSawScore);
                                 echo "<tr>";
-                                
+
+                                echo "<td class='app-row-rank'>{$normalizedSawScore}</td>";
                                 echo "<td class='app-row-rank'>{$candidate['first_name']}</td>";
                                 echo "<td class='app-row-rank'>{$candidate['last_name']}</td>";
-                                echo "<td class='app-row-rank'>{$normalizedSawScore}</td>";
                                 echo "<td class='app-row-rank'>{$candidate['col_school']}</td>";
+                                echo "<td class='app-row-rank'>{$candidate['course']}</td>";
+                                echo "<td class='app-row-rank'>{$candidate['job_type']}</td>";
+                                echo "<td class='app-row-rank'>{$candidate['job_schedule']}</td>";
+                                echo "<td class='app-row-rank'>{$candidate['department']}</td>";
                                 echo "</tr>";
                                 
                             }
@@ -244,7 +258,7 @@ display: none;
     $('#example').DataTable({
       //disable sorting on last column
       "columnDefs": [
-        { "orderable": false, "targets": 5 }
+        { "orderable": false, "targets": 8 }
       ],
       language: {
         //customize pagination prev and next buttons: use arrows instead of words
@@ -267,7 +281,7 @@ display: none;
     $('#example2').DataTable({
       //disable sorting on last column
       "columnDefs": [
-        { "orderable": false, "targets": 3 }
+        { "orderable": false, "targets": 7 }
       ],
       language: {
         //customize pagination prev and next buttons: use arrows instead of words
@@ -289,6 +303,38 @@ display: none;
     })  
 } );
       </script>
-      
+     <script>
+                new DataTable('#example', {
+                layout: {
+                    topStart: {
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    }
+                }
+            });
+     </script>
+       <!-- jQuery -->
+    <script src='https://code.jquery.com/jquery-3.7.1.js'></script>
+    <!-- Data Table JS -->
+    <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
+    <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
+
+    <script src="https://cdn.datatables.net/buttons/3.1.1/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.dataTables.js"></script>
+
+    <!-- PRINT-->
+    <script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.print.min.js"></script>
+<!-- pdf-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.html5.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+
+
+
 </body>
 </html>

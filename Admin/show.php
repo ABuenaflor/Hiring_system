@@ -316,38 +316,40 @@ require_once("includes/header.php"); ?>
                             <div class="card-header">
                                 <h4>Desired Job Position</h4>
                             </div>
+
                             <div class="card-body">
-                            <h5>Job Type</h5>
-                                <div class="form-check" name="job_type">
-                                    <input class="form-check-input" type="radio" name="job_type"  value="<?=$data['job_type']?>">Academic <br>
-                                    <input class="form-check-input" type="radio" name="job_type"  value="<?=$data['job_type']?>">Non Academic
+
+                           <div class="cold-md-8 mb-5">
+                                <div class="col-md-6 mb-3">
+                                    <h5>Job Type</h5>
+                                    <select class="form-select" name="job_type">
+                                        <option value="Academic" <?= $data['job_type'] == 'Academic' ? 'selected' : '' ?>>Academic</option>
+                                        <option value="Non Academic" <?= $data['job_type'] == 'Non Academic' ? 'selected' : '' ?>>Non Academic</option>
+                                    </select>
                                 </div>
-                                 
-                                <h5>Job Schedule</h5>
-                                <div class="form-check" name="job_schedule">
-                                    <input class="form-check-input" type="radio" name="job_schedule" value="<?=$data['job_schedule']?>">
-                                    Full Time Faculty<br>
-                                    <input class="form-check-input" type="radio" name="job_schedule" value="<?=$data['job_schedule']?>">
-                                    Part Time Faculty <br>
+
+                                <div class="col-md-6 mb-3">
+                                    <h5>Job Schedule</h5>
+                                    <select class="form-select" name="job_schedule">
+                                        <option value="Full Time Faculty" <?= $data['job_schedule'] == 'Full Time Faculty' ? 'selected' : '' ?>>Full Time Faculty</option>
+                                        <option value="Part Time Faculty" <?= $data['job_schedule'] == 'Part Time Faculty' ? 'selected' : '' ?>>Part Time Faculty</option>
+                                    </select>
                                 </div>
-                                
-                                <div class="cold-md-8">
-                                    <h5>Department</h5>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input class="form-check-input" type="radio" name="department" id="Grade School" value="<?=$data['department']?>">
-                                            Grade School Department <br>
-                                            <input class="form-check-input" type="radio" name="department" id="Junior High" value="<?=$data['department']?>">
-                                            Junior High School Department <br>
-                                            <input class="form-check-input" type="radio" name="department" id="Senior High"value="<?=$data['department']?>">
-                                            Senior High School Department <br>
-                                            <input class="form-check-input" type="radio" name="department" id="College" value="<?=$data['department']?>">
-                                            College Department <br> 
-                                            <input class="form-check-input" type="radio" name="department" id="Graduate School" value="Graduate School">
-                                            Graduate School
+
+                                    
+                                        <h5>Department</h5>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <select class="form-select" name="department">
+                                                <option value="Grade School Department" <?= $data['department'] == 'Grade School Department' ? 'selected' : '' ?>>Grade School Department</option>
+                                                <option value="Junior High School Department" <?= $data['department'] == 'Junior High School Department' ? 'selected' : '' ?>>Junior High School Department</option>
+                                                <option value="Senior High School Department" <?= $data['department'] == 'Senior High School Department' ? 'selected' : '' ?>>Senior High School Department</option>
+                                                <option value="College Department" <?= $data['department'] == 'College Department' ? 'selected' : '' ?>>College Department</option>
+                                                <option value="Graduate School" <?= $data['department'] == 'Graduate School' ? 'selected' : '' ?>>Graduate School</option>
+                                            </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 
                             </div>
                         </div>
@@ -356,6 +358,41 @@ require_once("includes/header.php"); ?>
                                     <h4>Criteria</h4>
                                 </div>
                             <div class="card-body">
+                            <div class="card-header">
+                                    <h4>Rating Guide for the Evaluation of Applicants</h4>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Rating</th>
+                                                <th>Interpretation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Far more than what is expected</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>More than what is expected</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Presence of the expectation</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Less than what is expected</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Absence of the expectation</td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
                             <div class="col-md-2">
                                     <label for="">Experience (Years)</label>
                                     <input type="number" name="experience" value="<?=$data['experience']?>" class="form-control">

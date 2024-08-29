@@ -201,6 +201,7 @@ input {
             <label for="">Date of Application</label>
             <input type="date" name="date_applied" placeholder="Enter Date" class="form-control">
         </div>
+        
 
         <div class="row mb-3">
             <div class="col-md-4 mb-3">
@@ -447,39 +448,44 @@ input {
 
 <!--start of page 5 -->
 <div class="form-step">
-<h5>Job Type</h5>
-    <div class="form-check" name="job_type">
-        <input class="form-check-input" type="radio" name="job_type" value="Academic">Academic <br>
-       <input class="form-check-input" type="radio" name="job_type" value="Non-Academic">Non Academic
-    </div>  
+<div class="cold-md-8 mb-5">
 
-    <h5>Job Schedule</h5>
-    <div class="form-check" name="job_schedule">
-        <input class="form-check-input" type="radio" name="job_schedule" value="Full Time Faculty">
-        Full Time Faculty<br>
-        <input class="form-check-input" type="radio" name="job_schedule" value="Part Time Faculty">
-        Part Time Faculty <br>
-    </div>
-   
-    <div class="cold-md-8">
-        <h5>Department</h5>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-check" name="department">
-                    <input class="form-check-input" type="radio" name="department" id="Grade School" value="Grade School">
-                    Grade School Department <br>
-                    <input class="form-check-input" type="radio" name="department" id="Junior High" value="Junior High">
-                    Junior High School Department <br>
-                    <input class="form-check-input" type="radio" name="department" id="Senior High" value="Senior High">
-                    Senior High School Department <br>
-                    <input class="form-check-input" type="radio" name="department" id="College" value="College">
-                    College Department <br> 
-                    <input class="form-check-input" type="radio" name="department" id="Graduate School" value="Graduate School">
-                    Graduate School
-                </div>
-            </div>
-        </div> 
-    </div>
+<div class="col-md-6 mb-3">
+    <h5>Institutional Role</h5>
+      <select class="form-select" name="job_type">
+          <option value="Academic">Academic</option>
+          <option value="Non-Academic">Non Academic</option>
+      </select>
+</div>
+
+<div class="col-md-6 mb-3">
+      <h5>Academic Role</h5>
+      <select class="form-select" name="job_schedule">
+          <option value="Full Time Faculty">Full Time Faculty</option>
+          <option value="Part Time Faculty">Part Time Faculty</option>
+      </select>
+</div>
+
+<div class="col-md-6 mb-3">
+      <h5>Campus</h5>
+      <select class="form-select" name="campus_name">
+          <option value="North Campus">North Campus</option>
+          <option value="South Campus">South Capus</option>
+      </select>
+</div>
+          <h5>Department</h5>
+          <div class="row">
+              <div class="col-md-6">
+                  <select class="form-select" name="department">
+                      <option value="Grade School">Grade School Department</option>
+                      <option value="Junior High">Junior High School Department</option>
+                      <option value="Senior High">Senior High School Department</option>
+                      <option value="College">College Department</option>
+                      <option value="Graduate School">Graduate School</option>
+                  </select>
+              </div>
+          </div>
+      </div>
 
         <div class="btns-group">
           <a href="#" class="btn btn-prev">Previous</a>
@@ -489,7 +495,7 @@ input {
 
 </form>
 </body>
-<script>
+    <script>
         const prevBtns = document.querySelectorAll(".btn-prev");
 const nextBtns = document.querySelectorAll(".btn-next");
 const progress = document.getElementById("progress");

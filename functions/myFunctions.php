@@ -110,5 +110,6 @@ function showMessage() {
         unset($_SESSION['message']); // Clear the message after displaying it
     }
 }
+
     
     ?>

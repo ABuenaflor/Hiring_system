@@ -175,13 +175,12 @@ tfoot tr {
                                     foreach ($employee as $item) {
                                         ?>
                                             <tr class="app-row">
-                                                <td class="app-row"><?= $item['id']; ?></td>
                                                 <td class="app-row"><?= $item['fullname']; ?></td>
-                                                <td class="app-row"><?= $item['department']; ?></td>
-                                                <td class="app-row"><?= $item['position']; ?></td>
-                                                <td class="app-row"><?= $item['date_hired']; ?></td>
+                                                <td class="app-row"><?= $item['campus_id']; ?></td>
+                                                <td class="app-row"><?= $item['position_id']; ?></td>
+                                               
                                                 <td class="app-row">
-                                                    <a href="basic_ed_ranking.php?id=<?= $item['id']; ?>" class="btn btn-primary">Rank Employee</a>
+                                                    <a href="basic_ed_ranking.php?id=<?= $item['campus_id']; ?>" class="btn btn-primary">Rank Employee</a>
                                                 </td>
                                             </tr>
                                         <?php
