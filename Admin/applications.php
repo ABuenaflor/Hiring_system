@@ -1,5 +1,5 @@
 <?php 
-include("includes/header.php"); 
+
 include("../middleware/admin_middleware.php"); 
 //session_start();
 //include("config/dbcon.php"); 
@@ -143,12 +143,18 @@ display: none;
 </head>
 
 <body>
+   
+   
+    <div class="wrapper">
+    <?php
+include("includes/header.php"); 
+    ?>
+    <div class="container ">
     <header class="cd__intro pt-5">
             <h1> Applicants</h1>
             <p> List of applications </p>
             
     </header>
-    <div class="container ">
     <table id="example" class="table table-striped display nowrap" style="width:190%">
         <thead>
             <tr>
@@ -252,6 +258,8 @@ display: none;
             </table>
         </div>
     </div>
+    </div>
+    
 
     <script>
         $(document).ready(function() {

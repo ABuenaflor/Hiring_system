@@ -1,13 +1,20 @@
-<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-      <div class="container-fluid py-1 px-3">
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group input-group-outline">
-              <label class="form-label">Type here...</label>
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </nav>
+
+<nav class="navbar navbar-expand px-3 border-bottom">
+                <button class="btn" id="sidebar-toggle" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="#" class="dropdown-item">Profile</a>
+                                <a href="#" class="dropdown-item">Setting</a>
+                                <a href="#" class="dropdown-item">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>

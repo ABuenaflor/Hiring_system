@@ -1,6 +1,5 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
 include("../middleware/admin_middleware.php"); 
 ?>
 <head>
@@ -19,8 +18,11 @@ include("../middleware/admin_middleware.php");
       <!-- Font Awesome CSS -->
       <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
    </head>
-
+   <?php 
+      include("includes/header.php"); 
+      ?>
    <body>
+
       <header class="cd__intro pt-5">
             <h1> Filter Applicants </h1>
             <p> Show Applicants that applied for Basic Education and Tertiary Level </p>

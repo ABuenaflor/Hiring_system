@@ -24,13 +24,17 @@ if($sql_run){
         $_SESSION['message'] = "Username already taken.";
         header("Location: ../register.php");
     }else{
-        $_SESSION['message'] = "User registered successfully.";
-        header('Location: login.php');
+        // User registration successful, set success flag and message
+        $_SESSION['success'] = true;
+        $_SESSION['message'] = "Account created successfully!";
+        
+        // Redirect to login page after 2 seconds
+        header("Refresh:2; URL=login.php");
     }
-    } else{
-        $_SESSION['message'] = "User registered unsuccessfully.";
-        header('Location: ../register.php');    
-    }
+} else{
+    $_SESSION['message'] = "User registered unsuccessfully.";
+    header('Location: ../register.php');    
+}
 }
 else if(isset($_POST['login_btn'])){
     $username = mysqli_real_escape_string($con, $_POST['username']);

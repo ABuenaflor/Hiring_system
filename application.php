@@ -188,15 +188,61 @@ input {
             <div class="progress" id="progress"></div>
             <div
             class="progress-step progress-step-active"
-            data-title="Personal Credentials"
+            data-title="Desired Position"
             ></div>
+            <div class="progress-step" data-title="Personal Credentials"></div>
             <div class="progress-step" data-title="Family Background"></div>
             <div class="progress-step" data-title="Education"></div>
             <div class="progress-step" data-title="Experience, Skills, and Seminars"></div>
-            <div class="progress-step" data-title="Desired Position"></div>
         </div>
 
-        <div class="form-step form-step-active">
+        <div class="form-step form-step-active ">
+          <div class="cold-md-8 mb-5">
+
+          <div class="col-md-6 mb-3">
+              <h5>Institutional Role</h5>
+                <select class="form-select" name="job_type">
+                    <option value="Academic">Academic</option>
+                    <option value="Non-Academic">Non Academic</option>
+                </select>
+          </div>
+
+          <div class="col-md-6 mb-3">
+                <h5>Academic Role</h5>
+                <select class="form-select" name="job_schedule">
+                    <option value="Full Time Faculty">Full Time Faculty</option>
+                    <option value="Part Time Faculty">Part Time Faculty</option>
+                </select>
+          </div>
+
+          <div class="col-md-6 mb-3">
+                <h5>Campus</h5>
+                <select class="form-select" name="campus_name">
+                    <option value="North Campus">North Campus</option>
+                    <option value="South Campus">South Capus</option>
+                </select>
+          </div>
+                    <h5>Department</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-select" name="department">
+                                <option value="Grade School">Grade School Department</option>
+                                <option value="Junior High">Junior High School Department</option>
+                                <option value="Senior High">Senior High School Department</option>
+                                <option value="College">College Department</option>
+                                <option value="Graduate School">Graduate School</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="">
+                  <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+                </div>
+
+                </div>
+      <!-- End of page 1 -->
+      <div class="form-step ">
         <div class="col-md-4">
             <label for="">Date of Application</label>
             <input type="date" name="date_applied" placeholder="Enter Date" class="form-control">
@@ -294,8 +340,6 @@ input {
           <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
         </div>
       </div>
-      <!-- End of page 1 -->
-
             <!-- Page 2 -->
         <div class="form-step">
         <h3>Father's Information</h3>
@@ -441,57 +485,13 @@ input {
     
     <div class="btns-group">
         <a href="#" class="btn btn-prev">Previous</a>
-        <a href="#" class="btn btn-next">Next</a>
-    </div>
+        <input type="submit" value="Submit" name="submit_credentials" class="btn" />
+        </div>
     </div>
 <!--end of page 4 -->
 
 <!--start of page 5 -->
-<div class="form-step">
-<div class="cold-md-8 mb-5">
 
-<div class="col-md-6 mb-3">
-    <h5>Institutional Role</h5>
-      <select class="form-select" name="job_type">
-          <option value="Academic">Academic</option>
-          <option value="Non-Academic">Non Academic</option>
-      </select>
-</div>
-
-<div class="col-md-6 mb-3">
-      <h5>Academic Role</h5>
-      <select class="form-select" name="job_schedule">
-          <option value="Full Time Faculty">Full Time Faculty</option>
-          <option value="Part Time Faculty">Part Time Faculty</option>
-      </select>
-</div>
-
-<div class="col-md-6 mb-3">
-      <h5>Campus</h5>
-      <select class="form-select" name="campus_name">
-          <option value="North Campus">North Campus</option>
-          <option value="South Campus">South Capus</option>
-      </select>
-</div>
-          <h5>Department</h5>
-          <div class="row">
-              <div class="col-md-6">
-                  <select class="form-select" name="department">
-                      <option value="Grade School">Grade School Department</option>
-                      <option value="Junior High">Junior High School Department</option>
-                      <option value="Senior High">Senior High School Department</option>
-                      <option value="College">College Department</option>
-                      <option value="Graduate School">Graduate School</option>
-                  </select>
-              </div>
-          </div>
-      </div>
-
-        <div class="btns-group">
-          <a href="#" class="btn btn-prev">Previous</a>
-          <input type="submit" value="Submit" name="submit_credentials" class="btn" />
-        </div>
-      </div>
 
 </form>
 </body>

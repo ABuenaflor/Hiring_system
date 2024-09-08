@@ -64,17 +64,18 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="row border rounded-5 p-3 bg-white shadow box-area">
             <div class="col-md-6 left-box">
-                <?php
-                if (isset($_SESSION['message'])) {
-                ?>
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Hey!</strong> <?= $_SESSION['message']; ?>.
+            <?php
+                if (isset($_SESSION['message']) && isset($_SESSION['success'])) {
+                    ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong> <?= $_SESSION['message']; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                <?php
+                    <?php
                     unset($_SESSION['message']);
+                    unset($_SESSION['success']);
                 }
                 ?>
                 <form action="functions/auth.php" method="POST">
@@ -90,10 +91,12 @@
                             <input type="text" class="form-control form-control-lg bg-light fs-6" name="surname" placeholder="Surname">
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" name="username" placeholder="Username">
+                            <input type="email" class="form-control form-control-lg bg-light fs-6" name="username" placeholder="Email">
                         </div>
                         <div class="form-group mb-3">
-                            <input type="password" class="form-control form-control-lg bg-light fs-6" name="password" placeholder="Password">
+                            <input type="password" class="form-control form-control-lg bg-light fs-6" name="password" placeholder="Password"
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                                title="Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character. Minimum length is 8 characters.">
                         </div>
                         <div class="input-group mb-3">
                             <button class="btn btn-lg btn-primary w-100 fs-6" type="submit" name="register_btn">Sign Up</button>

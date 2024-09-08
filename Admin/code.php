@@ -705,4 +705,26 @@ if(isset($_POST['add_employee'])){
             redirect('add_acad_role.php', "Something went wrong");
         }
     }
+
+    if(isset($_POST['add_job_posting'])){
+        $campus = $_POST['campus'];
+        $department = $_POST['dept'];
+        $acad_role = $_POST['acad_role'];
+        $inst_role = $_POST['inst_role'];
+        $qualifications = $_POST['qualifications'];
+    
+        $add_job_posting_query = "INSERT INTO job_posting (campus_id, dept_id, acad_role_id, inst_role_id, qualifications) 
+                                  VALUES ('$campus', '$department', '$acad_role', '$inst_role', '$qualifications')";
+        
+        if (mysqli_query($con, $add_job_posting_query)) {
+            echo "<script>alert('Job posting added successfully!');</script>";
+            redirect('job_posting.php', "Added Succesfully");
+
+        } else {
+            echo "<script>alert('Error adding job posting. Please try again.');</script>";
+        }
+    
+        // Close connection
+        mysqli_close($con);
+    }
 ?>
