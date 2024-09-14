@@ -16,17 +16,18 @@ $sql_run = mysqli_query ($con, $sql);
 
 // Check if the query was successful
 if($sql_run){
+    
     // Now check if the username already exists
     $check_user_query = "SELECT username FROM user WHERE username='$username'";
     $check_user_query_run = mysqli_query( $con, $check_user_query);
     
     if(mysqli_num_rows($check_user_query_run) > 0){
-        $_SESSION['message'] = "Username already taken.";
+        echo "<script>alert('Username is Already Taken');</script>"; 
         header("Location: ../register.php");
     }else{
         // User registration successful, set success flag and message
         $_SESSION['success'] = true;
-        $_SESSION['message'] = "Account created successfully!";
+        echo "<script>alert('Account Created Succesfully');</script>";
         
         // Redirect to login page after 2 seconds
         header("Refresh:2; URL=login.php");

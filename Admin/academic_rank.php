@@ -1,12 +1,16 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+//include("includes/header.php"); placed inside wrpaper 
 include("../middleware/admin_middleware.php"); 
 ?>
         
     
         <body>
-    <header class="cd__intro pt-5">
+          <div class="wrapper">
+              <?php
+                include("includes/header.php"); 
+              ?>
+ <header class="cd__intro pt-5">
             <h1> Academic Rank</h1>
             <p> Academic Rank for Teaching Positions inside Divine Word College of Legazpi</p>
             <a href="add_academic_rank.php"> <button class="btn btn-primary" type="button">Add Academic Rank</button>
@@ -53,6 +57,8 @@ include("../middleware/admin_middleware.php");
     </table>
 
     </div>
+          </div>
+   
 
     <script>
         $(document).ready(function() {

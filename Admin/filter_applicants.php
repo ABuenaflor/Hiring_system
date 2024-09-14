@@ -18,30 +18,30 @@ include("../middleware/admin_middleware.php");
       <!-- Font Awesome CSS -->
       <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
    </head>
-   <?php 
-      include("includes/header.php"); 
-      ?>
+ 
+
    <body>
-
-      <header class="cd__intro pt-5">
-            <h1> Filter Applicants </h1>
-            <p> Show Applicants that applied for Basic Education and Tertiary Level </p>
-      </header>
-
-      <div class="container">
-        <div class="row">
-            <form method="POST" action="">
-                <label for="filter">Filter by:</label>
-                <select class="form-select" name="filter_column" id="filter">
-                    <option value="department">Department</option>
-                    <option value="job_type">Institutional Role</option>
-                    <option value="job_schedule">Academic Role</option>
-                    <option value="col_school">School Graduated</option>
-                </select>
-                <input type="submit" name="submit" value="Filter" class="btn btn-secondary">
-            </form>
-        </div>
-
+      <div class="wrapper">
+         <?php
+            include("includes/header.php"); 
+         ?>
+          <div class="container " style="width: 100vw; margin-left: 0;">
+            <header class="cd__intro pt-5">
+               <h1> Filter Applicants </h1>
+               <p> Show Applicants that applied for Basic Education and Tertiary Level </p>
+            </header>
+               <form method="POST" action="">
+                  <label for="filter">Filter by:</label>
+                  <select class="form-select" name="filter_column" id="filter">
+                     <option value="department">Department</option>
+                     <option value="job_type">Institutional Role</option>
+                     <option value="job_schedule">Academic Role</option>
+                     <option value="col_school">School Graduated</option>
+                  </select>
+                  <input type="submit" name="submit" value="Filter" class="btn btn-secondary">
+               </form>
+          </div>
+      </div>
         <?php
         
                if (isset($_POST['submit'])) {

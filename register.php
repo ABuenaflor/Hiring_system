@@ -85,16 +85,16 @@
                             <p>Create your account</p>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" name="first_name" placeholder="First Name">
+                            <input type="text" class="form-control form-control-lg bg-light fs-6" name="first_name" placeholder="First Name" required>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" name="surname" placeholder="Surname">
+                            <input type="text" class="form-control form-control-lg bg-light fs-6" name="surname" placeholder="Surname" required>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="email" class="form-control form-control-lg bg-light fs-6" name="username" placeholder="Email">
+                            <input type="email" class="form-control form-control-lg bg-light fs-6" name="username" placeholder="Email" required>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="password" class="form-control form-control-lg bg-light fs-6" name="password" placeholder="Password"
+                            <input type="password" class="form-control form-control-lg bg-light fs-6" name="password" placeholder="Password" required
                                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                                 title="Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character. Minimum length is 8 characters.">
                         </div>

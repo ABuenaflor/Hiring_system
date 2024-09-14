@@ -1,10 +1,16 @@
 <?php 
 //session_start();
+
 //changed from include to require once
 require_once ("../code.php");
 require_once("../functions/myFunctions.php"); 
-require_once("includes/header.php"); ?>
+/* require_once("includes/header.php"); */ ?>
 
+<body>
+    <div class="wrapper">
+    <?php
+            include("includes/header.php"); 
+        ?>
 
 <div class="py-5">
     <div class="container">
@@ -27,7 +33,6 @@ require_once("includes/header.php"); ?>
         </div>
     </div>
 </div>
-
 <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -435,6 +440,12 @@ require_once("includes/header.php"); ?>
                         }
                     ?>
             </div>
+    </div>
+
+</body>
+
+
+
         </div>
     </div>
 

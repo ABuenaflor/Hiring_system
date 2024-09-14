@@ -1,10 +1,15 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+//include("includes/header.php"); placed inside wrapper 
 include("../middleware/admin_middleware.php"); 
 ?>
 
-<header class="cd__intro pt-5">
+<body>
+    <div class="wrapper">
+            <?php
+                include("includes/header.php"); 
+            ?>
+            <header class="cd__intro pt-5">
             <h1> Add Academic Rank</h1>
             <p> Indicate Academic Rank of Employees for Divine Word College of Legazpi </p>
             
@@ -18,3 +23,5 @@ include("../middleware/admin_middleware.php");
     </div>
     <button type="submit" class="btn btn-primary" name="add_acad_rank">Save</button>
 </form>
+    </div>
+</body>

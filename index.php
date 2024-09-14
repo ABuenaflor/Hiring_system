@@ -58,14 +58,23 @@ include("includes/header.php"); ?>
             </div>
           
                 <div class="text-wrapper col-md-6 mb-4">
-                    <h1 class="display-4">Join Our Team</h1>
-                    <p class="lead">We are looking for a passionate individual to fill the role of Software Engineer. If you are eager to work in a dynamic environment and contribute to exciting projects, we want to hear from you!</p>
+                    <h1 class="display-4">Welcome to DWCL</h1>
+                    <p class="lead">We are looking for a passionate individual to fill the role of Software Engineer. 
+                        If you are eager to work in a dynamic environment and contribute to exciting projects, 
+                        we want to hear from you!</p>
                     <ul class="list-unstyled">
                         <li>Collaborate with cross-functional teams</li>
                         <li>Develop and maintain web applications</li>
                         <li>Participate in code reviews and team meetings</li>
                     </ul>
-                    <a href="#" class="btn btn-primary">Apply Now</a>
+                    <form action="code.php" method="POST">
+                        <div class="card-body col-md-4">
+                            <input class="form-control" type="text" name="first_name" placeholder="Enter your First Name"><br>  
+                            <input class="form-control" type="text" name="last_name" placeholder="Enter your Last Name">
+                        </div>
+                        <input href="application.php" type="submit" class="btn btn-primary" value="Apply Now" name="submit_credentials_notif">
+                    </form>
+
                 </div>
             <div class="col-md-6">
                 <div class="bg-image"></div>

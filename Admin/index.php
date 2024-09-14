@@ -50,7 +50,7 @@ h4 {
     transition: all 0.35s ease-in-out;
 }
 
-.main {
+.main2 {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -223,7 +223,7 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
     <?php
         include("includes/sidebar.php");
       ?>
-        <div class="main">
+        <div class="main2">
            <?php
             include("includes/navbar.php");
            ?>
@@ -331,6 +331,7 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
         </div>
     </div>
   
+    <script src="assets/js/sidenav.js"></script>
 </body>
 
 </html>

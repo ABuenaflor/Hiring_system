@@ -1,6 +1,6 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+//include("includes/header.php"); remove and place inside body
 include("../middleware/admin_middleware.php"); 
 ?>
 
@@ -12,8 +12,14 @@ include("../middleware/admin_middleware.php");
     <title>Add Staff Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
+
 <body>
-    <div class="container mt-5">
+    <div class="wrapper">
+            <?php
+                include("includes/header.php"); 
+            ?>
+   <div class="container mt-5">
         <h2>Add Employee</h2>
 
         <form action="code.php" method="POST">
@@ -91,6 +97,8 @@ include("../middleware/admin_middleware.php");
             <button type="submit" class="btn btn-primary" name="add_employee">Submit</button>
         </form>
     </div>
+    </div>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

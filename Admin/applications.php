@@ -30,9 +30,7 @@ include("../middleware/admin_middleware.php");
     <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-.wrapper {
-margin-top: 5vh;
-}
+
 
 .dataTables_filter {
 float: right;
@@ -41,6 +39,7 @@ float: right;
 .table-hover > tbody > tr:hover {
 background-color: #ccffff;
 }
+
 
 @media only screen and (min-width: 768px) {
 .table {
@@ -87,6 +86,7 @@ border: none;
 border-bottom: 1px solid #eee;
 position: relative;
 padding-left: 50% !important;
+
 }
 
 td:before {
@@ -146,16 +146,18 @@ display: none;
    
    
     <div class="wrapper">
-    <?php
-include("includes/header.php"); 
-    ?>
-    <div class="container ">
+        <?php
+            include("includes/header.php"); 
+        ?>
+    <div class="container " style="width: 100vw; margin-left: 0;">
     <header class="cd__intro pt-5">
             <h1> Applicants</h1>
             <p> List of applications </p>
             
     </header>
-    <table id="example" class="table table-striped display nowrap" style="width:190%">
+
+    <div class="table-container">
+    <table id="example" class="table table-striped display nowrap" style="width:160%">
         <thead>
             <tr>
                 <th>Index</th>
@@ -193,7 +195,7 @@ include("includes/header.php");
                                                 <td class="app-row"><?= $item['job_type']; ?></td>
                                                 <td class="app-row"><?= $item['job_schedule']; ?></td>
                                                 <td class="app-row"><?= $item['department']; ?></td>
-                                                <td class="app-row">
+                                                <td class="app-row" style="display: flex; justify-content: center; align-items: center;">
                                                     <a href="show.php?id=<?= $item['id']; ?>" class="btn btn-primary">Show More</a>
                                                 </td>
                                             </tr>
@@ -205,6 +207,8 @@ include("includes/header.php");
                             ?>
         </tbody>
     </table>
+    </div>
+    
 
         <div class="container">
             <header class="cd__intro pt-5">
@@ -212,50 +216,54 @@ include("includes/header.php");
                 <p> Ranked List of applications </p>
                 
             </header>
-            <table id="example2" class="table table-striped" style="width:190%">
-                <thead>
-                    <tr>
-                        <th>SAW Score</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>School Graduated</th>
-                        <th>Program</th>
-                        <th>Desired Institutional Role</th>
-                        <th>Desired Academic Role</th>
-                        <th>Department</th>
-                        
-                    </tr>
-                </thead>
+            <div class="table-container">
 
-                <tbody>
-                    <?php
-                        $candidates_query = "SELECT * FROM credentials ORDER BY saw_score DESC";
-                        $candidates = mysqli_query($con, $candidates_query);
+                <table id="example2" class="table table-striped" style="width:170%">
+                    <thead>
+                        <tr>
+                            <th>SAW Score</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>School Graduated</th>
+                            <th>Program</th>
+                            <th>Desired Institutional Role</th>
+                            <th>Desired Academic Role</th>
+                            <th>Department</th>
+                            
+                        </tr>
+                    </thead>
 
-                        if (mysqli_num_rows($candidates) > 0) {
-                            foreach ($candidates as $candidate) {
-                                $normalizedSawScore = calculate_saw_score($candidate, $weights);
+                    <tbody>
+                        <?php
+                            $candidates_query = "SELECT * FROM credentials ORDER BY saw_score DESC";
+                            $candidates = mysqli_query($con, $candidates_query);
 
-                                update_candidate_saw_score($con, $candidate['id'], $normalizedSawScore);
-                                echo "<tr>";
+                            if (mysqli_num_rows($candidates) > 0) {
+                                foreach ($candidates as $candidate) {
+                                    $normalizedSawScore = calculate_saw_score($candidate, $weights);
 
-                                echo "<td class='app-row-rank'>{$normalizedSawScore}</td>";
-                                echo "<td class='app-row-rank'>{$candidate['first_name']}</td>";
-                                echo "<td class='app-row-rank'>{$candidate['last_name']}</td>";
-                                echo "<td class='app-row-rank'>{$candidate['col_school']}</td>";
-                                echo "<td class='app-row-rank'>{$candidate['course']}</td>";
-                                echo "<td class='app-row-rank'>{$candidate['job_type']}</td>";
-                                echo "<td class='app-row-rank'>{$candidate['job_schedule']}</td>";
-                                echo "<td class='app-row-rank'>{$candidate['department']}</td>";
-                                echo "</tr>";
-                                
+                                    update_candidate_saw_score($con, $candidate['id'], $normalizedSawScore);
+                                    echo "<tr>";
+
+                                    echo "<td class='app-row-rank'>{$normalizedSawScore}</td>";
+                                    echo "<td class='app-row-rank'>{$candidate['first_name']}</td>";
+                                    echo "<td class='app-row-rank'>{$candidate['last_name']}</td>";
+                                    echo "<td class='app-row-rank'>{$candidate['col_school']}</td>";
+                                    echo "<td class='app-row-rank'>{$candidate['course']}</td>";
+                                    echo "<td class='app-row-rank'>{$candidate['job_type']}</td>";
+                                    echo "<td class='app-row-rank'>{$candidate['job_schedule']}</td>";
+                                    echo "<td class='app-row-rank'>{$candidate['department']}</td>";
+                                    echo "</tr>";
+                                    
+                                }
+                            } else {
+                                echo "<tr><td colspan='4'>No records found</td></tr>";
                             }
-                        } else {
-                            echo "<tr><td colspan='4'>No records found</td></tr>";
-                        }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
+                
+            </div>
         </div>
     </div>
     </div>
@@ -342,7 +350,13 @@ include("includes/header.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 
 
-
+<style>
+    .table-container{
+        max-height: 450px;
+        overflow: scroll;
+        width: 82vw;
+    }
+</style>
 
 </body>
 </html>

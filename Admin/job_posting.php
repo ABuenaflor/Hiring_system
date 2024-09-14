@@ -1,6 +1,6 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+//include("includes/header.php"); placed inside wrapper
 include("../middleware/admin_middleware.php"); 
 
 ?>
@@ -91,9 +91,14 @@ include("../middleware/admin_middleware.php");
   font-size: 18px;
 }
 </style>
+
+
 <body>
-   
-        <h2>Post Job Vacancy Requirement</h2>
+  <div class="wrapper">
+        <?php
+            include("includes/header.php"); 
+        ?>
+   <h2>Post Job Vacancy Requirement</h2>
                 <!-- Display any success/error messages -->
         <?php
         if (isset($_GET['success'])) {
@@ -162,9 +167,7 @@ include("../middleware/admin_middleware.php");
 
                   <button type="submit" class="btn btn-primary" name="add_job_posting">Submit</button>
         </form>
-
-    </div>
-            
+  </div>        
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

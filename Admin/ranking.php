@@ -1,6 +1,6 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+//include("includes/header.php"); remove and placed inside wrapper
 include("../middleware/admin_middleware.php"); 
 
 ?>
@@ -139,14 +139,18 @@ tfoot tr {
 }
    </style>
    <body>
-   
-      <header class="cd__intro pt-5">
+
+  <div class="wrapper">
+      <?php
+            include("includes/header.php"); 
+        ?>
+        <header class="cd__intro pt-5">
          <h1> List of  Faculties </h1>
          <p> Ranked Faculties from Basic Education and Tertiary Level </p>
 
       </header>
       <!--$%adsense%$-->
-      <main class="wrapper">
+      <main class="container">
          
          <table id="example" class="table table-striped" style="width:180%">
         <thead>
@@ -202,6 +206,8 @@ tfoot tr {
     </table>
          <!-- END EDMO HTML (Happy Coding!)-->
       </main>
+  </div>
+      
       
       <!-- jQuery -->
 <script src='https://code.jquery.com/jquery-3.7.0.js'></script>

@@ -94,7 +94,8 @@ if(isset($_POST['submit_credentials'])){
     if($cred_query_run){
         
         // Set message to session before redirecting
-        $_SESSION['message'] = "Added Successfully";
+        echo "<script>alert('Application Submitted Succesfully');</script>"; 
+        /* $_SESSION['message'] = "Added Successfully"; */
         header('location: index.php');
         exit();
     } else {
@@ -103,6 +104,7 @@ if(isset($_POST['submit_credentials'])){
         header('location: index.php');
         exit();
     }
+
 }else if(isset($_POST['edit_credentials']))
 {
     $credentials_id = $_POST['credentials_id'];
@@ -252,5 +254,26 @@ if(isset($_POST['edit_credentials'])) {
         exit(0);
     }
 }
+if(isset($_POST['submit_credentials_notif'])){
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+   
+
+    $query ="INSERT INTO `applicants` (`first_name`,`last_name`) 
+    VALUES ('$first_name','$last_name')";
+
+    if ($con->query($query) === TRUE) {
+        // Create a notification
+        $message = "$first_name $last_name has filed an application.";
+        $notification_sql = "INSERT INTO notifications (message) VALUES ('$message')";
+        $con->query($notification_sql);
+
+        echo "Application submitted successfully!";
+        header("Location: application.php");
+    } else {
+        echo "Error: " . $sql . "<br>" . $con->error;
+    }
+}
+
 
 ?>

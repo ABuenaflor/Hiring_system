@@ -37,7 +37,6 @@ h4 {
   align-items: stretch;
     display: flex;
     width: 100%;
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -211,106 +210,109 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
 }
 
 </style>
-<aside id="sidebar" class="js-sidebar">
+<aside id="sidebar" class="js-sidebar" style="position: relative !important;">
     <!-- Content For Sidebar -->
-    <div class="h-100">
-        <div class="sidebar-logo">
-            <a href="#">HR DWCL</a>
+
+    <div class="container-for-navlinks" style="position: fixed; width: 264px;">
+        <div class="h-100">
+            <div class="sidebar-logo">
+                <a href="#">HR DWCL</a>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-header">
+                    Admin Elements
+                </li>
+                <li class="sidebar-item">
+                    <a href="index.php" class="sidebar-link">
+                        <i class="fa-solid fa-list pe-2"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
+                        aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
+                        Applications
+                    </a>
+                    <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="applications.php" class="sidebar-link">Show List of Applicants</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="filter_applicants.php" class="sidebar-link">Filter Applicants</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
+                        aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
+                        Ranking
+                    </a>
+                    <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="add_employee_ranking.php" class="sidebar-link">Add Employee To Rank</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="ranking.php" class="sidebar-link">Show List of Employees</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="department.php" class="sidebar-link">Department</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="campus.php" class="sidebar-link">Campus</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="academic_rank.php" class="sidebar-link">Academic Rank</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="position.php" class="sidebar-link">Academic Role</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse"
+                        aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
+                        Auth
+                    </a>
+                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="add_inst_role.php" class="sidebar-link">Institutional Role</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="job_posting.php" class="sidebar-link">Job Posting</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="generate_report.php" class="sidebar-link">Generation of Reports</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-header">
+                    Multi Level Menu
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed" data-bs-target="#multi" data-bs-toggle="collapse"
+                        aria-expanded="false"><i class="fa-solid fa-share-nodes pe-2"></i>
+                        Multi Dropdown
+                    </a>
+                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed" data-bs-target="#level-1"
+                                data-bs-toggle="collapse" aria-expanded="false">Level 1</a>
+                            <ul id="level-1" class="sidebar-dropdown list-unstyled collapse">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Page 1</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Page 2</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Page 3</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <ul class="sidebar-nav">
-            <li class="sidebar-header">
-                Admin Elements
-            </li>
-            <li class="sidebar-item">
-                <a href="index.php" class="sidebar-link">
-                    <i class="fa-solid fa-list pe-2"></i>
-                    Dashboard
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
-                    aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
-                    Applications
-                </a>
-                <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
-                        <a href="applications.php" class="sidebar-link">Show List of Applicants</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="filter_applicants.php" class="sidebar-link">Filter Applicants</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
-                    aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
-                    Ranking
-                </a>
-                <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Add Employee To Rank</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Show List of Employees</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Department</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Campus</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Academic Rank</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Academic Role</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse"
-                    aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
-                    Auth
-                </a>
-                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Institutional Role</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Job Posting</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Generation of Reports</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-header">
-                Multi Level Menu
-            </li>
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed" data-bs-target="#multi" data-bs-toggle="collapse"
-                    aria-expanded="false"><i class="fa-solid fa-share-nodes pe-2"></i>
-                    Multi Dropdown
-                </a>
-                <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#level-1"
-                            data-bs-toggle="collapse" aria-expanded="false">Level 1</a>
-                        <ul id="level-1" class="sidebar-dropdown list-unstyled collapse">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Page 1</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Page 2</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
     </div>
 </aside>
 

@@ -1,12 +1,16 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+//include("includes/header.php"); placed inside wrapper
 include("../middleware/admin_middleware.php"); 
 ?>
         
     
         <body>
-    <header class="cd__intro pt-5">
+          <div class="wrapper">
+              <?php
+                include("includes/header.php"); 
+              ?>
+   <header class="cd__intro pt-5">
             <h1> Campus</h1>
             <p> List of Campuses for Divine Word College of Legazpi </p>
             <a href="add_campus.php"> <button class="btn btn-primary" type="button">Add Campus</button>
@@ -53,6 +57,8 @@ include("../middleware/admin_middleware.php");
     </table>
 
     </div>
+          </div>
+ 
 
     <script>
         $(document).ready(function() {

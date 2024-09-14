@@ -1,9 +1,14 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+//include("includes/header.php"); placed inside wrapper 
 include("../middleware/admin_middleware.php"); 
 ?>
 
+<body>
+    <div class="wrapper">
+        <?php
+            include("includes/header.php"); 
+        ?>
 <header class="cd__intro pt-5">
             <h1> Add Institutional Role</h1>
             <p> Role for the whole departments of Basic Education and Tertiary Level </p>
@@ -18,5 +23,8 @@ include("../middleware/admin_middleware.php");
     </div>
     <button type="submit" class="btn btn-primary" name="add_inst_role">Save</button>
 </form>
+    </div>
+</body>
+
 
 

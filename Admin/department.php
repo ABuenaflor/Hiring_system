@@ -1,15 +1,18 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+//include("includes/header.php"); placed inside wrapper
 include("../middleware/admin_middleware.php"); 
 ?>
  
 <body>
-    <header class="cd__intro pt-5">
-            <h1> Department</h1>
-            <p> List of departments for Basic Education and Tertiary Level </p>
-            
-    </header>
+<div class="wrapper">
+        <?php
+            include("includes/header.php"); 
+        ?>  
+        <header class="cd__intro pt-5">
+                <h1> Department</h1>
+                <p> List of departments for Basic Education and Tertiary Level </p>
+        </header>
     <a href="add_department.php"> <button class="btn btn-primary" type="button">Add Department</button>
 </a>
     
@@ -54,6 +57,10 @@ include("../middleware/admin_middleware.php");
         </tbody>
     </table>
     </div>
+</div>
+  
+            
+  
 
   
 

@@ -32,7 +32,7 @@ ob_start();
 
 <body class="g-sidenav-show  bg-gray-200">
     <?php include('sidebar.php'); ?>
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <main class="main-content position-relative border-radius-lg overflow-x-scroll overflow-y-hidden" style="width: 100vw; margin-top: 2vh; min-height:100vh;">
     <?php include("includes/navbar.php");?>
 
     <script>

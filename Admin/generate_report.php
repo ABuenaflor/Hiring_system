@@ -1,9 +1,10 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+//include("includes/header.php"); placed inside wrapper
 include("../middleware/admin_middleware.php"); 
 
 ?>
+
 
 <?php
 function exportCSV($con) {
@@ -157,7 +158,11 @@ if (isset($_POST['print_data'])) {
 </head>
 
 <body>
-            <header class="cd__intro pt-5">
+    <div class="wrapper">
+        <?php
+            include("includes/header.php"); 
+        ?>
+ <header class="cd__intro pt-5">
                     <h1> Export Reports </h1>
                     <p> Reports from Applicants for Basic Education and Tertiary Level </p>
             </header>
@@ -167,10 +172,13 @@ if (isset($_POST['print_data'])) {
     <button class="btn btn-primary" type="submit" name="export_pdf">Export as PDF</button>
     <button class="btn btn-primary" type="submit" name="print_data">Print Data</button>
 </form>
-
 <?php
 // Include the PHP code here for handling exports and printing
 ?>
+    </div>
+           
+
+
 
 </body>
 </html>
