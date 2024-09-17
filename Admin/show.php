@@ -439,6 +439,8 @@ require_once("../functions/myFunctions.php");
                             echo "ID missing from URL";
                         }
                     ?>
+                    <?php include("includes/footer.php"); ?>
+
             </div>
     </div>
 
@@ -449,6 +451,5 @@ require_once("../functions/myFunctions.php");
         </div>
     </div>
 
-<?php include("includes/footer.php"); ?>
 
 

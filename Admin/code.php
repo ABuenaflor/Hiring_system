@@ -727,4 +727,93 @@ if(isset($_POST['add_employee'])){
         // Close connection
         mysqli_close($con);
     }
+    
+
+/* Update Password */
+
+/* if (!isset($_SESSION['id']) || !isset($_SESSION['username'])) {
+    echo "<script>alert('Session not set. Please log in again.');</script>";
+    header("Location: user_accounts.php");
+    exit();
+}
+
+if (isset($_POST['old_password']) && isset($_POST['new_pass']) && isset($_POST['confirm_new_pass'])) {
+
+    function validate($data) {
+        return htmlspecialchars(stripslashes(trim($data)));
+    }
+
+    $op = validate($_POST['old_password']);
+    $np = validate($_POST['new_pass']);
+    $c_np = validate($_POST['confirm_new_pass']);
+
+    // Validate inputs
+    if (empty($op)) {
+        header("Location: edit_pass.php?error=Old Password is required");
+        exit();
+    } elseif (empty($np)) {
+        header("Location: edit_pass.php?error=New Password is required");
+        exit();
+    } elseif ($np !== $c_np) {
+        header("Location: edit_pass.php?error=The confirmation password does not match");
+        exit();
+    } else {
+        // Hash the passwords (use stronger hashing, like password_hash())
+        $op = md5($op);
+        $np = md5($np);
+
+        $id = $_SESSION['id'];
+
+        // Check if the old password is correct
+        $sql = "SELECT password FROM user WHERE id='$id' AND password='$op'";
+        $result = mysqli_query($con, $sql);
+
+        if (mysqli_num_rows($result) === 1) {
+            // Update the new password in the database
+            $sql_2 = "UPDATE user SET password='$np' WHERE id='$id'";
+            if (mysqli_query($con, $sql_2)) {
+                echo "<script>alert('Your password has been changed successfully');</script>";
+                header("Location: edit_pass.php?success=Your password has been changed successfully");
+                exit();
+            } else {
+                header("Location: edit_pass.php?error=Error updating password");
+                exit();
+            }
+        } else {
+            header("Location: edit_pass.php?error=Incorrect old password");
+            exit();
+        }
+    }
+} else {
+    header("Location: edit_pass.php");
+    exit();
+} */
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['change_pass'])) {
+        $old_password = $_POST["old_password"];
+        $new_password = $_POST["new_pass"];
+        $confirm_new_password = $_POST["confirm_new_pass"];
+        $user_id = $_POST['id']; // Assuming you're passing the user ID in the form
+
+        // Check if old password matches
+        $check_old_password = mysqli_query($con, "SELECT * FROM user WHERE id='$user_id' AND password='$old_password'");
+        if (mysqli_num_rows($check_old_password) > 0) {
+            // Old password is correct, update new password
+            if ($new_password === $confirm_new_password) {
+                $update_password = mysqli_query($con, "UPDATE user SET password='$new_password' WHERE id='$user_id'");
+                if ($update_password) {
+                    $_SESSION['password_changed'] = true;
+                    redirect('edit_pass.php?id=' . $user_id, "Password updated successfully!");
+                } else {
+                    echo "<script>alert('Failed to update password. Please try again later.'); window.location.href='edit_pass.php?id=" . $user_id . "'</script>";
+                }
+            } else {
+                echo "<script>alert('New password and confirm password do not match. Please try again.'); window.location.href='edit_pass.php?id=" . $user_id . "'</script>";
+            }
+        } else {
+            echo "<script>alert('Incorrect old password. Please try again.'); window.location.href='edit_pass.php?id=" . $user_id . "'</script>";
+        }
+    }
+}
 ?>

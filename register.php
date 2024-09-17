@@ -98,7 +98,11 @@
                                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                                 title="Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character. Minimum length is 8 characters.">
                         </div>
-                        <div class="input-group mb-3">
+                        <select class="form-select" name="role_as">
+                            <option value="0">Applicant</option>
+                            <option value="2">Employee</option>
+                        </select><br>
+                        <div class="input-group mb-3 pt-3">
                             <button class="btn btn-lg btn-primary w-100 fs-6" type="submit" name="register_btn">Sign Up</button>
                         </div>
                         <div class="row">

@@ -20,7 +20,7 @@ include("../middleware/admin_middleware.php");
                 include("includes/header.php"); 
             ?>
    <div class="container mt-5">
-        <h2>Add Employee</h2>
+        <h2>Add Employee To Be Ranked</h2>
 
         <form action="code.php" method="POST">
             <div class="row mb-3">

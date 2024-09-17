@@ -1,4 +1,5 @@
 <?php
+include("../config/dbcon.php");
 $notification_sql = "SELECT * FROM notifications WHERE is_read = 0";
 $result = $con->query($notification_sql);
 
@@ -9,8 +10,10 @@ $unread_count = $result->num_rows;
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="navbar-collapse navbar">
-                    <ul class="navbar-nav">
+                
+
+             
+                <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-o">
                                 Notifications 
@@ -36,9 +39,6 @@ $unread_count = $result->num_rows;
                             </div>
                         </li>
                     </ul>
-                </div>
-
-                <div class="navbar-collapse navbar">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
@@ -51,7 +51,7 @@ $unread_count = $result->num_rows;
                             </div>
                         </li>
                     </ul>
-                </div>
+                
                
             </nav>
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

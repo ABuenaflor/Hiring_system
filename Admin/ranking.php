@@ -25,9 +25,6 @@ include("../middleware/admin_middleware.php");
    <style>
     @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
     @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-    .wrapper {
-  margin-top: 5vh;
-}
 
 .dataTables_filter {
   float: right;

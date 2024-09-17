@@ -283,6 +283,9 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
                         <li class="sidebar-item">
                             <a href="generate_report.php" class="sidebar-link">Generation of Reports</a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="user_accounts.php" class="sidebar-link">Accounts</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-header">

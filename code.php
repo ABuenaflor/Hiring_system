@@ -275,5 +275,38 @@ if(isset($_POST['submit_credentials_notif'])){
     }
 }
 
+if (isset($_POST['submit_posting'])) {
+    // Database connection
+    include 'config/dbcon.php';
 
+    // Fetch form data
+    $academicRole = $_POST['acad_role'];
+    $institutionalRole = $_POST['inst_role'];
+    $department = $_POST['dept'];
+    $campus= $_POST['campus'];
+    $qualifications = $_POST['qualifications']; // array of qualifications
+
+    // Insert job post into the database
+    $sql = "INSERT INTO job_posting (acad_role_id, inst_role_id, dept_id,campus_id) VALUES (?, ?, ?,?)";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("ssss", $academicRole, $institutionalRole, $department,$campus);
+    $stmt->execute();
+    
+    // Get the last inserted job post ID
+    $jobPostID = $con->insert_id;
+
+    // Insert qualifications
+    foreach ($qualifications as $qualification) {
+        $sql = "INSERT INTO qualifications (job_posting_id, qualifications) VALUES (?, ?)";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("is", $jobPostID, $qualifications);
+        $stmt->execute();
+    }
+
+    $stmt->close();
+    $con->close();
+    
+    // Redirect back to job postings page
+    header("Location: test3.php?success=1");
+}
 ?>

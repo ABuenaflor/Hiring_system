@@ -41,8 +41,7 @@ include("../middleware/admin_middleware.php");
                   <input type="submit" name="submit" value="Filter" class="btn btn-secondary">
                </form>
           </div>
-      </div>
-        <?php
+          <?php
         
                if (isset($_POST['submit'])) {
                   $filter_column = $_POST['filter_column'];
@@ -106,6 +105,8 @@ include("../middleware/admin_middleware.php");
                // Close connection
                $con->close();
         ?>
+      </div>
+        
 
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script>
