@@ -1,13 +1,11 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
-include("../middleware/admin_middleware.php"); 
+/* include("includes/header.php"); 
+ */include("../middleware/admin_middleware.php"); 
+
+
 ?>
 
-<header class="cd__intro pt-5">
-         <h1> Faculty Ranking for Basic Education</h1>
-         <p> Criterias For Ranking Faculties in Basic Education</p>
-      </header>
 <style>
 .bold-text {
     font-weight: bold;
@@ -15,7 +13,24 @@ include("../middleware/admin_middleware.php");
 </style>
     
 <body>
-     <form action="code.php" method="POST">
+
+     <div class="wrapper">
+          <?php 
+               include("includes/header.php");
+          ?>
+
+<header class="cd__intro pt-5">
+         <h1> Faculty Ranking for Basic Education</h1>
+         <p> Criterias For Ranking Faculties in Basic Education</p>
+      </header>
+
+      <div class="container">
+
+      <?php
+
+     ?>
+
+      <form action="code.php" method="POST">
     <div class="container mt-5">
         <table class="table table-striped table-bordered">
        <thead class="table-dark">
@@ -51,7 +66,7 @@ include("../middleware/admin_middleware.php");
                     <td class="bold-text">1.1 Degrees Earned (Maximum points = 80)</td>
                     <td>20</td>
                     <td><input type="text" class="form-control" name="deg_cred_pts"></td>
-                    <td><input type="text" class="form-control" name="deg_sr"></td>
+                    <td><input type="text" class="form-control" name="deg_earned" value="<?php echo $data['deg_earned']; ?>"></td>
                     <td><input type="text" class="form-control" name="deg_drc"></td>
                     <td><input type="text" class="form-control" name="deg_bertc"></td>
                     
@@ -568,6 +583,7 @@ include("../middleware/admin_middleware.php");
                     <td><input type="text" class="form-control" name="grand_drc"></td>
                     <td><input type="text" class="form-control" name="grand_bertc"></td>
                </tr>
+
             </tbody>
         </table>
         
@@ -580,6 +596,11 @@ include("../middleware/admin_middleware.php");
     <button type="submit" class="btn-btn-primay" name="submit_basic_ed_score">Submit Scores </button>
 
     </form>
+   
+           
+      </div>
+     </div>
+     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

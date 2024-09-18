@@ -1,109 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editable Table with AJAX</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <form action="code.php" method="POST">
-        <div class="container mt-5">
-            <table class="table table-striped table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>CRITERIA</th>
-                        <th colspan="2">WEIGHT</th>
-                        <th colspan="3">SUMMARY OF POINTS</th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th>%</th>
-                        <th>Criteria Credit Points</th>
-                        <th>SR</th>
-                        <th>DRC</th>
-                        <th>BERTC</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td contenteditable="true" onBlur="saveToDatabase(this, 'educational_attainment', 1)">
-                            <?php echo fetchValueFromDB('educational_attainment', 1); ?>
-                        </td>
-                        <td contenteditable="true" onBlur="saveToDatabase(this, 'weight_40', 1)">
-                            <?php echo fetchValueFromDB('weight_40', 1); ?>
-                        </td>
-                        <td contenteditable="true" onBlur="saveToDatabase(this, 'credit_points', 1)">
-                            <?php echo fetchValueFromDB('credit_points', 1); ?>
-                        </td>
-                        <td><input type="text" class="form-control" name="educ_attain_sr" onBlur="saveToDatabase(this, 'educ_attain_sr', 1)" value="<?php echo fetchValueFromDB('educ_attain_sr', 1); ?>"></td>
-                        <td><input type="text" class="form-control" name="educ_attain_drc" onBlur="saveToDatabase(this, 'educ_attain_drc', 1)" value="<?php echo fetchValueFromDB('educ_attain_drc', 1); ?>"></td>
-                        <td><input type="text" class="form-control" name="educ_attain_bertc" onBlur="saveToDatabase(this, 'educ_attain_bertc', 1)" value="<?php echo fetchValueFromDB('educ_attain_bertc', 1); ?>"></td>
-                    </tr>
-                    <!-- Additional rows can be added similarly -->
-                </tbody>
-            </table>
-        </div>
-    </form>
-
-    <script>
-        // AJAX function to save data to the database
-        function saveToDatabase(editableObj, column, id) {
-            $(editableObj).css("background", "#FFF url('loader.gif') no-repeat right");
-            $.ajax({
-                url: "code.php",
-                type: "POST",
-                data: 'column=' + column + '&value=' + editableObj.innerHTML + '&id=' + id,
-                success: function(data) {
-                    $(editableObj).css("background", "#FDFDFD");
-                }
-            });
-        }
-    </script>
-</body>
-</html>
-
 <?php
-// Database connection
-$con = new mysqli("localhost", "username", "password", "database");
+if(isset($_POST['submit_basic_ed_sr'])){
+    $deg_earned = $_POST['deg_earned'];
+    $baccal = $_POST['bacc'];
+    $bse = $_POST['bse'];
+    $bs = $_POST['bs'];
+    $cs_exam = $_POST['cs_exam'];
+    $prof_growth = $_POST['prof_growth'];
+    $adv_training = $_POST['adv_training'];
+    $ma = $_POST['ma'];
+    $ma_so = $_POST['ma_so'];
+    $seminars = $_POST['seminars'];
+    $sem_intrntl = $_POST['sem_intrntl'];
+    $sem_ntnl = $_POST['sem_ntnl'];
+    $sem_rgnl = $_POST['sem_rgnl'];
+    $sem_local = $_POST['sem_local'];
+    $as_speaker = $_POST['as_speaker'];
+    $trainer = $_POST['trainer'];
+    $resource_spkr = $_POST['resource_spkr'];
+    $faci = $_POST['faci'];
+    $comp_cert = $_POST['comp_cert'];
+    $teach_exp = $_POST['teach_exp'];
+    $stat_emp = $_POST['stat_emp'];
+    $fulltime = $_POST['fulltime'];
+    $parttime = $_POST['parttime'];
+    $onetotwo = $_POST['onetotwo'];
+    $threetofour = $_POST['threetofour'];
+    $outside = $_POST['outside'];
+    $facult_perf = $_POST['facult_perf'];
+    $mode = $_POST['mode'];
+    $very_satisf = $_POST['very_satisf'];
+    $satisfy = $_POST['satisfy'];
+    $comm_serv = $_POST['comm_serv'];
+    $prof_org = $_POST['prof_org'];
+    $prof_intrntnl = $_POST['prof_intrntnl'];
+    $prof_ntnl = $_POST['prof_ntnl'];
+    $prof_rgnl = $_POST['prof_rgnl'];
+    $prof_div = $_POST['prof_div'];
+    $services_rend = $_POST['services_rend'];
+    $coach = $_POST['coach'];
+    $area_chair = $_POST['area_chair'];
+    $comm_mem = $_POST['comm_mem'];
+    $chair_other = $_POST['chair_other'];
+    $chair_otherSch = $_POST['chair_otherSch'];
+    $mem_acad = $_POST['mem_acad'];
+    $awards = $_POST['awards'];
+    $awards_intrntnl = $_POST['awards_intrntnl'];
+    $awards_natnl = $_POST['awards_natnl'];
+    $awards_rgnl = $_POST['awards_rgnl'];
+    $awards_div = $_POST['awards_div'];
+    $research_prod = $_POST['research_prod'];
+    $research_work = $_POST['research_work'];
+    $main_research = $_POST['main_research'];
+    $co_research = $_POST['co_research'];
+    $enum = $_POST['enum'];
+    $research_lead = $_POST['research_lead'];
+    $research_out = $_POST['research_out'];
+    $addtnl_five = $_POST['addtnl_five'];
+    $pts = $_POST['pts'];
+    $overall_crit = $_POST['overall_crit'];
+    $grand_total = $_POST['grand_total'];
 
-if ($con->connect_error) {
-    die("Connection failed: " . $con->connect_error);
-}
+    $update_query = "INSERT INTO basic_ed_sr (deg_earned,bacc,bse,bs,cs_exam,prof_growth,adv_training,ma,ma_so,seminars,sem_intrntl,sem_ntnl,sem_rgnl,sem_local,
+    as_speaker,trainer,resource_spkr,faci,comp_cert,teach_exp,stat_emp,fulltime,parttime,onetotwo,threetofour,outside,facult_perf,mode,very_satisf,satisfy,comm_serv,
+    prof_org,prof_intrntnl,prof_ntnl,prof_rgnl,prof_div,services_rend,coach,area_chair,comm_mem,chair_other,chair_otherSch,mem_acad,awards,awards_intrntnl,awards_natnl,
+    awards_rgnl,awards_div,research_prod,research_work,main_research,co_research,enum,research_lead,research_out,addtnl_five,pts,overall_crit,grand_total) VALUES ('$deg_earned',
+    '$baccal','$bse','$bs','$cs_exam','$prof_growth','$adv_training','$ma','$ma_so','$seminars','$sem_intrntl','$sem_ntnl','$sem_rgnl','$sem_local','$as_speaker','$trainer','$resource_spkr',
+    '$faci','$comp_cert','$teach_exp','$stat_emp','$fulltime','$parttime','$onetotwo','$threetofour','$outside','$facult_perf','$mode','$very_satisf','$satisfy','$comm_serv','$prof_org','$prof_intrntnl',
+    '$prof_ntnl','$prof_rgnl','$prof_div','$services_rend','$coach','$area_chair','$comm_mem','$chair_other','$chair_otherSch','$mem_acad','$awards','$awards_intrntnl','$awards_natnl','$awards_rgnl','$awards_div','$research_prod',
+    '$research_work','$main_research','$co_research','$enum','$research_lead','$research_out','$addtnl_five','$pts','$overall_crit','$grand_total')";
 
-// Function to fetch values from the database (used to populate the input fields)
-function fetchValueFromDB($column, $id) {
-    global $con;
-    $sql = "SELECT $column FROM basic_ed_score WHERE id = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    return $row[$column];
-}
+    $update_query_run = mysqli_query($con, $update_query);
 
-// Handle the AJAX request to update the database
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['column']) && isset($_POST['value']) && isset($_POST['id'])) {
-        $column = $_POST['column'];
-        $value = $_POST['value'];
-        $id = intval($_POST['id']);
-
-        // Update the corresponding field in the database
-        $sql = "UPDATE rankings SET $column = ? WHERE id = ?";
-        $stmt = $con->prepare($sql);
-        $stmt->bind_param("si", $value, $id);
-
-        if ($stmt->execute()) {
-            echo "Data updated successfully.";
-        } else {
-            echo "Error updating data: " . $con->error;
-        }
-        $stmt->close();
+    if($update_query_run){
+        
+        // Set message to session before redirecting
+        echo "<script>alert('Self Rating Submitted Succesfully');</script>"; 
+        /* $_SESSION['message'] = "Added Successfully"; */
+        header('location: emp_sr.php');
+        exit();
+    } else {
+        // Set error message to session before redirecting
+        $_SESSION['message'] = "Something went wrong";
+        header('location: emp_sr.php');
+        exit();
     }
+
 }
-
-$con->close();
 ?>
-

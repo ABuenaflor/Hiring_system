@@ -38,7 +38,7 @@ if(isset($_POST["register_btn"])){
  mysqli_stmt_close($stmt);
  mysqli_close($con);
 }
-if(isset($_POST['login_btn'])){
+/* if(isset($_POST['login_btn'])){
     // Database connection setup
 
     $username = mysqli_real_escape_string($con, $_POST['username']);
@@ -88,5 +88,65 @@ if(isset($_POST['login_btn'])){
         header('Location: ../login.php');
         exit;
     }
+} */
+if (isset($_POST['login_btn'])) {
+    // Database connection setup
+
+    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
+
+    // Constructing the query to check username, password, and status
+    $login_query = "SELECT * FROM user WHERE username=? AND password=?";
+    $stmt = mysqli_prepare($con, $login_query);
+
+    // Binding parameters to prevent SQL injection
+    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+
+    // Executing the prepared statement
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) > 0) {
+        $userdata = mysqli_fetch_array($result);
+
+        // Check if the account is disabled
+        if ($userdata['status'] === 'disabled') {
+/*             $_SESSION['message'] = "Your account is disabled. Please contact the administrator.";
+ */            echo "<script type='Your account is disabled. Please contact the administrator.'>alert('$message');</script>";
+            header('Location: ../login.php');
+            exit; // Stop script execution after redirect
+        }
+
+        // If the account is enabled, proceed with authentication
+        $_SESSION['auth'] = true;
+        $_SESSION['auth_user'] = ['username' => $userdata['username']];
+        $_SESSION['role_as'] = $userdata['role_as'];
+
+        // Redirect based on the user's role
+        switch ($_SESSION['role_as']) {
+            case 0:
+                $_SESSION['message'] = 'Logged in Successfully';
+                header('Location: ../index.php');
+                break;
+            case 1:
+                $_SESSION['message'] = 'Welcome to dashboard';
+                header('Location: ../admin/index.php');
+                break;
+            case 2:
+                $_SESSION['message'] = 'Logged in Successfully';
+                header('Location: ../emp_sr.php');
+                break;
+            default:
+                $_SESSION['message'] = "Invalid role";
+                header('Location: ../login.php');
+                break;
+        }
+        exit; // Stop script execution after redirect
+    } else {
+        $_SESSION['message'] = "Invalid username or password";
+        header('Location: ../login.php');
+        exit;
+    }
 }
+
 ?>

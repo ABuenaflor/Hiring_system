@@ -167,6 +167,7 @@ if(isset($_POST['submit_credentials'])){
     $job_type = $_POST['job_type'];
     $job_schedule = $_POST['job_schedule'];
     $department = $_POST['department'];
+    $remarks = $_POST['remarks'];
     
     if($new_image != "")
     {
@@ -190,7 +191,7 @@ if(isset($_POST['submit_credentials'])){
      grad_honors_received = '$grad_honors_received', past_exp = '$past_exp', seminars_attended='$seminars_attended', special_skills = '$special_skills',
      image = '$update_filename' , experience='$experience', education='$education', tech_skills='$tech_skills', soft_skills='$soft_skills',
      interview='$interview', saw_score='$saw_score', date_applied='$date_applied', job_type='$job_type', job_schedule='$job_schedule',
-     department='$department' WHERE id = '$credentials_id' ";
+     department='$department', remarks='$remarks' WHERE id = '$credentials_id' ";
 
      $update_query_run = mysqli_query($con, $update_query);
 
@@ -816,4 +817,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
+
 ?>

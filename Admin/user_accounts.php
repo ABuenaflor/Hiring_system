@@ -50,7 +50,10 @@
                                         <td class="app-row"><?= $item['username']; ?></td>
                                         <td class="app-row"><?= $item['password']; ?></td>
                                         <td class="app-row" style="display: flex; justify-content: center; align-items: center;">
-                                            <a href="edit_pass.php?id=<?= $item['id']; ?>" class="btn btn-primary">Edit</a>
+                                            <a href="edit_pass.php?id=<?= $item['id']; ?>" class="btn btn-primary">Change Password</a>
+                                        </td>
+                                        <td class="app-row" style="display: flex; justify-content: center; align-items: center;">
+                                            <a href="user_access.php?id=<?= $item['id']; ?>" class="btn btn-secondary">Access</a>
                                         </td>
                                     </tr>
                                 <?php

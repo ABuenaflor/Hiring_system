@@ -324,7 +324,7 @@ require_once("../functions/myFunctions.php");
 
                             <div class="card-body">
 
-                           <div class="cold-md-8 mb-5">
+                           <div class="col-md-8 mb-5">
                                 <div class="col-md-6 mb-3">
                                     <h5>Job Type</h5>
                                     <select class="form-select" name="job_type">
@@ -358,6 +358,15 @@ require_once("../functions/myFunctions.php");
                                 
                             </div>
                         </div>
+                        <div class="card">
+                                <div class="card-header">
+                                    Deans' Remarks
+                                </div>
+                                <div class="card-body">                                       
+                                        <textarea  class="form-control" name="remarks" placeholder="Enter Remarks" id=""><?=$data['remarks']?></textarea>
+                                    
+                                </div>
+                            </div>
                             <div class="card">
                                 <div class="card-header">
                                     <h4>Criteria</h4>
@@ -398,37 +407,42 @@ require_once("../functions/myFunctions.php");
                                         
                                     </table>
                                 </div>
-                            <div class="col-md-2">
-                                    <label for="">Experience (Years)</label>
-                                    <input type="number" name="experience" value="<?=$data['experience']?>" class="form-control">
+                                <div class="container">
+                                    <div class="row mb-3">
+                                        <div class="col-md-2">
+                                            <label for="experience">Experience (1-5)</label>
+                                            <input type="number" name="experience" id="experience" min="1" max="5" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="education">Education Level (1-5)</label>
+                                            <input type="number" name="education" id="education" min="1" max="5" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="tech_skills">Technical Skills (1-5)</label>
+                                            <input type="number" name="tech_skills" id="tech_skills" min="1" max="5" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="soft_skills">Soft Skills (1-5)</label>
+                                            <input type="number" name="soft_skills" id="soft_skills" min="1" max="5" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="interview">Interview Score (1-5)</label>
+                                            <input type="number" name="interview" id="interview" min="1" max="5" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <label for="saw_score">SAW Score</label>
+                                            <input type="text" name="saw_score" id="saw_score" class="form-control" readonly>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <label for="">Education Level</label>
-                                    <input type="number" name="education" value="<?=$data['education']?>" class="form-control">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="">Technical Skills</label>
-                                    <input type="text" name="tech_skills" value="<?=$data['tech_skills']?>" class="form-control">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="">Soft Skills</label>
-                                    <input type="text" name="soft_skills" value="<?=$data['soft_skills']?>" class="form-control">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="">Interview Score</label>
-                                    <input type="number" name="interview" value="<?=$data['interview']?>" class="form-control">
-                                </div>
+                                                            </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-12">
-                                    <label for="">SAW Score</label>
-                                    <input type="text" name="saw_score" class="form-control" readonly>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
+
+                           
                             <div class="col-md-12">
-                                <button class="btn btn-primary" name="edit_credentials" type="submit">Update</button>
+                                <button class="btn btn-primary" name="edit_credentials" type="submit" id="updateButton" >Update</button>
                             </div>
                         </form>
                     <?php
@@ -443,7 +457,48 @@ require_once("../functions/myFunctions.php");
 
             </div>
     </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const experienceInput = document.querySelector('input[name="experience"]');
+    const educationInput = document.querySelector('input[name="education"]');
+    const techSkillsInput = document.querySelector('input[name="tech_skills"]');
+    const softSkillsInput = document.querySelector('input[name="soft_skills"]');
+    const interviewInput = document.querySelector('input[name="interview"]');
+    const sawScoreInput = document.querySelector('input[name="saw_score"]');
 
+    function calculateSAWScore() {
+        const experience = parseFloat(experienceInput.value) || 0;
+        const education = parseFloat(educationInput.value) || 0;
+        const techSkills = techSkillsInput.value.length; // Example: count characters
+        const softSkills = softSkillsInput.value.length; // Example: count characters
+        const interviewScore = parseFloat(interviewInput.value) || 0;
+
+        // Example weights (you can adjust these based on your criteria)
+        const weights = {
+            experience: 0.25,
+            education: 0.25,
+            techSkills: 0.2,
+            softSkills: 0.2,
+            interviewScore: 0.1
+        };
+
+        const sawScore = (experience * weights.experience) +
+                         (education * weights.education) +
+                         (techSkills * weights.techSkills) +
+                         (softSkills * weights.softSkills) +
+                         (interviewScore * weights.interviewScore);
+
+        sawScoreInput.value = sawScore.toFixed(2); // Display score with two decimal places
+    }
+
+    // Add event listeners to input fields
+    experienceInput.addEventListener('input', calculateSAWScore);
+    educationInput.addEventListener('input', calculateSAWScore);
+    techSkillsInput.addEventListener('input', calculateSAWScore);
+    softSkillsInput.addEventListener('input', calculateSAWScore);
+    interviewInput.addEventListener('input', calculateSAWScore);
+});
+</script>
 </body>
 
 

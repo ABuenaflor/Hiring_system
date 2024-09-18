@@ -153,11 +153,11 @@ tfoot tr {
         <thead>
             <tr>
                 <th>Index</th>
-                <th>Full Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Department</th>
                 <th>Campus</th>
                 <th>Position</th>
-                <th>Date Hired</th>
                 <th>Actions</th>
 
             </tr>
@@ -165,10 +165,10 @@ tfoot tr {
         <tbody>
            <?php
 
-                $ranking_query = "SELECT * FROM employees";
+                $ranking_query = "SELECT * FROM basic_ed_sr";
                 $ranks = mysqli_query($con, $ranking_query);
 
-                $total_query = "SELECT COUNT(*) FROM employees";
+                $total_query = "SELECT COUNT(*) FROM basic_ed_sr";
                 $total_result = mysqli_query($con, $total_query);
                 $total_ranks = mysqli_fetch_array($total_result)[0];
                 $total_pages = ceil($total_ranks);
@@ -177,15 +177,15 @@ tfoot tr {
                     foreach ($ranks as $item) {
         ?>
                         <tr class="app-row">
-                            <td class="app-row"><?= $item['id']; ?></td>
-                            <td class="app-row"><?= $item['fullname']; ?></td>
-                            <td class="app-row"><?= $item['department_id']; ?></td>
-                            <td class="app-row"><?= $item['campus_id']; ?></td>
-                            <td class="app-row"><?= $item['position_id']; ?></td>
-                            <td class="app-row"><?= $item['date_hired']; ?></td>
+                            <td class="app-row"><?= $item['bed_score_id']; ?></td>
+                            <td class="app-row"><?= $item['first_name']; ?></td>
+                            <td class="app-row"><?= $item['last_name']; ?></td>
+                            <td class="app-row"><?= $item['department']; ?></td>
+                            <td class="app-row"><?= $item['campus']; ?></td>
+                            <td class="app-row"><?= $item['position']; ?></td>
                             <td class="app-row">
                                 <!--<a href="edit_employee.php?id=<?= $item['id']; ?>" class="btn btn-primary">Edit Employee</a>-->
-                                <select class="form-select mySelect" data-id="<?= $item['id']; ?>">
+                                <select class="form-select mySelect" data-id="<?= $item['bed_score_id']; ?>">
                                   <option value="A">Basic Education</option>
                                   <option value="B">Tertiary Level</option>
                                 </select><br>
