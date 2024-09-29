@@ -818,5 +818,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $user_id = intval($_POST['emp_id']);
 
+    // Approve account by updating status to 'active'
+    $sql = "UPDATE emp_login SET status = 'active' WHERE emp_id = $user_id";
+
+    if (mysqli_query($con, $sql)) {
+        echo "Account approved!";
+        header ("Location: approve_accounts.php");
+        // Optionally, notify the user via email that their account is approved
+    } else {
+        echo "Error: " . mysqli_error($con);
+    }
+}
+
+if(isset($_POST['add_job_role'])){
+    $job_role = $_POST['job_role'];
+
+    $add_job_role_query = "INSERT INTO job_roles (job_role) VALUES ('$job_role')";
+    $add_job_role_query_run = mysqli_query($con, $add_job_role_query);
+
+    if($add_job_role_query){
+        $_SESSION['message'] = "Added Successfully";
+        showMessage();
+
+        redirect('post_job_role.php', "Added Succesfully");
+
+    }else{
+        $_SESSION['message'] = "Something went wrong";
+        redirect('post_job_role.php', "Something went wrong");
+    }
+}
 ?>

@@ -248,9 +248,9 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
                         Ranking
                     </a>
                     <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
+                       <!--  <li class="sidebar-item">
                             <a href="add_employee_ranking.php" class="sidebar-link">Add Employee To Rank</a>
-                        </li>
+                        </li> -->
                         <li class="sidebar-item">
                             <a href="ranking.php" class="sidebar-link">Show List of Employees</a>
                         </li>
@@ -266,12 +266,15 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
                         <li class="sidebar-item">
                             <a href="position.php" class="sidebar-link">Academic Role</a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="post_job_role.php" class="sidebar-link">Add Job Role</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse"
                         aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
-                        Auth
+                        Others
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
@@ -283,11 +286,14 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
                         <li class="sidebar-item">
                             <a href="generate_report.php" class="sidebar-link">Generation of Reports</a>
                         </li>
-                        <li class="sidebar-item">
+                       <!--  <li class="sidebar-item">
                             <a href="display_report.php" class="sidebar-link">Report Visualization</a>
-                        </li>
+                        </li> -->
                         <li class="sidebar-item">
                             <a href="user_accounts.php" class="sidebar-link">Accounts</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="approve_accounts.php" class="sidebar-link">Pending Accounts</a>
                         </li>
                     </ul>
                 </li>

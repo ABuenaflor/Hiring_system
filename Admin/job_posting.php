@@ -269,6 +269,17 @@ tfoot tr {
                     </select>
                 </div>
 
+                <div class="col-md-4">
+                    <label for="department" class="form-label">Job Role</label>
+                    <select class="form-select" name="job_role" id="">
+                        <?php
+                            $job_role = mysqli_query($con, "SELECT job_role FROM job_roles");
+                            while ($j =mysqli_fetch_array($job_role)){
+                        ?>
+                        <option value="<?php echo $j['job_role']?>"> <?php echo $j['job_role']?></option>
+                        <?php } ?>
+                    </select>
+                </div>
                 
 
                 <div id="qualificationFields" class="col-md-4">
@@ -287,7 +298,7 @@ tfoot tr {
 
         <main class="container">
          
-         <table id="example" class="table table-striped" style="width:180%">
+         <table id="example" class="table table-striped" style="width:190%">
         <thead>
             <tr>
                 <th>Index</th>

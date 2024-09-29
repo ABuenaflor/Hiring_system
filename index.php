@@ -24,36 +24,54 @@ while ($row = $result->fetch_assoc()) {
 <link rel="stylesheet" href="assets/css/style.css">
 
 <style>
-        .bg-image {
-            background-image: url('images/bg2.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 550px;
-            width: 550px;
-            background-repeat: no-repeat;
-            border-radius: 40px; /* Add this line */
-            top: 20%;
-            filter: brightness(90%) saturate(150%);
+    .image-text-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px 200px 50px 200px;
 
+        .text-container{
+            width: 600px;
         }
-        .cover-image{
-            position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-image: url('images/bg.jpg');
-        background-size: cover;
+
+        .image-container img{
+            width: 268px;
+        }
+    }
+    .parallax{
+        background-image: url("images/bg.jpg");
+        min-height: 200px; 
+        background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
-        z-index: -1;
-        filter: brightness(50%) saturate(150%);
-        }
-        .text-wrapper {
-        color: black; /* White color */
+        background-size: cover;
     }
-           
-    </style>
+    .grid-container{
+        display: grid;
+        grid-template-columns: 625px 625px;
+        grid-gap: 20px;
+        padding: 10px;
+        
+        .container-card{
+            box-shadow: 0px 2px 4px #888888;
+        }
+    }
+    .footer{
+        background: #DDDDDD;
+        padding: 20px 200px 20px 200px;
+        
+        .flex{
+            display:flex;
+            align-items: center;
+            justify-content: between;
+            gap: 10px;
+
+            .w-100{
+                width: 400px !important;
+            }
+        }
+    }
+</style>
 <body>
     <div class="container mt-5">
                 <?php if(isset($_SESSION['message']))
@@ -70,44 +88,55 @@ while ($row = $result->fetch_assoc()) {
                 }
                 ?>
         <div class="row">
-            <div class="cover-image ">
-
-            </div>
-          
-                <div class="text-wrapper col-md-6 mb-4">
-                    <h1 style="color:white;">Job Vacancies</h1>
-                    <h5 style="color:white;">Below listed are the qualifications for the vacant position inside Divine Word College of Legazpi</h5>
-                <div class="container">
-                        <?php foreach ($posts as $post): ?>
-                        <div class="card mb-3">
-                            <div class="card-body" style="border-radius:30%;">
-                                <p class="card-title"><strong>Academic Position:</strong><?= $post['details']['acad_role_id']; ?></p>
-                                <p class="card-text"><strong>Institutional Role:</strong> <?= $post['details']['inst_role_id']; ?></p>
-                                <p class="card-text"><strong>Department:</strong> <?= $post['details']['dept_id']; ?></p>
-                                <p class="card-text"><strong>Campus:</strong> <?= $post['details']['campus_id']; ?></p>
-                                <p class="card-text"><strong>Qualifications:</strong> <?= $post['details']['qualifications']; ?></p>
-                                
-                                
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+            <div class="image-text-container">
+                <div class="text-container">
+                    <h1 >Job Vacancies</h1>
+                    <h5 >Below listed are the qualifications for the vacant position inside Divine Word College of Legazpi</h5>
                 </div>
-                    <form action="code.php" method="POST">
-                        <div class="card-body col-md-4">
-                            <input class="form-control" type="text" name="first_name" placeholder="Enter your First Name"><br>  
-                            <input class="form-control" type="text" name="last_name" placeholder="Enter your Last Name">
-                        </div>
-                        <input href="application.php" type="submit" class="btn btn-primary" value="Apply Now" name="submit_credentials_notif">
-                    </form>
-
+                <div class="image-container">
+                    <img src="images\bg2.jpg" alt="" class="">
                 </div>
-            <div class="col-md-6">
-                <div class="bg-image"></div>
             </div>
         </div>
     </div>
+    <div class="parallax"></div>
+    <div class="container mt-5">   
+        <h1 style="text-align: center; font-size: 1.5rem;">
+            Vacant Positions <br>
+            in <br>
+            DWCL
+            </h1>
+        <div class="grid-container container">
+                <?php foreach ($posts as $post): ?>
+                <div class="container-card card mb-3">
+                    <div class="card-body" style="border-radius:30%;">
+                        <p class="card-title"><strong>Academic Position:</strong><?= $post['details']['acad_role_id']; ?></p>
+                        <p class="card-text"><strong>Institutional Role:</strong> <?= $post['details']['inst_role_id']; ?></p>
+                        <p class="card-text"><strong>Department:</strong> <?= $post['details']['dept_id']; ?></p>
+                        <p class="card-text"><strong>Campus:</strong> <?= $post['details']['campus_id']; ?></p>
+                        <p class="card-text"><strong>Qualifications:</strong> <?= $post['details']['qualifications']; ?></p>
+                        
+                        
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    
+<!--     <footer class="footer">
+        <h3 class="">Fill up the form for application purposes</h3>
+        <form action="code.php" method="POST" style="margin: 0 !important">
+            <div class="card-body flex">
+                <div class="">
+                    <label for="">First Name</label>
+                    <input class="form-control w-100" type="text" name="first_name" placeholder="Enter your First Name">
+                </div>
+                <div class="">
+                    <label for="">Last Name</label>
+                    <input class="form-control w-100" type="text" name="last_name" placeholder="Enter your Last Name">
+                </div>
+                <input href="application.php" type="submit" class="btn btn-primary flex-end" value="Apply Now" name="submit_credentials_notif" style=" margin-left: 200px">
+            </div>
+        </form>
+    </footer> -->
 </body>
-
-
-
-<?php include("includes/footer.php"); ?>

@@ -12,34 +12,28 @@
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
 
-        <?php
-        if(isset($_SESSION['auth'])){
-          ?>    
+         
       
            <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="application.php">Application</a>
           </li>
           
 
-           <li class="nav-item">
+          <!--  <li class="nav-item">
             <a class="nav-link" href="#"><?= $_SESSION['auth_user']['username'] ?></a>
-          </li>   
-          <li class="nav-item">
+          </li>    -->
+          <!-- <li class="nav-item">
             <a href="logout.php" class="nav-link">Logout</a>
           </li>
 
-          <?php
-        }else{
-          ?>
+         
             <li class="nav-item">
               <a class="nav-link" href="register.php">Register</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="login.php">Login</a>
-            </li>
-          <?php
-        }
-      ?>
+            </li> -->
+        
       </ul>
     </div>
   </div>

@@ -336,9 +336,10 @@ input {
         </div>
         </div>
         
-        <div class="">
-          <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
-        </div>
+        <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+    </div>
       </div>
             <!-- Page 2 -->
         <div class="form-step">

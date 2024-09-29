@@ -1,13 +1,10 @@
 <?php 
 //session_start();
-include("includes/header.php"); 
+/* include("includes/header.php");  */
 include("../middleware/admin_middleware.php"); 
 ?>
 
-<header class="cd__intro pt-5">
-         <h1> Faculty Ranking for Tertiary Level</h1>
-         <p> Criterias For Ranking Faculties in College Department</p>
-      </header>
+
 <style>
 .bold-text {
     font-weight: bold;
@@ -15,7 +12,13 @@ include("../middleware/admin_middleware.php");
 </style>
     
 <body>
-    <div class="container mt-5">
+     <div class="wrapper">
+          <?php include("includes/header.php") ?>
+               <header class="cd__intro pt-5">
+                    <h1> Faculty Ranking for Tertiary Level</h1>
+                    <p> Criterias For Ranking Faculties in College Department</p>
+               </header>
+               <div class="container mt-5">
         <table class="table table-striped table-bordered">
        <thead class="table-dark">
                 <tr>
@@ -1116,6 +1119,9 @@ include("../middleware/admin_middleware.php");
           <h3>SRC</h3><p>School Ranking Committee</p>
           <h3>CRTC</h3><p>College Ranking Committee</p>
     </div>
+     </div>
+
+   
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
