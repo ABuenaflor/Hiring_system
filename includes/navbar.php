@@ -15,7 +15,7 @@
          
       
            <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="application.php">Application</a>
+          <a class="nav-link active" aria-current="page" href="application.php">Apply Job</a>
           </li>
           
 

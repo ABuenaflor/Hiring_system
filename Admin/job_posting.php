@@ -286,7 +286,7 @@ tfoot tr {
                     <label for="qualifications" class="form-label">Qualifications</label>
                     <input class="form-control" type="text" name="qualifications" placeholder="Enter qualifications">
                 </div>
-                <button type="button" class="btn btn-primary md-4" id="addQualificationBtn">Add Qualification</button>
+               <!--  <button type="button" class="btn btn-primary md-4" id="addQualificationBtn">Add Qualification</button> -->
             </div>
                   <button type="submit" class="btn btn-primary" name="add_job_posting">Submit</button>
         </form>
@@ -298,10 +298,11 @@ tfoot tr {
 
         <main class="container">
          
-         <table id="example" class="table table-striped" style="width:190%">
+         <table id="example" class="table table-striped" style="width:200%">
         <thead>
             <tr>
                 <th>Index</th>
+                <th>Job Role</th>
                 <th>Academic Role</th>
                 <th>Institutional Role</th>
                 <th>Department</th>
@@ -326,13 +327,14 @@ tfoot tr {
         ?>
                         <tr class="app-row">
                             <td class="app-row"><?= $item['posting_id']; ?></td>
+                            <td class="app-row"><?= $item['job_role_id']; ?></td>
                             <td class="app-row"><?= $item['acad_role_id']; ?></td>
                             <td class="app-row"><?= $item['inst_role_id']; ?></td>
                             <td class="app-row"><?= $item['dept_id']; ?></td>
                             <td class="app-row"><?= $item['campus_id']; ?></td>
                             <td class="app-row"><?= $item['qualifications']; ?></td>
                             <td class="app-row" style="display: flex; justify-content: center; align-items: center;">
-                                <a href="edit_job_posting.php?id=<?= $item['posting_id']; ?>" class="btn btn-primary">Edit</a>
+                                <a href="edit_job_posting.php?id=<?= $item['posting_id']; ?>" class="btn btn-danger">Delete</a>
                             </td>
                           
                         </tr>
@@ -359,6 +361,8 @@ tfoot tr {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    
 <script>
     document.getElementById('addQualificationBtn').addEventListener('click', function() {
         let qualificationField = document.createElement('input');

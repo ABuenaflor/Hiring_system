@@ -12,6 +12,7 @@ $posts = [];
 
 while ($row = $result->fetch_assoc()) {
     $posts[$row['posting_id']]['details'] = [
+        'job_role_id' => $row['job_role_id'],
         'campus_id' => $row['campus_id'],
         'dept_id' => $row['dept_id'],
         'acad_role_id' => $row['acad_role_id'],
@@ -110,6 +111,7 @@ while ($row = $result->fetch_assoc()) {
                 <?php foreach ($posts as $post): ?>
                 <div class="container-card card mb-3">
                     <div class="card-body" style="border-radius:30%;">
+                        <p class="card-title"><strong>Job Role</strong><?= $post['details']['job_role_id']; ?></p>
                         <p class="card-title"><strong>Academic Position:</strong><?= $post['details']['acad_role_id']; ?></p>
                         <p class="card-text"><strong>Institutional Role:</strong> <?= $post['details']['inst_role_id']; ?></p>
                         <p class="card-text"><strong>Department:</strong> <?= $post['details']['dept_id']; ?></p>

@@ -248,7 +248,7 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
                         Ranking
                     </a>
                     <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                       <!--  <li class="sidebar-item">
+                      <!--   <li class="sidebar-item">
                             <a href="add_employee_ranking.php" class="sidebar-link">Add Employee To Rank</a>
                         </li> -->
                         <li class="sidebar-item">

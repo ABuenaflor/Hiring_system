@@ -594,8 +594,9 @@ if(isset($_POST['add_employee'])){
     
     if(isset($_POST['add_dept'])){
         $dept_name = $_POST['dept_name'];
+        $level = $_POST['level'];
 
-        $add_dept_query = "INSERT INTO department (dept_name) VALUES ('$dept_name')";
+        $add_dept_query = "INSERT INTO department (dept_name,level) VALUES ('$dept_name','$level')";
         $add_dept_query_run = mysqli_query($con, $add_dept_query);
 
         if($add_dept_query){
@@ -713,9 +714,10 @@ if(isset($_POST['add_employee'])){
         $acad_role = $_POST['acad_role'];
         $inst_role = $_POST['inst_role'];
         $qualifications = $_POST['qualifications'];
+        $job_role = $_POST['job_role'];
     
-        $add_job_posting_query = "INSERT INTO job_posting (campus_id, dept_id, acad_role_id, inst_role_id, qualifications) 
-                                  VALUES ('$campus', '$department', '$acad_role', '$inst_role', '$qualifications')";
+        $add_job_posting_query = "INSERT INTO job_posting (campus_id, dept_id, acad_role_id, inst_role_id, qualifications, job_role_id) 
+                                  VALUES ('$campus', '$department', '$acad_role', '$inst_role', '$qualifications','$job_role')";
         
         if (mysqli_query($con, $add_job_posting_query)) {
             echo "<script>alert('Job posting added successfully!');</script>";
