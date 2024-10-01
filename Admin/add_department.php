@@ -18,5 +18,5 @@ include("../middleware/admin_middleware.php");
     </div>
     <button type="submit" class="btn btn-primary" name="add_dept">Save</button>
 </form>
-
+<!-- edit check -->
 
