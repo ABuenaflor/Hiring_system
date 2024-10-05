@@ -3,7 +3,16 @@
 /* include("includes/header.php"); 
  */include("../middleware/admin_middleware.php"); 
 
-
+ function getBasicEdScores($con) {
+     $query = "SELECT * FROM basic_ed_score";
+     $result = mysqli_query($con, $query);
+     
+     if ($result && mysqli_num_rows($result) > 0) {
+         return mysqli_fetch_assoc($result);
+     }
+     
+     return null;
+ }
 ?>
 
 <style>
@@ -20,19 +29,23 @@
           ?>
 
 <header class="cd__intro pt-5">
-         <h1> Faculty Ranking for Basic Education</h1>
-         <p> Criterias For Ranking Faculties in Basic Education</p>
+         <h1> Edit Faculty Ranking for Basic Education</h1>
+         <p> Edit Criterias For Ranking Faculties in Basic Education</p>
       </header>
-      
-      <a href="edit_basiced_rubrics.php" class="btn btn-primary">Edit Rubrics</a>
 
       <div class="container">
 
       <?php
+       $scores = getBasicEdScores($con);
 
+       if (!$scores) {
+           echo "<p>No scores found in the database.</p>";
+       } else {
      ?>
 
       <form action="code.php" method="POST">
+          <input type="hidden" name="id" value="<?php echo $scores['id']; ?>">
+
     <div class="container mt-5">
         <table class="table table-striped table-bordered">
        <thead class="table-dark">
@@ -53,30 +66,23 @@
                     
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="bold-text" name="educ_attain">1. EDUCATIONAL ATTAINMENT
-                         <input type="hidden" name="educ_attain" value="1. EDUCATIONAL ATTAINMENT">
-                    </td>
-                    <td name="educ_attain_weight" value="40">40
-                         <input type="hidden" name="educ_attain_weight" value="40">
-                    </td>
-                    <td name="educ_attain_pts" value="160">160
-                         <input type="hidden" name="educ_attain_pts" value="160">
-                    </td>
-                    <td><input type="text" class="form-control" name="educ_attain_sr"></td>
-                    <td><input type="text" class="form-control" name="educ_attain_drc"></td>
-                    <td><input type="text" class="form-control" name="educ_attain_bertc"></td>
-                   
+            <?php
+        
+            ?>
+               <tr>
+                    <td><input type="text" class="form-control" name="educ_attain" value="<?php echo $scores['educ_attain']; ?>"></td>
+                    <td><input type="text" class="form-control" name="educ_attain_weight" value="<?php echo $scores['educ_attain_weight']; ?>"></td>
+                    <td><input type="text" class="form-control" name="educ_attain_pts" value="<?php echo $scores['educ_attain_pts']; ?>"></td>
+                    <td><input type="text" class="form-control" name="educ_attain_sr" value="<?php echo $scores['educ_attain_sr']; ?>"></td>
+                    <td><input type="text" class="form-control" name="educ_attain_drc" value="<?php echo $scores['educ_attain_drc']; ?>"></td>
+                    <td><input type="text" class="form-control" name="educ_attain_bertc" value="<?php echo $scores['educ_attain_bertc']; ?>"></td>
                 </tr>
                 <!-- Add more rows as needed -->
                 <tr>
-                    <td class="bold-text" name="degr_earned">1.1 Degrees Earned (Maximum points = 80)
-                         <input type="hidden" name="degr_earned" value="1.1 Degrees Earned (Maximum points = 80)">
-                    </td>
+                    <td class="bold-text" name="deg_earned">1.1 Degrees Earned (Maximum points = 80)</td>
                     <td name="deg_earned_weight">20</td>
                     <td><input type="text" class="form-control" name="deg_cred_pts"></td>
-                    <td><input type="text" class="form-control" name="deg_sr"></td>
+                    <td><input type="text" class="form-control" name="deg_earned"></td>
                     <td><input type="text" class="form-control" name="deg_drc"></td>
                     <td><input type="text" class="form-control" name="deg_bertc"></td>
                     
@@ -593,7 +599,9 @@
                     <td><input type="text" class="form-control" name="grand_drc"></td>
                     <td><input type="text" class="form-control" name="grand_bertc"></td>
                </tr>
-
+               <?php
+       }
+                    ?>
             </tbody>
         </table>
         
@@ -603,7 +611,7 @@
           <h3>BERTC</h3><p>Basic Education Rank and Tenure Council</p>
     </div>
 
-    <a href="edit_basiced_rubrics.php?id=<?=$row['id']?>" class="btn btn-primary">Edit Rubrics</a>
+    <button type="submit" class="btn btn-primary" name="update_basiced_rubrics">Update Scores</button>
     </form>
    
            

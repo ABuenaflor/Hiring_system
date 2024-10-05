@@ -281,12 +281,16 @@ if(isset($_POST['add_employee'])){
 
 
     if(isset($_POST['submit_basic_ed_score'])){
+        $educ_attain = $_POST ['educ_attain'];
+        $educ_attain_weight = $_POST ['educ_attain_weight'];
+        $educ_attain_pts = $_POST ['educ_attain_pts'];
         $educ_attain_sr = $_POST ['educ_attain_sr'];
         $educ_attain_drc = $_POST['educ_attain_drc'];
         $educ_attain_bertc = $_POST['educ_attain_bertc'];
 
+        $degr_earned = $_POST['degr_earned'];
         $deg_cred_pts = $_POST['deg_cred_pts'];
-        $deg_sr = $_POSt['deg_sr'];
+        $deg_sr = $_POST['deg_sr'];
         $deg_drc = $_POST['deg_drc'];
         $deg_bertc = $_POST['deg_bertc'];
 
@@ -312,11 +316,11 @@ if(isset($_POST['add_employee'])){
 
         $prof_cred_pts = $_POST['prof_cred_pts'];
         $prof_sr = $_POST['prof_sr'];
-        $prof_drc = $_POSt['prof_drc'];
+        $prof_drc = $_POST['prof_drc'];
         $prof_bertc = $_POST['prof_bertc'];
 
         $adv_cred_pts = $_POST['adv_cred_pts'];
-        $adv_sr = $_POSt['adv_sr'];
+        $adv_sr = $_POST['adv_sr'];
         $adv_drc = $_POST['adv_drc'];
         $adv_bertc = $_POST['adv_bertc'];
 
@@ -404,7 +408,7 @@ if(isset($_POST['add_employee'])){
         $threesubs_drc = $_POST['threesubs_drc'];
         $threesubs_bertc = $_POST['threesubs_bertc'];
 
-        $outside_cred_pts = $_POSt['outside_cred_pts'];
+        $outside_cred_pts = $_POST['outside_cred_pts'];
         $outside_sr = $_POST['outside_sr'];
         $outside_drc = $_POST['outside_drc'];
         $outside_bertc = $_POSt['outside_bertc'];
@@ -428,7 +432,7 @@ if(isset($_POST['add_employee'])){
 
         $org_cred_pts = $_POST['org_cred_pts'];
         $org_sr = $_POST['org_sr'];
-        $org_drc = $_POSt['org_drc'];
+        $org_drc = $_POST['org_drc'];
         $org_bertc = $_POST['org_bertc'];
 
         $interntl_cred_pts = $_POST['interntl_cred_pts'];
@@ -438,7 +442,7 @@ if(isset($_POST['add_employee'])){
 
         $nationl_cred_pts = $_POST['nationl_cred_pts'];
         $nationl_sr = $_POST['nationl_sr'];
-        $nationl_drc = $_POPST['nationl_drc'];
+        $nationl_drc = $_POST['nationl_drc'];
         $nationl_bertc = $_POST['nationl_bertc'];
 
         $regionl_cred_pts = $_POST['regionl_cred_pts'];
@@ -447,7 +451,7 @@ if(isset($_POST['add_employee'])){
         $regionl_bertc = $_POST['regionl_bertc'];
 
         $prvncl_cred_pts = $_POST['prvncl_cred_pts'];
-        $prvncl_sr = $_POSt['prvncl_sr'];
+        $prvncl_sr = $_POST['prvncl_sr'];
         $prvncl_drc = $_POST['prvncl_drc'];
         $prvncl_bertc = $_POST['prvncl_bertc'];
 
@@ -478,11 +482,11 @@ if(isset($_POST['add_employee'])){
 
         $memb_cred_pts = $_POST['memb_cred_pts'];
         $memb_sr = $_POST['memb_sr'];
-        $memb_drc = $_POSt['memb_drc'];
+        $memb_drc = $_POST['memb_drc'];
         $memb_bertc = $_POST['memb_bertc'];
 
         $award_inter_cred_pts = $_POST['award_inter_cred_pts'];
-        $award_inter_sr = $_POSt['award_inter_sr'];
+        $award_inter_sr = $_POST['award_inter_sr'];
         $award_inter_drc = $_POST['award_inter_drc'];
         $award_inter_bertc = $_POST['award_inter_bertc'];
 
@@ -527,7 +531,7 @@ if(isset($_POST['add_employee'])){
         $report_bertc = $_POST['report_bertc'];
 
         $add_cred_pts = $_POST['add_cred_pts'];
-        $add_sr = $_POSt['add_sr'];
+        $add_sr = $_POST['add_sr'];
         $add_drc = $_POST['add_drc'];
        $add_bertc =$_POST ['add_bertc'];
 
@@ -541,13 +545,13 @@ if(isset($_POST['add_employee'])){
         $overall_bertc = $_POST['overall_bertc'];
 
        $grand_percent = $_POST ['grand_percent'];
-        $grand_cred_pts =$_POSt['grand_cred_pts'];
+        $grand_cred_pts =$_POST['grand_cred_pts'];
        $grand_sr = $_POST ['grand_sr'];
         $grand_drc = $_POST['grand_drc'];
         $grand_bertc = $_POST['grand_bertc'];
 
-        $basic_ed_score_query = "INSERT INTO basic_ed_score (educ_attain_sr, educ_attain_drc,educ_attain_bertc, deg_cred_pts,
-         deg_sr,deg_drc,deg_bertc,bac_cred_pts,bac_sr,bac_drc,bac_bertc,bse_cred_pts,bse_sr,bse_drc,bse_bertc,bs_cred_pts,bs_sr,
+        $basic_ed_score_query = "INSERT INTO basic_ed_score (educ_attain, educ_attain_weight, educ_attain_pts,educ_attain_sr, educ_attain_drc,educ_attain_bertc, deg_cred_pts,
+         degr_earned,deg_sr,deg_drc,deg_bertc,bac_cred_pts,bac_sr,bac_drc,bac_bertc,bse_cred_pts,bse_sr,bse_drc,bse_bertc,bs_cred_pts,bs_sr,
          bs_drc,bs_bertc,cs_cred_pts,cs_sr,cs_drc,cs_bertc,prof_cred_pts,prof_sr,prof_drc,prof_bertc,adv_cred_pts,adv_sr,adv_drc,
          adv_bertc,ma_cred_pts,ma_sr,ma_drc,ma_bertc,ms_cred_pts,ms_sr,ms_drc,ms_bertc,seminar_cred_pts,seminar_sr,seminar_drc,seminar_bertc,
          intnl_cred_pts,intnl_sr,intnl_drc,intnl_bertc,natnl_cred_pts,natnl_sr,natnl_drc,natnl_bertc,regnl_cred_pts,regnl_sr,regnl_drc,
@@ -564,7 +568,7 @@ if(isset($_POST['add_employee'])){
          award_regnl_drc,award_regnl_bertc,div_cred_pts,div_sr,div_drc,div_bertc,main_cred_pts,main_sr,main_drc,main_bertc,co_cred_pts,co_sr,co_drc,co_bertc,
          enum_cred_pts,enum_sr,enum_drc,enum_bertc,lead_cred_pts,lead_sr,lead_drc,lead_bertc,report_cred_pts,report_sr,report_drc,report_bertc,
          add_cred_pts,add_sr,add_drc,add_bertc,pts_cred_pts,pts_sr,pts_drc,pts_bertc,overall_sr,overall_drc,overall_bertc,grand_percent,
-         grand_cred_pts,grand_sr,grand_drc,grand_bertc) VALUES ('$educ_attain_sr','$educ_attain_drc','$educ_attain_bertc','$deg_cred_pts','$deg_sr',
+         grand_cred_pts,grand_sr,grand_drc,grand_bertc) VALUES ('$educ_attain','$educ_attain_weight','$educ_attain_pts','$educ_attain_sr','$educ_attain_drc','$educ_attain_bertc','$deg_cred_pts','$degr_earned','$deg_sr',
          '$deg_drc','$deg_bertc','$bac_cred_pts','$bac_sr','$bac_drc','$bac_bertc','$bse_cred_pts','$bse_sr','$bse_drc','$bse_bertc','$bs_cred_pts','$bs_sr','$bs_drc','$bs_bertc','$cs_cred_pts',
          '$cs_sr','$cs_drc','$cs_bertc','$prof_cred_pts','$prof_sr','$prof_drc','$prof_bertc','$adv_cred_pts','$adv_sr','$adv_drc','$adv_bertc','$ma_cred_pts','$ma_sr','$ma_drc','$ma_bertc',
          '$ms_cred_pts','$ms_sr','$ms_drc','$ms_bertc','$seminar_cred_pts','$seminar_sr','$seminar_drc','$seminar_bertc','$intnl_cred_pts','$intnl_sr','$intnl_drc','$intnl_bertc',
@@ -820,7 +824,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+/* if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = intval($_POST['emp_id']);
 
     // Approve account by updating status to 'active'
@@ -829,6 +833,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mysqli_query($con, $sql)) {
         echo "Account approved!";
         header ("Location: approve_accounts.php");
+        // Optionally, notify the user via email that their account is approved
+    } else {
+        echo "Error: " . mysqli_error($con);
+    }
+} */
+if (isset($_POST['emp_id'])) {
+    $user_id = intval($_POST['emp_id']);
+
+    // Approve account by updating status to 'active'
+    $sql = "UPDATE emp_login SET status = 'active' WHERE emp_id = $user_id";
+
+    if (mysqli_query($con, $sql)) {
+        echo "Account approved!";
+        header("Location: approve_accounts.php");
         // Optionally, notify the user via email that their account is approved
     } else {
         echo "Error: " . mysqli_error($con);
@@ -850,6 +868,29 @@ if(isset($_POST['add_job_role'])){
     }else{
         $_SESSION['message'] = "Something went wrong";
         redirect('post_job_role.php', "Something went wrong");
+    }
+}
+
+if (isset($_POST['update_basiced_rubrics'])) {
+    $id = $_POST['id'];
+    $educ_attain = $_POST['educ_attain'];
+    $educ_attain_weight = $_POST['educ_attain_weight'];
+    $educ_attain_pts = $_POST['educ_attain_pts'];
+    $educ_attain_sr = $_POST['educ_attain_sr'];
+    $educ_attain_drc = $_POST['educ_attain_drc'];
+    $educ_attain_bertc = $_POST['educ_attain_bertc'];
+
+     $update_query = "UPDATE basic_ed_score SET educ_attain = '$educ_attain', educ_attain_weight='$educ_attain_weight', educ_attain_pts='$educ_attain_pts',
+    educ_attain_sr='$educ_attain_sr',educ_attain_drc='$educ_attain_drc', educ_attain_bertc='$educ_attain_bertc' WHERE id = '$id' ";
+
+    $update_query_run = mysqli_query($con, $update_query);
+
+    if($update_query_run){
+        echo "<script>alert('Rubrics Updated Successfully');</script>";
+        header ("Location: basic_ed_ranking.php");
+    }else{
+        echo "<script>alert('Error Occured in Updating Rubrics');</script>";
+        header ("Location: basic_ed_ranking.php");
     }
 }
 ?>
