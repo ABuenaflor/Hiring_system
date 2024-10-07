@@ -7,11 +7,11 @@ include ("config/dbcon.php");
 //will direct to this page if ACTIVE ACC IS APPROVED
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
 
     // Fetch user
-    $sql = "SELECT * FROM emp_login WHERE username = '$username'";
+    $sql = "SELECT * FROM emp_login WHERE email = '$email'";
     $result = mysqli_query($con, $sql);
     $user = mysqli_fetch_assoc($result);
 
