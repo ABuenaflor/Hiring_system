@@ -70,7 +70,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <td class="app-row"><?= $item['emp_id']; ?></td>
                     <td class="app-row"><?= $item['first_name']; ?></td>
                     <td class="app-row"><?= $item['last_name']; ?></td>
-                    <td class="app-row"><?= $item['username']; ?></td>
+                    <td class="app-row"><?= $item['email']; ?></td>
                     <td class="app-row"><?= $item['status']; ?></td>
                     <td class="app-row" style="display: flex; justify-content: center; align-items: center;">
                         <form action="account_approval.php" method="POST">

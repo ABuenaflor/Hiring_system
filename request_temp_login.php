@@ -85,6 +85,7 @@ $position_result = mysqli_query($con, $position_query);
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="row border rounded-5 box-area shadow-lg">
             <div class="col-md-12 left-box">
+                
                 <form action="test4.php" method="POST">
                     <div class="header-text mb-4 text-center">
                         <h2>Register Employee </h2>
@@ -158,8 +159,12 @@ $position_result = mysqli_query($con, $position_query);
                         </div>
                       
                     </div>
+                   
                     <div class="form-group flex-item d-flex align-items-end">
                             <button class="btn btn-lg btn-primary w-100 fs-6" type="submit" name="temp_account_btn">Submit Request</button>
+                    </div>
+                    <div class="row mt-3">
+                        <small>Go back to Login <a href="emp_login.php">Login Page</a></small>
                     </div>
                 </form>
             </div>
