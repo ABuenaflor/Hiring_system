@@ -4,7 +4,7 @@ session_start();
 }
 
 //change from include to require once
-include_once('../config/dbcon.php');
+include_once(__DIR__ . "/../config/dbcon.php");
 
 //pinasok yung function into !function exist
 if(!function_exists('getAll')){

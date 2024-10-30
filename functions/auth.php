@@ -1,7 +1,7 @@
 <?php 
 session_start();
-include("../config/dbcon.php");
-include("myFunctions.php");
+include(__DIR__ . "/../config/dbcon.php");
+include(__DIR__ . "/myFunctions.php");
 
 
 if(isset($_POST["register_btn"])){

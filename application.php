@@ -1,6 +1,7 @@
 <?php 
 session_start();
-include("includes/header.php"); ?>
+include("config/dbcon.php");
+include("includes/header.php"); ?>  
 
 <style>
         :root {
@@ -203,10 +204,14 @@ input {
 
           <div class="col-md-6 mb-3">
               <h5>Institutional Role</h5>
-                <select class="form-select" name="job_type">
-                    <option value="Academic">Academic</option>
-                    <option value="Non-Academic">Non Academic</option>
-                </select>
+                                <select class="form-select" name="level" id="">
+                                    <?php
+                                        $level = mysqli_query($con, "SELECT level FROM department");
+                                        while ($l =mysqli_fetch_array($level)){
+                                    ?>
+                                    <option value="<?php echo $l['level']?>"> <?php echo $l['level']?></option>
+                                    <?php } ?>
+                                </select>
           </div>
 
           <div class="col-md-6 mb-3">
