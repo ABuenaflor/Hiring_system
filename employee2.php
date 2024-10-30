@@ -2,12 +2,10 @@
 session_start();
 
 include("config/dbcon.php");
-/* include("includes/header.php");
- */
 include("includes/emp-nav.php");
 
-$emp_login = mysqli_query($con, "SELECT * FROM emp_login WHERE username = '".$_SESSION['username']."' ");
-$emp_data = mysqli_fetch_array($emp_login);
+/* include("includes/header.php");
+ */
 ?>
 
 <link rel="stylesheet" href="assets/css/style.css">
@@ -26,9 +24,7 @@ $emp_data = mysqli_fetch_array($emp_login);
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/bootstrap.min.css"/>
 
 
-<head>
-    
-</head>
+
     <style>
       .form-control input-field{
         border: 1px solid #b3a1a1 !important;
@@ -55,65 +51,29 @@ $emp_data = mysqli_fetch_array($emp_login);
             ?>
              <div class="wrapper">
                 <header class="cd__intro pt-5">
-                    <h1> Faculty Ranking for Basic Education</h1>
-                    <p> Criterias For Ranking Faculties in Basic Education</p>
+                    <h1> Faculty Ranking for Tertiary Level</h1>
+                    <p> Criterias For Ranking Faculties in Tertiary Level</p>
                     <h2>LEGEND:</h2>
                     <h3>SR: Self Rating </h3>
                 </header>
         <form action="code.php" method="POST">
-        <div class="row-mb-3">
-    <div class="col-md-4">
-        <label for="department" class="form-label">First Name</label>
-        <input class="form-control" type="text" name="first_name" value="<?php echo $emp_data['first_name'] ?>" placeholder="Enter your First Name"><br>
-    </div>
-    
-    <div class="col-md-4">
-        <label for="department" class="form-label">Last Name</label>
-        <input class="form-control" type="text" name="last_name" value="<?php echo $emp_data['last_name'] ?>" placeholder="Enter your Last Name"> <br>
-    </div>
-    
-    <div class="col-md-4">
-        <label for="department" class="form-label">Email</label>
-        <input class="form-control" type="email" name="email" value="<?php echo $emp_data['email'] ?>" placeholder="Enter your Email">
-    </div>
-</div>
-<div class="row-mb-3">
-    <div class="col-md-4">
-        <label for="department" class="form-label">Department</label>
-        <select class="form-select" name="department" id="">
-            <?php
-                $department = mysqli_query($con, "SELECT dept_id FROM department");
-                while ($d = mysqli_fetch_array($department)){
-            ?>
-            <option value="<?php echo $d['dept_id']?>" <?php if($d['dept_name'] == $emp_data['dept_id']) echo 'selected'; ?>><?php echo $d['dept_name']?></option>
-            <?php } ?>
-        </select>
-    </div>
-    
-    <div class="col-md-4">
-        <label for="department" class="form-label">Campus</label> <br>
-        <select class="form-select" name="campus" id="">
-            <?php
-                $campus = mysqli_query($con, "SELECT campus_name FROM campus");
-                while ($c = mysqli_fetch_array($campus)){
-            ?>
-            <option value="<?php echo $c['campus_name']?>" <?php if($c['campus_name'] == $emp_data['campus_id']) echo 'selected'; ?>><?php echo $c['campus_name']?></option>
-            <?php } ?>
-        </select>
-    </div>
+        <div class="row">
+                <div class="col-md-4">
+                    <input class="form-control" type="text" name="first_name" placeholder="Enter your First Name"><br>
+                </div>
+            </div>
 
-    <div class="col-md-6">
-    <label  class="form-label">Position</label> 
-    <select class="form-select" name="position" id="">
-        <?php
-            $position = mysqli_query($con, "SELECT position_name FROM position");
-            while ($p = mysqli_fetch_array($position)){
-        ?>
-        <option value="<?php echo $p['position_name']?>" <?php if($p['position_name'] == $emp_data['position_id']) echo 'selected'; ?>><?php echo $p['position_name']?></option>
-        <?php } ?>
-    </select>
-</div>
- 
+            <div class="row">
+                <div class="col-md-4">
+                    <input class="form-control" type="text" name="last_name" placeholder="Enter your Last Name"> <br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input class="form-control" type="email" name="username" placeholder="Enter your Email">
+                </div>
+            </div>
     <div class="container mt-5">
         <table class="table table-striped table-bordered">
         <thead class="table-dark">

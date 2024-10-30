@@ -1,0 +1,482 @@
+[
+    {
+        "criteria": "Educational attainment",
+        "weight": 0.40,
+        "criteria_cpoints" : 160,
+        "sr" : "NULL",
+        "drc" : "NULL",
+        "bertc" : "NULL"
+    },
+    {
+        "criteria": "Baccalaureate",
+        "weight": 0.20,
+        "criteria_cpoints" : 160,
+        "sr" : "NULL",
+        "drc" : "NULL",
+        "bertc" : "NULL"
+    },
+    {
+        "criteria": "bse/bseed",
+        "weight": 0.20,
+        "criteria_cpoints" : 160,
+        "sr" : "NULL",
+        "drc" : "NULL",
+        "bertc" : "NULL"
+    },
+    {
+        "criteria": "bs/ab + let passer",
+        "weight": 0.20,
+        "criteria_cpoints" : 160,
+        "sr": "NULL",
+        "drc" : "NULL",
+        "bertc" : "NULL"
+    },
+    {
+        "criteria": "cs exam(professional)",
+        "weight": 0.20,
+        "criteria_cpoints" : 160,
+        "sr" : "NULL",
+        "drc" : "NULL",
+        "bertc" : "NULL"    
+    },
+    {
+        "criteria": "professional growth (maximum points - 80)",
+        "weight": 0.20,
+        "criteria_cpoints" : 160,
+        "sr" : "NULL",
+        "drc" : "NULL",
+        "bertc" : "NULL"
+    },
+    {
+        "criteria": "advanced training",
+        "weight": 0.20,
+        "criteria_cpoints" : 160,
+        "sr" : "NULL",
+        "drc" : "NULL",
+        "bertc" : "NULL"    
+    },
+    {
+        "criteria": "ma/ms",
+        "weight": 0.20,
+        "criteria_cpoints" : 160,
+        "sr" : "NULL",
+        "drc" : "NULL",
+        "bertc" : "NULL"
+    },
+    {
+        "criteria": "ma/ms + so",
+        "weight": 0.20,
+        "criteria_cpoints" : 160,
+        "sr" : "NULL",
+        "drc" : "NULL",
+        "bertc" : "NULL"    
+    },
+    {
+        "criteria": "seminars",
+	"weight": 0.20,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "international",
+	"weight": 0.20,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "national",
+	"weight": 0.20,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "regional",
+	"weight": 0.20,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "local",
+	"weight": 0.20,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "as resource speaker",
+	"weight": 0.20,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" :"NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria" : "trainer",
+	"weight" : 0.25,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "resource speaker",
+	"weight": 0.20,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "facilitator",
+	"weight": 0.20,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "completed cert of proficiency",
+	"weight": 0.20,
+	"criteria_cpoints" : 160,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "teaching experience",
+	"weight": 0.25,
+	"criteria_cpoints" : 100,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "status of employment",
+	"weight": 0.25,
+	"criteria_cpoints" : 100,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "full time within dwcl",
+	"weight": 0.25,
+	"criteria_cpoints" : 100,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "part time",
+	"weight": 0.25,
+	"criteria_cpoints" : 100,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "1-2 subs",
+	"weight": 0.25,
+	"criteria_cpoints" : 100,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "3-4 subs",
+	"weight": 0.25,
+	"criteria_cpoints" : 100,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "outside dwcl",
+	"weight": 0.25,
+	"criteria_cpoints" : 100,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "outside dwcl",
+	"weight": 0.25,
+	"criteria_cpoints" : 100,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "faculty performance rating",
+	"weight": 0.20,
+	"criteria_cpoints" : 80,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "mode for the last 3 yrs",
+	"weight": 0.20,
+	"criteria_cpoints" : 80,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "4.6 - 5.0",
+	"weight": 0.20,
+	"criteria_cpoints" : 80,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "4.0 - 4.5",
+	"weight": 0.20,
+	"criteria_cpoints" : 60,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "3.6 - 3.9",
+	"weight": 0.20,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "Community extension service",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "professional organizations",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "international",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "national",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "regional",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "division / provincial",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "additional 1 pt for officership",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "additional 1 pt for Life membership",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "Services rendered",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "coach trainer",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "area chair",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "committee member",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "chairman in other school activity",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "membership in academic",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "awards and citations",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "international",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "national",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "regional",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "division",
+	"weight": 0.10,
+	"criteria_cpoints" : 40,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "research productivity",
+	"weight": 0.05,
+	"criteria_cpoints" : 20,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "research work",
+	"weight": 0.05,
+	"criteria_cpoints" : 20,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "main researcher",
+	"weight": 0.05,
+	"criteria_cpoints" : 20,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "co-researcher",
+	"weight": 0.05,
+	"criteria_cpoints" : 20,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "enumerator",
+	"weight": 0.05,
+	"criteria_cpoints" : 20,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "research leader",
+	"weight": 0.05,
+	"criteria_cpoints" : 20,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "research output",
+	"weight": 0.05,
+	"criteria_cpoints" : 20,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "additional 5 pt for adoption",
+	"weight": 0.05,
+	"criteria_cpoints" : 20,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    },
+    {
+        "criteria": "overall criteria",
+	"weight": 100,
+	"criteria_cpoints" : 400,
+	"sr" : "NULL",
+	"drc" : "NULL",
+	"bertc" : "NULL"
+    }
+]
