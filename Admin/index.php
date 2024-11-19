@@ -56,8 +56,8 @@
                 $stmt->close();
             }
                 $queries = [
-                    "SELECT job_type, COUNT(*) as applicant_count FROM credentials GROUP BY job_type",
-                    "SELECT job_schedule, COUNT(*) as applicant_count FROM credentials GROUP BY job_schedule",
+                    "SELECT institutional_role, COUNT(*) as applicant_count FROM credentials GROUP BY institutional_role",
+                    "SELECT academic_role, COUNT(*) as applicant_count FROM credentials GROUP BY academic_role",
                     "SELECT campus_name, COUNT(*) as applicant_count FROM credentials GROUP BY campus_name",
                     "SELECT department, COUNT(*) as applicant_count FROM credentials GROUP BY department",
                     "SELECT status, COUNT(*) as user_count FROM user GROUP BY status"  // New query for user status
@@ -84,7 +84,7 @@
                 $job_counts = [];
                 if (!empty($data[0])) {
                     foreach ($data[0] as $row) {
-                        $job_types[] = $row['job_type'];
+                        $job_types[] = $row['institutional_role'];
                         $job_counts[] = $row['applicant_count'];
                     }
                 }
@@ -93,7 +93,7 @@
                 $schedule_counts = [];
                 if (!empty($data[1])) {
                     foreach ($data[1] as $row) {
-                        $job_schedules[] = $row['job_schedule'];
+                        $job_schedules[] = $row['academic_role'];
                         $schedule_counts[] = $row['applicant_count'];
                     }
                 }
