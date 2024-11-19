@@ -5,7 +5,51 @@
 require_once ("../code.php");
 require_once("../functions/myFunctions.php"); 
 /* require_once("includes/header.php"); */ ?>
+<style>
+     .certificate-container {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
+    .certificate-container h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .certificate-container p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    .certificate-item {
+        background-color: #fff;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .certificate-link {
+        font-size: 16px;
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .certificate-link:hover {
+        text-decoration: underline;
+        color: #004d99;
+    }
+
+    .certificate-container p, .certificate-item {
+        color: #333;
+    }
+</style>
 <body>
     <div class="wrapper">
     <?php
@@ -310,10 +354,60 @@ require_once("../functions/myFunctions.php");
                                     </div>
                                     <div class="col-md-8 mb-3">
                                         <label for="">Certificates</label>
-                                        <input  type="file" class="form-control" name="image" id=""></input>
-                                        <label for="">Uploaded Certificate: </label>
-                                        <input type="hidden" name="old_image" value="<?=$data['image']?>">
-                                        <img src="../uploads/<?=$data['image']?>" height="100px" width="100px" alt="uploaded-image">
+                                        <?php
+                                        // Get the user ID from the URL query string
+                                        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+                                            $user_id = $_GET['id']; // Get the user_id from the URL (e.g., show.php?id=24)
+                                        } else {
+                                            // Handle the case where there is no valid user_id in the URL
+                                            echo "Invalid or missing user ID.";
+                                            exit;
+                                        }
+
+                                        // SQL query to fetch certificates for the given user_id
+                                        $sql = "SELECT certificates FROM credentials WHERE id = '$user_id'";
+                                        $result = mysqli_query($con, $sql);
+
+                                        if (!$result) {
+                                            die("SQL Error: " . mysqli_error($con)); // Show SQL errors
+                                        }
+
+                                        if (mysqli_num_rows($result) > 0) {
+                                            $row = mysqli_fetch_assoc($result);
+                                            $certificates = $row['certificates']; // Get the JSON string
+
+                                            // Decode the JSON into an associative array
+                                            $certificatesArray = json_decode($certificates, true);
+
+                                            // Check if decoding was successful
+                                            if ($certificatesArray === null) {
+                                                // Optionally handle the error
+                                                echo "Error decoding JSON: " . json_last_error_msg();
+                                            } else {
+                                                // Display certificates in a styled format
+                                                echo "<div class='certificate-container'>";
+                                                echo "<h2>Certificates</h2>";
+                                                echo "<p>Below are the certificates associated with this user:</p>";
+                                                
+                                                $certificateCount = 1; // Counter for "Certificate 1", "Certificate 2", etc.
+                                                foreach ($certificatesArray as $file) {
+                                                    echo "<div class='certificate-item'>";
+                                                    // Change the link text to "Certificate X"
+                                                    echo "<a href='" . htmlspecialchars($file) . "' target='_blank' class='certificate-link'>Certificate " . $certificateCount . "</a>";
+                                                    echo "</div>";
+                                                    $certificateCount++; // Increment the counter
+                                                }
+                                                
+                                                echo "</div>";
+                                            }
+                                        } else {
+                                            echo "<div class='certificate-container'>";
+                                            echo "<p>No certificates found for this user.</p>";
+                                            echo "</div>";
+                                        }
+                                        ?>
+
+
                                     </div> 
                                 </div>
                             </div>
@@ -367,7 +461,7 @@ require_once("../functions/myFunctions.php");
                                     
                                 </div>
                             </div>
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header">
                                     <h4>Criteria</h4>
                                 </div>
@@ -438,7 +532,7 @@ require_once("../functions/myFunctions.php");
                                     </div>
                                 </div>
                                                             </div>
-                            </div>
+                            </div> -->
 
                            
                             <div class="col-md-12">

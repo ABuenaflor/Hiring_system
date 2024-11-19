@@ -1,6 +1,8 @@
 <?php 
 session_start();
-include("includes/header.php"); ?>
+include("config/dbcon.php");
+include("includes/header.php"); 
+?>
 
 <style>
         :root {
@@ -183,7 +185,7 @@ input {
 
 <body>
 <form action="code.php" class="form" method="POST" enctype="multipart/form-data">
-    <h1 class="text-center">Application Form</h1>
+    <h1 class="text-center">Application Form</h1> 
         <div class="progressbar">
             <div class="progress" id="progress"></div>
             <div
@@ -197,46 +199,71 @@ input {
         </div>
 
         <div class="form-step form-step-active ">
-          <div class="cold-md-8 mb-5">
+        <div class="cold-md-8 mb-5">
 
-         
+<div class="col-md-6 mb-3">
+    <h5>Institutional Role</h5>
+    <select class="form-select" name="institutional_role">
+        <?php
+        $query = "SELECT inst_role_id, inst_role_name FROM institutional_roles";
+        $result = mysqli_query($con, $query);
+        
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value='{$row['inst_role_id']}'>{$row['inst_role_name']}</option>";
+            }
+        } else {
+            echo "<option>No data available</option>";
+        }
+        ?>
+    </select>
+</div>
 
-          <div class="col-md-6 mb-3">
-              <h5>Institutional Role</h5>
-                <select class="form-select" name="job_type">
-                    <option value="Academic">Academic</option>
-                    <option value="Non-Academic">Non Academic</option>
-                </select>
-          </div>
+<div class="col-md-6 mb-3">
+    <h5>Academic Role</h5>
+    <select class="form-select" name="academic_role">
+        <?php
+        // Fetch academic roles from the database
+        $query = "SELECT acad_role_id, acad_role_name FROM academic_roles";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<option value='{$row['acad_role_id']}'>{$row['acad_role_name']}</option>";
+        }
+        ?>
+    </select>
+</div>
 
-          <div class="col-md-6 mb-3">
-                <h5>Academic Role</h5>
-                <select class="form-select" name="job_schedule">
-                    <option value="Full Time Faculty">Full Time Faculty</option>
-                    <option value="Part Time Faculty">Part Time Faculty</option>
-                </select>
-          </div>
+<div class="col-md-6 mb-3">
+    <h5>Campus</h5>
+    <select class="form-select" name="campus_name">
+        <?php
+        // Fetch campus data from the database
+        $query = "SELECT campus_id, campus_name FROM campus";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<option value='{$row['campus_id']}'>{$row['campus_name']}</option>";
+        }
+        ?>
+    </select>
+</div>
 
-          <div class="col-md-6 mb-3">
-                <h5>Campus</h5>
-                <select class="form-select" name="campus_name">
-                    <option value="North Campus">North Campus</option>
-                    <option value="South Campus">South Capus</option>
-                </select>
-          </div>
-                    <h5>Department</h5>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <select class="form-select" name="department">
-                                <option value="Grade School">Grade School Department</option>
-                                <option value="Junior High">Junior High School Department</option>
-                                <option value="Senior High">Senior High School Department</option>
-                                <option value="College">College Department</option>
-                                <option value="Graduate School">Graduate School</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+<h5>Department</h5>
+<div class="row">
+    <div class="col-md-6">
+        <select class="form-select" name="department">
+            <?php
+            // Fetch departments from the database
+            $query = "SELECT dept_id, dept_name FROM department";
+            $result = mysqli_query($con, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value='{$row['dept_id']}'>{$row['dept_name']}</option>";
+            }
+            ?>
+        </select>
+    </div>
+</div>
+</div>
+
 
                 <div class="">
                   <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
@@ -481,9 +508,12 @@ input {
         <h3 for="">Special Skills</h3>
         <textarea  class="form-control" name="special_skills"  placeholder="Enter Special Skills" id=""></textarea>
     </div>
+  <?php 
+  include("./php_codes/application_codes.php");
+  ?>
     <div class="col-md-8 mb-3">
-        <h3 for="">Certificates</h3>
-        <input  type="file" class="form-control" name="image" accept="image/*"></input>
+      <h3 for="">Certificates</h3>
+    <input type="file" class="form-control" name="certificates[]" accept=".pdf" multiple>
     </div>
     
     <div class="btns-group">
