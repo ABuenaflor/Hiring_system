@@ -393,7 +393,7 @@ require_once("../functions/myFunctions.php");
                                                 foreach ($certificatesArray as $file) {
                                                     echo "<div class='certificate-item'>";
                                                     // Change the link text to "Certificate X"
-                                                    echo "<a href='" . htmlspecialchars($file) . "' target='_blank' class='certificate-link'>Certificate " . $certificateCount . "</a>";
+                                                    echo "<a href='../" . htmlspecialchars($file) . "' target='_blank' class='certificate-link'>Certificate " . $certificateCount . "</a>";
                                                     echo "</div>";
                                                     $certificateCount++; // Increment the counter
                                                 }

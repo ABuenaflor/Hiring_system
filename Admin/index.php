@@ -133,20 +133,41 @@
              
              $con->close();
             ?>
-           <h2>Applicant by Job Type</h2>
-    <canvas id="jobTypeChart" width="400" height="200"></canvas>
-    
-    <h2>Applicant by Job Schedule</h2>
-    <canvas id="jobScheduleChart" width="400" height="200"></canvas>
-    
-    <h2>Applicant by Campus Name</h2>
-    <canvas id="campusChart" width="400" height="200"></canvas>
-    
-    <h2>Applicant by Department</h2>
-    <canvas id="departmentChart" width="400" height="200"></canvas>
-
-    <h2>User Accounts Status</h2>
-    <canvas id="statusChart" width="400" height="200"></canvas>  <!-- New Chart for User Status -->
+            <style>
+                .outer-div{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 90px;
+                    padding: 20px;
+                }
+            </style>
+            <div class="outer-div">
+                <div class="div">
+                    <div class="box-for-graph">
+                        <h2>Applicant by Job Type</h2>
+                        <canvas id="jobTypeChart" width="600" height="200"></canvas>
+                    </div>
+                    <div class="box-for-graph">
+                        <h2>Applicant by Job Schedule</h2>
+                        <canvas id="jobScheduleChart" width="600" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="side-div">
+                    <h2>Applicant by Campus Name</h2>
+                    <canvas id="campusChart" width="400" height="450"></canvas>
+                </div>
+            </div>
+            <div class="outer-div" style="padding: 0 200px;">
+                <div class="">
+                    <h2>Applicant by Department</h2>
+                    <canvas id="departmentChart" width="500" height="400"></canvas>
+                </div>
+                <div class="">
+                    <h2>User Accounts Status</h2>
+                    <canvas id="statusChart" width="500" height="400"></canvas>  <!-- New Chart for User Status -->
+                </div>
+            </div>
 
     <!-- Modal for displaying user details -->
     <div id="userModal" class="modal">

@@ -63,7 +63,7 @@ if(isset($_POST['submit_credentials'])){
     $department = mysqli_real_escape_string($con, $_POST['department']);
 
     // Prepare to handle file uploads
-    $uploadDir = '../uploads/certificates/';  // Directory where files will be uploaded
+    $uploadDir = 'uploads/certificates/';  // Directory where files will be uploaded
     $uploadedFiles = [];  // Array to store file paths
 
     // Check if files are uploaded
