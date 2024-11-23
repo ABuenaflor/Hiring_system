@@ -1,9 +1,12 @@
 <?php
-// Include database connection
-include ("config/dbcon.php");
+session_start(); // Start the session to access session variables
 
-// Authenticate login if approved or pending
+// Include database connection
+include("config/dbcon.php");
+
+// Authenticate login if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Sanitize user input
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
 
@@ -16,25 +19,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($user && $user['status'] == 'active') {
         // Verify the password using password_verify()
         if (password_verify($password, $user['password'])) {
-            // Start a session
-            session_start();
-            $_SESSION['user_id'] = $user['id']; // Set session variables
+            // Set session variables upon successful login
+            $_SESSION['emp_id'] = $user['emp_id']; // Set emp_id in session
+            $_SESSION['first_name'] = $user['first_name']; // Set first_name in session
+            $_SESSION['email'] = $user['email']; // Set email in session
+            $_SESSION['campus_id'] = $user['campus_id']; // Set campus_id in session
 
-            // Check campus_id and redirect accordingly
+            // Redirect based on campus_id
             if ($user['campus_id'] == '1') {
-                header("Location: employee.php");
+                header("Location: employee.php"); // Redirect to employee.php for campus 1
             } elseif ($user['campus_id'] == '2') {
-                header("Location: employee2.php");
+                header("Location: employee2.php"); // Redirect to employee2.php for campus 2
             } else {
                 echo "Invalid campus ID.";
             }
-            
-            exit(); // Important to stop further script execution
+            exit(); // Stop further script execution after redirect
         } else {
-            echo "Invalid password.";
+            // Invalid password
+            $_SESSION['message'] = "Invalid password.";
+            header("Location: emp_login.php"); // Redirect back to the login page with error message
+            exit();
         }
     } else {
-        echo "Invalid login or account not approved.";
+        // Invalid login or account not approved
+        $_SESSION['message'] = "Invalid login or account not approved.";
+        header("Location: emp_login.php"); // Redirect back to login page with error message
+        exit();
     }
 }
 ?>

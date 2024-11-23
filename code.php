@@ -6,6 +6,8 @@ include('functions/myFunctions.php');
 
 if(isset($_POST['submit_credentials'])){
 
+    $gradSchoolScore = $gradHonorsScore = $pastExpScore = $seminarsScore = $skillsScore = $certificatesScore = 0;
+
     $first_name = mysqli_real_escape_string($con, $_POST['first_name']);
     $middle_name = mysqli_real_escape_string($con, $_POST['middle_name']);
     $last_name = mysqli_real_escape_string($con, $_POST['last_name']);
@@ -63,7 +65,7 @@ if(isset($_POST['submit_credentials'])){
     $department = mysqli_real_escape_string($con, $_POST['department']);
 
     // Prepare to handle file uploads
-    $uploadDir = '../uploads/certificates/';  // Directory where files will be uploaded
+    $uploadDir = 'uploads/certificates/';  // Directory where files will be uploaded
     $uploadedFiles = [];  // Array to store file paths
 
     // Check if files are uploaded
@@ -92,6 +94,29 @@ if(isset($_POST['submit_credentials'])){
     // Convert the uploaded file paths array into a JSON string
     $certificatesJson = json_encode($uploadedFiles);
 
+    if (!empty($_POST['grad_school'])) {
+        $gradSchoolScore = 5;
+    }
+    if (!empty($_POST['grad_honors_received'])) {
+        $gradHonorsScore = 5;
+    }
+    if (!empty($_POST['past_exp'])) {
+        $pastExpScore = 5;
+    }
+    if (!empty($_POST['seminars_attended'])) {
+        $seminarsScore = 5;
+    }
+    if (!empty($_POST['special_skills'])) {
+        $skillsScore = 5;
+    }
+
+     // Score for certificates
+     $certificatesScore = count($uploadedFiles) * 5;
+     $certificatesJson = json_encode($uploadedFiles);
+ 
+     // Calculate total score
+     $totalScore = $gradSchoolScore + $gradHonorsScore + $pastExpScore + $seminarsScore + $skillsScore + $certificatesScore;
+
     $creds_query = "INSERT INTO credentials (first_name, middle_name, last_name, date_of_birth, place_of_birth, sex,
     civil_status, citizenship, height, weight, blood_type, pag_ibig, philhealth, tin, sss, residential_address, permanent_address,
     contact_number, email_address, religion, father_fname, father_mname, father_sname, mother_fname, mother_mname, mother_sname,
@@ -111,18 +136,23 @@ if(isset($_POST['submit_credentials'])){
 
     $cred_query_run = mysqli_query($con, $creds_query);
 
-    if($cred_query_run){
-        
-        // Set message to session before redirecting
-        echo "<script>alert('Application Submitted Succesfully');</script>"; 
-        /* $_SESSION['message'] = "Added Successfully"; */
+    if (mysqli_query($con, $creds_query)) {
+        // Get the last inserted ID
+        $credentialId = mysqli_insert_id($con);
+
+        // Insert into `credential_scores` table
+        $score_query = "INSERT INTO credential_scores (credential_id, grad_school_score, grad_honors_score, past_exp_score, 
+        seminars_attended_score, special_skills_score, certificates_score, total_score)
+        VALUES ('$credentialId', '$gradSchoolScore', '$gradHonorsScore', '$pastExpScore', '$seminarsScore', '$skillsScore', 
+        '$certificatesScore', '$totalScore')";
+
+        mysqli_query($con, $score_query);
+
+        echo "<script>alert('Application Submitted Successfully with a total score of $totalScore');</script>";
         header('location: index.php');
         exit();
     } else {
-        // Set error message to session before redirecting
-        $_SESSION['message'] = "Something went wrong";
-        header('location: index.php');
-        exit();
+        echo "<script>alert('Submission Failed');</script>";
     }
 
 }else if(isset($_POST['edit_credentials']))

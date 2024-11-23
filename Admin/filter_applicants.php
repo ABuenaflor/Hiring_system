@@ -34,8 +34,8 @@ include("../middleware/admin_middleware.php");
                   <label for="filter">Filter by:</label>
                   <select class="form-select" name="filter_column" id="filter">
                      <option value="department">Department</option>
-                     <option value="job_type">Institutional Role</option>
-                     <option value="job_schedule">Academic Role</option>
+                     <option value="institutional_role">Institutional Role</option>
+                     <option value="academic_role">Academic Role</option>
                      <option value="col_school">School Graduated</option>
                   </select>
                   <input type="submit" name="submit" value="Filter" class="btn btn-secondary">

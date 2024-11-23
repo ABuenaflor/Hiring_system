@@ -94,7 +94,8 @@ include("test3.php");
 
             <!-- Right Box -->
             <div class="col-md-6 right-box">
-                <?php if (isset($_SESSION['message'])): ?>
+                <?php 
+                if (isset($_SESSION['message'])): ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>Hey!</strong> <?= $_SESSION['message']; ?>.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -121,6 +122,7 @@ include("test3.php");
                         <button class="btn btn-lg btn-primary w-100 fs-6" type="submit" name="login_btn">Login</button>
                     </div>
                 </form>
+
 
                 <div class="row">
                     <small>Don't have an account? <a href="request_temp_login.php">Create a temporary account</a></small>
