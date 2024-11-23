@@ -192,8 +192,8 @@ display: none;
                                                 <td class="app-row"><?= $item['last_name']; ?></td>
                                                 <td class="app-row"><?= $item['col_school']; ?></td>
                                                 <td class="app-row"><?= $item['course']; ?></td>
-                                                <td class="app-row"><?= $item['job_type']; ?></td>
-                                                <td class="app-row"><?= $item['job_schedule']; ?></td>
+                                                <td class="app-row"><?= $item['institutional_role']; ?></td>
+                                                <td class="app-row"><?= $item['academic_role']; ?></td>
                                                 <td class="app-row"><?= $item['department']; ?></td>
                                                 <td class="app-row" style="display: flex; justify-content: center; align-items: center;">
                                                     <a href="show.php?id=<?= $item['id']; ?>" class="btn btn-primary">Show More</a>
