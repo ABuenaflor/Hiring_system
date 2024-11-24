@@ -122,10 +122,10 @@
             <td>
                 <?php if (in_array($row['criteria_id'], $disabled_criteria_ids) || $row['criteria_id'] == 61 || $row['criteria_id'] == 62): ?>
                     <!-- Display points as readonly if the criteria_id is in the disabled list -->
-                    <input type="number" class="form-control input-field" name="educ_attain_sr[<?php echo $row['criteria_id']; ?>]" value="<?php echo $points; ?>" disabled>
+                    <input type="text" class="form-control input-field" name="educ_attain_sr[<?php echo $row['criteria_id']; ?>]" value="<?php echo $points; ?>" disabled>
                 <?php else: ?>
                     <!-- Display points or input field for criteria_id not in the disabled list -->
-                    <input type="number" class="form-control input-field" name="educ_attain_sr[<?php echo $row['criteria_id']; ?>]" value="<?php echo $points; ?>" min="0" step="1">
+                    <input type="text" class="form-control input-field" name="educ_attain_sr[<?php echo $row['criteria_id']; ?>]" value="<?php echo $points; ?>">
                 <?php endif; ?>
             </td>
         </tr>
