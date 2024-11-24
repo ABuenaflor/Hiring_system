@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 //change from include to require once
 require_once('../config/dbcon.php');
