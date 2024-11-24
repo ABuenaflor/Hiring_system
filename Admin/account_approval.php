@@ -2,7 +2,7 @@
 // Include database connection
 include "../config/dbcon.php";
 
-session_start();
+// session_start();
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

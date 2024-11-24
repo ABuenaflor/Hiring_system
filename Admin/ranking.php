@@ -163,58 +163,66 @@ tfoot tr {
             </tr>
         </thead>
         <tbody>
-           <?php
+    <?php
+        // Query to fetch employee data along with emp_id
+        $ranking_query = "
+        SELECT 
+            emp_login.emp_id,    -- Add emp_id to the select statement
+            emp_login.first_name, 
+            emp_login.last_name, 
+            emp_login.department_id, 
+            emp_login.campus_id, 
+            emp_login.position_id, 
+            department.dept_name, 
+            campus.campus_name, 
+            position.position_name
+        FROM 
+            emp_login
+        LEFT JOIN 
+            department ON emp_login.department_id = department.dept_id
+        LEFT JOIN 
+            campus ON emp_login.campus_id = campus.campus_id
+        LEFT JOIN 
+            position ON emp_login.position_id = position.position_id
+        ";
 
-                $ranking_query = "
-                SELECT 
-                    emp_login.first_name, 
-                    emp_login.last_name, 
-                    emp_login.department_id, 
-                    emp_login.campus_id, 
-                    emp_login.position_id, 
-                    department.dept_name, 
-                    campus.campus_name, 
-                    position.position_name
-                FROM 
-                    emp_login
-                LEFT JOIN 
-                    department ON emp_login.department_id = department.dept_id
-                LEFT JOIN 
-                    campus ON emp_login.campus_id = campus.campus_id
-                LEFT JOIN 
-                    position ON emp_login.position_id = position.position_id
-                ";
-                $ranks = mysqli_query($con, $ranking_query);
+        $ranks = mysqli_query($con, $ranking_query);
 
-                if (mysqli_num_rows($ranks) > 0) {
-                    foreach ($ranks as $item) {
-        ?>
-                        <tr class="app-row">
-                           <td class="app-row"><?= $item['first_name']; ?></td>
-                            <td class="app-row"><?= $item['first_name']; ?></td>
-                            <td class="app-row"><?= $item['last_name']; ?></td>
-                            <td class="app-row"><?= $item['dept_name']; ?></td>
-                            <td class="app-row"><?= $item['campus_name']; ?></td>
-                            <td class="app-row"><?= $item['position_name']; ?></td>
-                            <td class="app-row">
-                            <?php
-                            // Check the campus_id and display the appropriate button
-                            if ($item['campus_id'] == 2) {
-                                // Show Basic Education button if campus_id is 2
-                                echo '<a href="basic_ed_ranking.php"><button class="btn btn-primary" type="button">Basic Education Ranking</button></a>';
-                            } elseif ($item['campus_id'] == 1) {
-                                // Show Tertiary Ranking button if campus_id is 1
-                                echo '<a href="tertiary_ranking.php"><button class="btn btn-primary" type="button">Tertiary Ranking</button></a>';
-                            }
-                            ?>
-                        </td>
-                        </tr>
+        if (mysqli_num_rows($ranks) > 0) {
+            foreach ($ranks as $item) {
+    ?>
+                <tr class="app-row">
+                   <td class="app-row"><?= $item['first_name']; ?></td>
+                    <td class="app-row"><?= $item['first_name']; ?></td>
+                    <td class="app-row"><?= $item['last_name']; ?></td>
+                    <td class="app-row"><?= $item['dept_name']; ?></td>
+                    <td class="app-row"><?= $item['campus_name']; ?></td>
+                    <td class="app-row"><?= $item['position_name']; ?></td>
+                    <td class="app-row">
                     <?php
-                }
-            } else {
-                echo "<tr><td colspan='6'>No records found</td></tr>";
-            }
-        ?>
+                    // Now $item['emp_id'] is available since we explicitly selected it in the query
+                    $emp_id = $item['emp_id'];
+                    
+                    // Check the campus_id and display the appropriate button
+                    if ($item['campus_id'] == 2) {
+                        // Show Basic Education button if campus_id is 2
+                        echo '<a href="tertiary_ranking.php?emp_id=' . $emp_id . '"><button class="btn btn-primary" type="button">Tertiary Ranking</button></a>';
+                        
+                    } elseif ($item['campus_id'] == 1) {
+                        // Show Tertiary Ranking button if campus_id is 1
+                        echo '<a href="basic_ed_ranking.php?emp_id=' . $emp_id . '"><button class="btn btn-primary" type="button">Basic Education Ranking</button></a>';
+                    }
+                    ?>
+                </td>                
+                </tr>
+            <?php
+        }
+    } else {
+        echo "<tr><td colspan='6'>No records found</td></tr>";
+    }
+    ?>
+</tbody>
+
         </tbody>
     </table>
          <!-- END EDMO HTML (Happy Coding!)-->
