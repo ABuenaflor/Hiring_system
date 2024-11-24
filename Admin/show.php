@@ -452,6 +452,78 @@ require_once("../functions/myFunctions.php");
                                 
                             </div>
                         </div>
+
+                        <?php
+
+                        if (isset($_GET['id'])) {
+                            $applicantId = intval($_GET['id']); // Ensure it's an integer for security
+
+                            // Fetch data from `credential_scores` table
+                            $query = "SELECT * FROM credential_scores WHERE credential_id = ?";
+                            $stmt = $con->prepare($query);
+                            $stmt->bind_param("i", $applicantId);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            $scoreData = $result->fetch_assoc();
+
+                            if ($scoreData) {
+                                // Extract scores
+                                $gradSchoolScore = $scoreData['grad_school_score'];
+                                $gradHonorsScore = $scoreData['grad_honors_score'];
+                                $pastExpScore = $scoreData['past_exp_score'];
+                                $seminarsScore = $scoreData['seminars_attended_score'];
+                                $skillsScore = $scoreData['special_skills_score'];
+                                $certificatesScore = $scoreData['certificates_score'];
+                                $totalScore = $scoreData['total_score'];
+
+                                // Assign weights to each criterion
+                                $weights = [
+                                    'grad_school_score' => 0.2,
+                                    'grad_honors_score' => 0.2,
+                                    'past_exp_score' => 0.2,
+                                    'seminars_attended_score' => 0.2,
+                                    'special_skills_score' => 0.1,
+                                    'certificates_score' => 0.1
+                                ];
+
+                                // Calculate weighted average using SAW
+                                $weightedAverage = (
+                                    ($gradSchoolScore * $weights['grad_school_score']) +
+                                    ($gradHonorsScore * $weights['grad_honors_score']) +
+                                    ($pastExpScore * $weights['past_exp_score']) +
+                                    ($seminarsScore * $weights['seminars_attended_score']) +
+                                    ($skillsScore * $weights['special_skills_score']) +
+                                    ($certificatesScore * $weights['certificates_score'])
+                                );
+                            } else {
+                                echo "No scores found for this applicant.";
+                            }
+                        } else {
+                            echo "Invalid applicant ID.";
+                        }
+                        ?>
+
+
+<div class="card">
+    <div class="card-header">
+        Summary of Points
+    </div>
+    <div class="card-body">
+        <?php if (isset($scoreData)): ?>
+            <p><strong>Grad School Score:</strong> <?= $gradSchoolScore ?></p>
+            <p><strong>Grad Honors Score:</strong> <?= $gradHonorsScore ?></p>
+            <p><strong>Past Experience Score:</strong> <?= $pastExpScore ?></p>
+            <p><strong>Seminars Attended Score:</strong> <?= $seminarsScore ?></p>
+            <p><strong>Special Skills Score:</strong> <?= $skillsScore ?></p>
+            <p><strong>Certificates Score:</strong> <?= $certificatesScore ?></p>
+            <p><strong>Total Score:</strong> <?= $totalScore ?></p>
+            <p><strong>Weighted Average Score:</strong> <?= number_format($weightedAverage, 2) ?></p>
+        <?php else: ?>
+            <p>No score data available for this applicant.</p>
+        <?php endif; ?>
+        <textarea class="form-control" name="remarks" placeholder="Enter Remarks" id=""><?= isset($data['remarks']) ? $data['remarks'] : '' ?></textarea>
+    </div>
+</div>
                         <div class="card">
                                 <div class="card-header">
                                     Deans' Remarks

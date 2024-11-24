@@ -1,5 +1,6 @@
 <?php
 include("../config/dbcon.php");
+include("header.php");
 $notification_sql = "SELECT * FROM notifications WHERE is_read = 0";
 $result = $con->query($notification_sql);
 
@@ -40,15 +41,19 @@ $unread_count = $result->num_rows;
                         </li>
                     </ul>
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="../logout.php" class="dropdown-item">Logout</a>
-                            </div>
-                        </li>
-                    </ul>
+        <li class="nav-item dropdown">
+            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
+            </a>
+            <div class="dropdown-menu dropdown-menu-end">
+                <a href="../logout.php" class="dropdown-item">Logout</a>
+                <?php if ($user_data['role_as'] == 1) { ?>
+                    <!-- If user is an admin, you can show extra admin options -->
+                    <a href="admin_dashboard.php" class="dropdown-item">Admin Dashboard</a>
+                <?php } ?>
+            </div>
+        </li>
+    </ul>
                 
                
             </nav>

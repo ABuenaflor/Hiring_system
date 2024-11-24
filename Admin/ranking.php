@@ -165,33 +165,49 @@ tfoot tr {
         <tbody>
            <?php
 
-                $ranking_query = "SELECT * FROM basic_ed_sr";
+                $ranking_query = "
+                SELECT 
+                    emp_login.first_name, 
+                    emp_login.last_name, 
+                    emp_login.department_id, 
+                    emp_login.campus_id, 
+                    emp_login.position_id, 
+                    department.dept_name, 
+                    campus.campus_name, 
+                    position.position_name
+                FROM 
+                    emp_login
+                LEFT JOIN 
+                    department ON emp_login.department_id = department.dept_id
+                LEFT JOIN 
+                    campus ON emp_login.campus_id = campus.campus_id
+                LEFT JOIN 
+                    position ON emp_login.position_id = position.position_id
+                ";
                 $ranks = mysqli_query($con, $ranking_query);
-
-                $total_query = "SELECT COUNT(*) FROM basic_ed_sr";
-                $total_result = mysqli_query($con, $total_query);
-                $total_ranks = mysqli_fetch_array($total_result)[0];
-                $total_pages = ceil($total_ranks);
 
                 if (mysqli_num_rows($ranks) > 0) {
                     foreach ($ranks as $item) {
         ?>
                         <tr class="app-row">
-                            <td class="app-row"><?= $item['bed_score_id']; ?></td>
+                           <td class="app-row"><?= $item['first_name']; ?></td>
                             <td class="app-row"><?= $item['first_name']; ?></td>
                             <td class="app-row"><?= $item['last_name']; ?></td>
-                            <td class="app-row"><?= $item['department']; ?></td>
-                            <td class="app-row"><?= $item['campus']; ?></td>
-                            <td class="app-row"><?= $item['position']; ?></td>
+                            <td class="app-row"><?= $item['dept_name']; ?></td>
+                            <td class="app-row"><?= $item['campus_name']; ?></td>
+                            <td class="app-row"><?= $item['position_name']; ?></td>
                             <td class="app-row">
-                                <!--<a href="edit_employee.php?id=<?= $item['id']; ?>" class="btn btn-primary">Edit Employee</a>-->
-                                <select class="form-select mySelect" data-id="<?= $item['bed_score_id']; ?>">
-                                  <option value="A">Basic Education</option>
-                                  <option value="B">Tertiary Level</option>
-                                </select><br>
-                                  <a href="basic_ed_ranking.php"><button class="btn btn-primary buttonA" type="button" style="display: none;">Basic Education Ranking</button></a>
-                                  <a href="tertiary_ranking.php"><button class="btn btn-primary buttonB" type="button" style="display: none;">Tertiary Ranking</button></a>  
-                            </td>
+                            <?php
+                            // Check the campus_id and display the appropriate button
+                            if ($item['campus_id'] == 2) {
+                                // Show Basic Education button if campus_id is 2
+                                echo '<a href="basic_ed_ranking.php"><button class="btn btn-primary" type="button">Basic Education Ranking</button></a>';
+                            } elseif ($item['campus_id'] == 1) {
+                                // Show Tertiary Ranking button if campus_id is 1
+                                echo '<a href="tertiary_ranking.php"><button class="btn btn-primary" type="button">Tertiary Ranking</button></a>';
+                            }
+                            ?>
+                        </td>
                         </tr>
                     <?php
                 }
