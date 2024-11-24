@@ -1,7 +1,7 @@
 <?php
-if(!session_id()) {
-session_start();
-}
+// if(!session_id()) {
+// session_start();
+// }
 
 //change from include to require once
 // require_once('../config/dbcon.php');

@@ -1,6 +1,4 @@
 <?php
-include("../config/dbcon.php");
-include("header.php");
 $notification_sql = "SELECT * FROM notifications WHERE is_read = 0";
 $result = $con->query($notification_sql);
 

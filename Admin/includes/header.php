@@ -1,31 +1,32 @@
 <?php 
-ob_start();
+    session_start();
 
-session_start(); // Start the session at the top of your script
 
 include("../config/dbcon.php");
+include("../functions/myFunctions.php");
 
 // Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php"); // Redirect to login page if user is not logged in
-    exit();
-}
+// if (!isset($_SESSION['user_id'])) {
+//     header("Location: index.php"); // Redirect to login page if user is not logged in
+//     exit();
+// }
+
 
 // Fetch the user role from the database
-$user_id = $_SESSION['user_id']; // Assuming user_id is stored in session when logged in
-$user_query = "SELECT role_as FROM user WHERE id = 1";
-$stmt = $con->prepare($user_query);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user_data = $result->fetch_assoc();
+// $user_id = $_SESSION['user_id']; // Get user_id from session
+// $user_query = "SELECT role_as FROM user WHERE id = ?";
+// $stmt = $con->prepare($user_query);
+// $stmt->bind_param("i", $user_id);
+// $stmt->execute();
+// $result = $stmt->get_result();
+// $user_data = $result->fetch_assoc();
 
-// Check if the user is an admin (role_as = 1)
-if ($user_data['role_as'] != 1) {
-    // Optionally, redirect if the user is not an admin
-    header("Location: index.php"); // Redirect to some other page if not admin
-    exit();
-}
+// // Check if the user is an admin (role_as = 1)
+// if ($user_data['role_as'] != 1) {
+//     // Optionally, redirect if the user is not an admin
+//     header("Location: index.php"); // Redirect to some other page if not admin
+//     exit();
+// }
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +60,7 @@ if ($user_data['role_as'] != 1) {
 <body class="g-sidenav-show  bg-gray-200">
     <?php include('sidebar.php'); ?>
     <main class="main-content position-relative border-radius-lg overflow-x-scroll overflow-y-hidden" style="width: 100vw; margin-top: 2vh; min-height:100vh;">
-    <?php include("includes/navbar.php");?>
+    <?php include("navbar.php");?>
 
     <script>
       const sidebarToggle = document.querySelector("#sidebar-toggle");
