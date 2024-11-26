@@ -15,12 +15,11 @@ if(!function_exists('getAll')){
        return $query_run = mysqli_query($con, $query);
     }
 }
-    function getByID($table, $id){
-
-        global $con;
-        $query = "SELECT * FROM $table WHERE id='$id'";
-       return $query_run = mysqli_query($con, $query);
-    }
+function getByID($table, $id) {
+    global $con;
+    $query = "SELECT * FROM $table WHERE id='$id'";
+    return $query_run = mysqli_query($con, $query);
+}
     function redirect($url, $message){
         $_SESSION['message'] = $message; 
         header('Location: '.$url);
@@ -29,22 +28,22 @@ if(!function_exists('getAll')){
     function normalize($value, $max) {
         return $value / $max;
     }
-//  // Function to calculate SAW score
-// function calculate_saw_score($data, $weights) {
-//     $experience_normalized = normalize($data['experience'], $weights['experience_max']);
-//     $education_normalized = normalize($data['education'], $weights['education_max']);
-//     $tech_skills_normalized = normalize($data['tech_skills'], $weights['tech_skills_max']);
-//     $soft_skills_normalized = normalize($data['soft_skills'], $weights['soft_skills_max']);
-//     $interview_normalized = normalize($data['interview'], $weights['interview_max']);
+ // Function to calculate SAW score
+function calculate_saw_score($data, $weights) {
+    $experience_normalized = normalize($data['experience'], $weights['experience_max']);
+    $education_normalized = normalize($data['education'], $weights['education_max']);
+    $tech_skills_normalized = normalize($data['tech_skills'], $weights['tech_skills_max']);
+    $soft_skills_normalized = normalize($data['soft_skills'], $weights['soft_skills_max']);
+    $interview_normalized = normalize($data['interview'], $weights['interview_max']);
 
-//     $score = ($experience_normalized * $weights['experience_weight']) +
-//              ($education_normalized * $weights['education_weight']) +
-//              ($tech_skills_normalized * $weights['tech_skills_weight']) +
-//              ($soft_skills_normalized * $weights['soft_skills_weight']) +
-//              ($interview_normalized * $weights['interview_weight']);
+    $score = ($experience_normalized * $weights['experience_weight']) +
+             ($education_normalized * $weights['education_weight']) +
+             ($tech_skills_normalized * $weights['tech_skills_weight']) +
+             ($soft_skills_normalized * $weights['soft_skills_weight']) +
+             ($interview_normalized * $weights['interview_weight']);
 
-//     return $score;
-// }
+    return $score;
+}
 
 $weights = [
     'experience_weight' => 0.35,
@@ -88,19 +87,19 @@ $weights = [
     // }
     // $candidates = get_and_rank_candidates($con);
 
-    // function update_candidate_saw_score($con, $candidate_id, $saw_score) {
-    //     if ($candidate_id === NULL) {
-    //         // Handle the case where candidate_id is NULL, e.g., log an error or skip
-    //         error_log("Skipping update for candidate with NULL ID");
-    //         return;
-    //     }
+    function update_candidate_saw_score($con, $candidate_id, $saw_score) {
+        if ($candidate_id === NULL) {
+            // Handle the case where candidate_id is NULL, e.g., log an error or skip
+            error_log("Skipping update for candidate with NULL ID");
+            return;
+        }
     
-    //     $sql = "UPDATE credentials SET saw_score = ? WHERE id = ?";
-    //     $stmt = mysqli_prepare($con, $sql);
-    //     mysqli_stmt_bind_param($stmt, 'ss', $saw_score, $candidate_id); // Use 'ss' for string
-    //     mysqli_stmt_execute($stmt);
-    //     mysqli_stmt_close($stmt);
-    // }
+        $sql = "UPDATE credentials SET saw_score = ? WHERE id = ?";
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 'ss', $saw_score, $candidate_id); // Use 'ss' for string
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    }
     
     // In myFunctions.php
 

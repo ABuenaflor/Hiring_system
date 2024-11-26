@@ -3,7 +3,7 @@
 
 //changed from include to require once
 require_once ("../code.php");
-require_once("../functions/myFunctions.php"); 
+include_once("../functions/myFunctions.php"); 
 /* require_once("includes/header.php"); */ ?>
 <style>
      .certificate-container {
@@ -421,17 +421,17 @@ require_once("../functions/myFunctions.php");
                            <div class="col-md-8 mb-5">
                                 <div class="col-md-6 mb-3">
                                     <h5>Job Type</h5>
-                                    <select class="form-select" name="job_type">
-                                        <option value="Academic" <?= $data['job_type'] == 'Academic' ? 'selected' : '' ?>>Academic</option>
-                                        <option value="Non Academic" <?= $data['job_type'] == 'Non Academic' ? 'selected' : '' ?>>Non Academic</option>
+                                    <select class="form-select" name="academic_role">
+                                        <option value="Academic" <?= $data['academic_role'] == 'Academic' ? 'selected' : '' ?>>Academic</option>
+                                        <option value="Non Academic" <?= $data['academic_role'] == 'Non Academic' ? 'selected' : '' ?>>Non Academic</option>
                                     </select>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <h5>Job Schedule</h5>
-                                    <select class="form-select" name="job_schedule">
-                                        <option value="Full Time Faculty" <?= $data['job_schedule'] == 'Full Time Faculty' ? 'selected' : '' ?>>Full Time Faculty</option>
-                                        <option value="Part Time Faculty" <?= $data['job_schedule'] == 'Part Time Faculty' ? 'selected' : '' ?>>Part Time Faculty</option>
+                                    <select class="form-select" name="campus_name">
+                                        <option value="Full Time Faculty" <?= $data['campus_name'] == 'Full Time Faculty' ? 'selected' : '' ?>>Full Time Faculty</option>
+                                        <option value="Part Time Faculty" <?= $data['campus_name'] == 'Part Time Faculty' ? 'selected' : '' ?>>Part Time Faculty</option>
                                     </select>
                                 </div>
 

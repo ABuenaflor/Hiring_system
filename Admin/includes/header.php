@@ -3,7 +3,7 @@
 
 
 include("../config/dbcon.php");
-include("../functions/myFunctions.php");
+include_once("../functions/myFunctions.php");
 
 // Check if user is logged in
 // if (!isset($_SESSION['user_id'])) {
