@@ -1,8 +1,8 @@
 <?php
-session_start();
+// session_start();
 
 include('config/dbcon.php');
-include('functions/myFunctions.php');
+include_once('functions/myFunctions.php');
 
 if(isset($_POST['submit_credentials'])){
 

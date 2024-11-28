@@ -82,16 +82,16 @@ $emp_data = mysqli_fetch_array($emp_login);
         <label for="department" class="form-label">Department</label>
         <select class="form-select" name="department" id="">
             <?php
-                $department = mysqli_query($con, "SELECT dept_id FROM department");
+                $department = mysqli_query($con, "SELECT dept_name FROM department");
                 while ($d = mysqli_fetch_array($department)){
             ?>
-            <option value="<?php echo $d['department_id']?>" <?php if($d['dept_name'] == $emp_data['department_id']) echo 'selected'; ?>><?php echo $d['department_name']?></option>
+            <option value="<?php echo $d['dept_name']?>" <?php if($d['dept_name'] == $emp_data['department_id']) echo 'selected'; ?>><?php echo $d['dept_name']?></option>
             <?php } ?>
         </select>
     </div>
     
     <div class="col-md-4">
-        <label for="department" class="form-label">Campus</label> <br>
+        <label for="campus" class="form-label">Campus</label> <br>
         <select class="form-select" name="campus" id="">
             <?php
                 $campus = mysqli_query($con, "SELECT campus_name FROM campus");
