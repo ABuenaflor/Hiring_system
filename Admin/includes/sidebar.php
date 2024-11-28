@@ -299,10 +299,10 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
                         </li>
                     </ul>
                 </li>
-               
 
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
 </aside>
-

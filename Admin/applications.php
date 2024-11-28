@@ -234,32 +234,65 @@ display: none;
                     </thead>
 
                     <tbody>
-                        <?php
-                            $candidates_query = "SELECT * FROM credentials ORDER BY saw_score DESC";
-                            $candidates = mysqli_query($con, $candidates_query);
+                    <?php
+    // Query to fetch all applicants along with their scores from the `credential_scores` table
+    $candidates_query = "
+        SELECT c.*, cs.grad_school_score, cs.grad_honors_score, cs.past_exp_score, 
+               cs.seminars_attended_score, cs.special_skills_score, cs.certificates_score, cs.total_score
+        FROM credentials c
+        LEFT JOIN credential_scores cs ON c.id = cs.credential_id
+        ORDER BY cs.total_score DESC
+    ";
+    $candidates = mysqli_query($con, $candidates_query);
 
-                            if (mysqli_num_rows($candidates) > 0) {
-                                foreach ($candidates as $candidate) {
-                                    $normalizedSawScore = calculate_saw_score($candidate, $weights);
+    // Check if there are any applicants
+    if (mysqli_num_rows($candidates) > 0) {
+        while ($candidate = mysqli_fetch_array($candidates)) {
+            // Extract scores for the current candidate
+            $gradSchoolScore = $candidate['grad_school_score'];
+            $gradHonorsScore = $candidate['grad_honors_score'];
+            $pastExpScore = $candidate['past_exp_score'];
+            $seminarsScore = $candidate['seminars_attended_score'];
+            $skillsScore = $candidate['special_skills_score'];
+            $certificatesScore = $candidate['certificates_score'];
 
-                                    update_candidate_saw_score($con, $candidate['id'], $normalizedSawScore);
-                                    echo "<tr>";
+            // Assign weights to each criterion
+            $weights = [
+                'grad_school_score' => 0.2,
+                'grad_honors_score' => 0.2,
+                'past_exp_score' => 0.2,
+                'seminars_attended_score' => 0.2,
+                'special_skills_score' => 0.1,
+                'certificates_score' => 0.1
+            ];
 
-                                    echo "<td class='app-row-rank'>{$normalizedSawScore}</td>";
-                                    echo "<td class='app-row-rank'>{$candidate['first_name']}</td>";
-                                    echo "<td class='app-row-rank'>{$candidate['last_name']}</td>";
-                                    echo "<td class='app-row-rank'>{$candidate['col_school']}</td>";
-                                    echo "<td class='app-row-rank'>{$candidate['course']}</td>";
-                                    echo "<td class='app-row-rank'>{$candidate['job_type']}</td>";
-                                    echo "<td class='app-row-rank'>{$candidate['job_schedule']}</td>";
-                                    echo "<td class='app-row-rank'>{$candidate['department']}</td>";
-                                    echo "</tr>";
-                                    
-                                }
-                            } else {
-                                echo "<tr><td colspan='4'>No records found</td></tr>";
-                            }
-                        ?>
+            // Calculate weighted average score
+            $weightedAverage = (
+                ($gradSchoolScore * $weights['grad_school_score']) +
+                ($gradHonorsScore * $weights['grad_honors_score']) +
+                ($pastExpScore * $weights['past_exp_score']) +
+                ($seminarsScore * $weights['seminars_attended_score']) +
+                ($skillsScore * $weights['special_skills_score']) +
+                ($certificatesScore * $weights['certificates_score'])
+            );
+
+            // Display candidate details with their weighted score
+            echo "<tr>";
+            echo "<td class='app-row-rank'>{$weightedAverage}</td>";
+            echo "<td class='app-row-rank'>{$candidate['first_name']}</td>";
+            echo "<td class='app-row-rank'>{$candidate['last_name']}</td>";
+            echo "<td class='app-row-rank'>{$candidate['col_school']}</td>";
+            echo "<td class='app-row-rank'>{$candidate['course']}</td>";
+            echo "<td class='app-row-rank'>{$candidate['academic_role']}</td>";
+            echo "<td class='app-row-rank'>{$candidate['campus_name']}</td>";
+            echo "<td class='app-row-rank'>{$candidate['department']}</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='8'>No records found</td></tr>";
+    }
+?>
+
                     </tbody>
                 </table>
                 
