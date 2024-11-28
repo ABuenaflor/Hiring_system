@@ -299,32 +299,8 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-header">
-                    Multi Level Menu
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed" data-bs-target="#multi" data-bs-toggle="collapse"
-                        aria-expanded="false"><i class="fa-solid fa-share-nodes pe-2"></i>
-                        Multi Dropdown
-                    </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" data-bs-target="#level-1"
-                                data-bs-toggle="collapse" aria-expanded="false">Level 1</a>
-                            <ul id="level-1" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Page 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Page 2</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Page 3</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+               
+
             </ul>
         </div>
     </div>

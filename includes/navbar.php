@@ -2,7 +2,7 @@
 <?php 
 
 // session_start();
-include('../config/dbcon.php');
+include('config/dbcon.php');
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
