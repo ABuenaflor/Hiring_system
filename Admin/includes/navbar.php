@@ -21,16 +21,16 @@ $unread_count = $result->num_rows;
                                   
                             </a>
                             <div class="dropdown-menu overflow-auto" style="max-height:150px;">
-                            <?php
-                                if ($unread_count > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo '<a class="dropdown-item" href="read_notif.php?id=' . $row['notif_id'] . '">' . $row['message'] . '</a>';
-                                    }
-                                } else {
-                                    echo '<a class="dropdown-item" href="#">No new notifications</a>';
-                                }
-                                ?>
-                            </div>
+    <?php
+        if ($unread_count > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<a class="dropdown-item" href="read_notif.php?id=' . $row['notif_id'] . '" style="border-bottom: 1px solid #ddd; padding: 10px;">' . $row['message'] . '</a>';
+            }
+        } else {
+            echo '<a class="dropdown-item" href="#" style="border-bottom: 1px solid #ddd; padding: 10px;">No new notifications</a>';
+        }
+    ?>
+</div>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a href="" class="dropdown-item">1</a>
                                 <a href="" class="dropdown-item">1</a>

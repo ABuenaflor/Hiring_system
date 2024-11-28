@@ -155,7 +155,67 @@ if (isset($_POST['print_data'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Export or Print Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+<style>
+    /* Overall container */
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
+        margin: 20px;
+    }
+
+    /* Table Styling */
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .styled-table th, .styled-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .styled-table th {
+        background-color: lightblue;
+        color: white;
+    }
+
+    .styled-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .styled-table tr:hover {
+        background-color: #ddd;
+    }
+
+    /* Chart Styling */
+    .chart-container {
+        max-width: 600px;
+        flex-grow: 1;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+</style>
 
 <body>
     <div class="wrapper">
@@ -173,10 +233,159 @@ if (isset($_POST['print_data'])) {
     <button class="btn btn-primary" type="submit" name="print_data">Print Data</button>
 </form>
 <?php
-// Include the PHP code here for handling exports and printing
+// Fetching the data for the table
+$query = "SELECT * FROM credentials ORDER BY date_applied DESC";
+$result = $con->query($query);
+
+// Display the table
+echo '<div class="container">';
+echo '<table class="styled-table">';
+echo '<thead>';
+echo '<tr>';
+echo '<th>ID</th><th>First Name</th><th>Last Name</th><th>Date of Birth</th><th>Position</th><th>Academic Role</th><th>Institutional Role</th><th>Date Applied</th>';
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
+
+while ($row = $result->fetch_assoc()) {
+    echo '<tr>';
+    echo '<td>' . $row['id'] . '</td>';
+    echo '<td>' . $row['first_name'] . '</td>';
+    echo '<td>' . $row['last_name'] . '</td>';
+    echo '<td>' . $row['date_of_birth'] . '</td>';
+    echo '<td>' . $row['department'] . '</td>';
+    echo '<td>' . $row['academic_role'] . '</td>';
+    echo '<td>' . $row['institutional_role'] . '</td>';
+    echo '<td>' . $row['date_applied'] . '</td>';
+    echo '</tr>';
+}
+
+echo '</tbody>';
+echo '</table>';
+
+// Query for statistical data
+$query = "SELECT date_applied, COUNT(*) as num_applicants FROM credentials GROUP BY date_applied ORDER BY date_applied";
+$result = $con->query($query);
+
+// Prepare the data for the chart
+$dates = [];
+$counts = [];
+while ($row = $result->fetch_assoc()) {
+    $dates[] = $row['date_applied'];
+    $counts[] = $row['num_applicants'];
+}
 ?>
+
+<!-- Chart Section -->
+<div class="chart-container">
+    <h2>Number of Applicants by Date</h2>
+    <canvas id="applicantChart" width="300" height="200"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('applicantChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar', // Bar chart type
+        data: {
+            labels: <?php echo json_encode($dates); ?>, // Dates
+            datasets: [{
+                label: 'Number of Applicants',
+                data: <?php echo json_encode($counts); ?>, // Applicant counts
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+</div> <!-- End of container -->
+
+
+<?php
+// Fetching faculty ranking data
+$query = "
+    SELECT 
+        e.emp_id,
+        e.first_name,
+        e.last_name,
+        e.job_role_id,  -- Assuming this represents the academic position
+        e.position_id,  -- Assuming this represents the institutional position
+        SUM(b.points) AS total_score
+    FROM 
+        emp_login e
+    LEFT JOIN 
+        tbl_basic_ed_score b ON e.emp_id = b.emp_id
+    GROUP BY 
+        e.emp_id, e.first_name, e.last_name, e.job_role_id, e.position_id
+    ORDER BY 
+        total_score DESC
+";
+
+$result = $con->query($query);
+
+// Display the faculty ranking table
+echo '<table class="styled-table">';
+echo '<thead>';
+echo '<tr>';
+echo '<th>Name</th><th>Academic Position</th><th>Institutional Position</th><th>Total Score</th>';
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
+
+while ($row = $result->fetch_assoc()) {
+    // Fetch the names of the positions
+    $academic_position = getAcademicPositionName($row['job_role_id']);
+    $institutional_position = getInstitutionalPositionName($row['position_id']);
+    
+    echo '<tr>';
+    echo '<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>';
+    echo '<td>' . $academic_position . '</td>';
+    echo '<td>' . $institutional_position . '</td>';
+    echo '<td>' . $row['total_score'] . '</td>';
+    echo '</tr>';
+}
+
+echo '</tbody>';
+echo '</table>';
+
+?>
+
+<?php
+// Function to fetch the academic position name
+function getAcademicPositionName($job_role_id) {
+    global $con;
+    // Corrected query to match the actual column name
+    $query = "SELECT job_role FROM job_roles WHERE job_id = " . $job_role_id;
+    $result = $con->query($query);
+    $row = $result->fetch_assoc();
+    return $row ? $row['job_role'] : 'N/A';
+}
+
+// Function to fetch the institutional position name
+function getInstitutionalPositionName($position_id) {
+    global $con;
+    // Corrected query to match the actual column name
+    $query = "SELECT position_name FROM position WHERE position_id = " . $position_id;
+    $result = $con->query($query);
+    $row = $result->fetch_assoc();
+    return $row ? $row['position_name'] : 'N/A';
+}
+?>
+
+
     </div>
-           
+  
+
 
 
 
