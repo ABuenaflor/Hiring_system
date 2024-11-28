@@ -276,39 +276,6 @@ while ($row = $result->fetch_assoc()) {
 }
 ?>
 
-<!-- Chart Section -->
-<div class="chart-container">
-    <h2>Number of Applicants by Date</h2>
-    <canvas id="applicantChart" width="300" height="200"></canvas>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    var ctx = document.getElementById('applicantChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'bar', // Bar chart type
-        data: {
-            labels: <?php echo json_encode($dates); ?>, // Dates
-            datasets: [{
-                label: 'Number of Applicants',
-                data: <?php echo json_encode($counts); ?>, // Applicant counts
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
-
-</div> <!-- End of container -->
 
 
 <?php
@@ -381,6 +348,136 @@ function getInstitutionalPositionName($position_id) {
     return $row ? $row['position_name'] : 'N/A';
 }
 ?>
+
+
+<?php
+// Query to get the number of employees
+$employeeCountQuery = "SELECT COUNT(*) AS employee_count FROM emp_login";
+$employeeCountResult = $con->query($employeeCountQuery);
+$employeeCountRow = $employeeCountResult->fetch_assoc();
+$employeeCount = $employeeCountRow['employee_count'];
+
+// Query to get the total points and ranking of employees
+$employeeRankingQuery = "
+    SELECT 
+        e.emp_id,
+        e.first_name,
+        e.last_name,
+        SUM(b.points) AS total_score
+    FROM 
+        emp_login e
+    LEFT JOIN 
+        tbl_basic_ed_score b ON e.emp_id = b.emp_id
+    GROUP BY 
+        e.emp_id, e.first_name, e.last_name
+    ORDER BY 
+        total_score DESC
+";
+$employeeRankingResult = $con->query($employeeRankingQuery);
+
+$rankingNames = [];
+$rankingScores = [];
+while ($row = $employeeRankingResult->fetch_assoc()) {
+    $rankingNames[] = $row['first_name'] . ' ' . $row['last_name'];
+    $rankingScores[] = $row['total_score'];
+}
+
+$applicantCountQuery = "SELECT COUNT(*) AS applicant_count FROM credentials";
+$applicantCountResult = $con->query($applicantCountQuery);
+$applicantCountRow = $applicantCountResult->fetch_assoc();
+$applicantCount = $applicantCountRow['applicant_count'];
+?>
+
+<!-- Chart Section: Number of Applicants by Date -->
+<div class="chart-container">
+    <h2>Number of Applicants by Date</h2>
+    <canvas id="applicantChart" width="300" height="200"></canvas>
+</div>
+
+<!-- Chart Section: Employee Count -->
+<div class="chart-container">
+    <h2>Total Number of Employees and Applicants</h2>
+    <canvas id="employeeCountChart" width="300" height="200"></canvas>
+</div>
+
+<!-- Chart Section: Employee Ranking by Total Points -->
+<div class="chart-container">
+    <h2>Employee Ranking by Total Points</h2>
+    <canvas id="employeeRankingChart" width="300" height="200"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // First Chart: Number of Applicants by Date
+    var ctx1 = document.getElementById('applicantChart').getContext('2d');
+    var chart1 = new Chart(ctx1, {
+        type: 'bar', // Bar chart type
+        data: {
+            labels: <?php echo json_encode($dates); ?>, // Dates
+            datasets: [{
+                label: 'Number of Applicants',
+                data: <?php echo json_encode($counts); ?>, // Applicant counts
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+      // Second Chart: Total Number of Employees and Applicants (Doughnut chart)
+      var ctx2 = document.getElementById('employeeCountChart').getContext('2d');
+    var chart2 = new Chart(ctx2, {
+        type: 'doughnut', // Doughnut chart type to represent counts visually
+        data: {
+            labels: ['Total Employees', 'Total Applicants'], // Adding labels for employees and applicants
+            datasets: [{
+                label: 'Count',
+                data: [<?php echo $employeeCount; ?>, <?php echo $applicantCount; ?>], // Adding both employee count and applicant count
+                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'], // Different colors for each category
+                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'], // Border color for each
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    // Third Chart: Employee Ranking by Total Points
+    var ctx3 = document.getElementById('employeeRankingChart').getContext('2d');
+    var chart3 = new Chart(ctx3, {
+        type: 'bar', // Bar chart type
+        data: {
+            labels: <?php echo json_encode($rankingNames); ?>, // Employee names
+            datasets: [{
+                label: 'Total Points',
+                data: <?php echo json_encode($rankingScores); ?>, // Total points
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+
+</div> <!-- End of container -->
 
 
     </div>
