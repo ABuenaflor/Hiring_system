@@ -32,7 +32,8 @@
 
      ?>
 
-      <form action="code.php" method="POST">
+<form action="basic_ed_score.php" method="POST">
+
     <div class="container mt-5">
         <table class="table table-striped table-bordered">
        <thead class="table-dark">
@@ -63,7 +64,9 @@
         $result = mysqli_query($con, $query);
 
         // Array of criteria_id that need to have the input disabled
-        $disabled_criteria_ids = [1, 4, 7, 11, 16, 22, 29, 34, 40, 47, 52, 53];
+        // $disabled_criteria_ids = [1, 4, 7, 11, 16, 22, 29, 34, 40, 47, 52, 53];
+        $disabled_criteria_ids = range(1, 62); // Creates an array from 1 to 62
+
 
         while ($row = mysqli_fetch_assoc($result)):
             $weight_id = $row['weight_id'];
@@ -116,6 +119,7 @@
             }
     ?>
         <tr>
+            <input type="hidden" name="emp_id" value="<?php echo $emp_id; ?>">
             <td class="bold-text"><?php echo $row['criteria_id']; ?>. <?php echo $row['criteria']; ?></td>
             <td><?php echo $weight ? $weight : ''; ?></td>
             <td><?php echo $cred_pts ? $cred_pts : ''; ?></td>
@@ -128,8 +132,18 @@
                     <input type="text" class="form-control input-field" name="educ_attain_sr[<?php echo $row['criteria_id']; ?>]" value="<?php echo $points; ?>">
                 <?php endif; ?>
             </td>
+            <td>
+                <!-- Input field for drc_points with dynamic value and name -->
+                <input type="text" class="form-control" name="drc_points[<?php echo $row['criteria_id']; ?>]">
+            </td>
+            <td>
+                <!-- Input field for bertc_points with dynamic value and name -->
+                <input type="text" class="form-control" name="bertc_points[<?php echo $row['criteria_id']; ?>]">
+            </td>
+
         </tr>
     <?php endwhile; ?>
+      
 </tbody>
 
         </table>
