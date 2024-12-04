@@ -1,7 +1,6 @@
 <?php 
 //session_start();
-//include("includes/header.php"); remove and place inside body
-include("../middleware/admin_middleware.php"); 
+include("includes/header.php");
 ?>
 
 <!DOCTYPE html>

@@ -1,33 +1,31 @@
 <?php 
     session_start();
+    include("../config/dbcon.php");
+    include_once("../functions/myFunctions.php");
 
+    if (!isset($_SESSION['auth'])) {
+        // User is not logged in, redirect to login page
+        header("Location: ../index.php");
+        exit();
+    }
 
-include("../config/dbcon.php");
-include_once("../functions/myFunctions.php");
+    // The session is set, now check user role
+    $user_id = $_SESSION['user_id']; // Get user_id from session
+    $user_query = "SELECT role_as FROM user WHERE id = ?";
+    $stmt = $con->prepare($user_query);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user_data = $result->fetch_assoc();
 
-// Check if user is logged in
-// if (!isset($_SESSION['user_id'])) {
-//     header("Location: index.php"); // Redirect to login page if user is not logged in
-//     exit();
-// }
-
-
-// Fetch the user role from the database
-// $user_id = $_SESSION['user_id']; // Get user_id from session
-// $user_query = "SELECT role_as FROM user WHERE id = ?";
-// $stmt = $con->prepare($user_query);
-// $stmt->bind_param("i", $user_id);
-// $stmt->execute();
-// $result = $stmt->get_result();
-// $user_data = $result->fetch_assoc();
-
-// // Check if the user is an admin (role_as = 1)
-// if ($user_data['role_as'] != 1) {
-//     // Optionally, redirect if the user is not an admin
-//     header("Location: index.php"); // Redirect to some other page if not admin
-//     exit();
-// }
+    // Check if the user has a valid role
+    if (!in_array($user_data['role_as'], [0, 1, 2])) {
+        // Redirect if the user doesn't have a valid role
+        header("Location: index.php");
+        exit();
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,7 +1,5 @@
 <?php 
 //session_start();
-/* include("includes/header.php"); 
- */include("../middleware/admin_middleware.php"); 
 
  function getBasicEdScores($con) {
      $query = "SELECT * FROM basic_ed_score";
