@@ -158,55 +158,66 @@ display: none;
 
     <div class="table-container">
     <table id="example" class="table table-striped display nowrap" style="width:160%">
-        <thead>
-            <tr>
-                <th>Index</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>School</th>
-                <th>Program</th>
-                <th>Desired Institutional Role</th>
-                <th>Desired Academic Role</th>
-                <th>Desired Desired Department</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>School</th>
+            <th>Program</th>
+            <th>Desired Institutional Role</th>
+            <th>Desired Academic Role</th>
+            <th>Desired Department</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
         <?php
-                               
+            $applicants_query = "
+                SELECT 
+                    c.id, 
+                    c.first_name, 
+                    c.last_name, 
+                    c.col_school, 
+                    c.course, 
+                    c.institutional_role, 
+                    c.academic_role, 
+                    c.department,
+                    ir.inst_role_name,
+                    ar.acad_role_name,
+                    d.dept_name
+                FROM credentials c
+                LEFT JOIN institutional_roles ir ON c.institutional_role = ir.inst_role_id
+                LEFT JOIN academic_roles ar ON c.academic_role = ar.acad_role_id
+                LEFT JOIN department d ON c.department = d.dept_id
+            ";
+            $applicants = mysqli_query($con, $applicants_query);
 
-                                $applicants_query = "SELECT * FROM credentials";
-                                $applicants = mysqli_query($con, $applicants_query);
+            if (mysqli_num_rows($applicants) > 0) {
+                foreach ($applicants as $item) {
+                    ?>
+                    <tr class="app-row">
+                        <td class="app-row"><?= $item['id']; ?></td>
+                        <td class="app-row"><?= $item['first_name']; ?></td>
+                        <td class="app-row"><?= $item['last_name']; ?></td>
+                        <td class="app-row"><?= $item['col_school']; ?></td>
+                        <td class="app-row"><?= $item['course']; ?></td>
+                        <td class="app-row"><?= $item['inst_role_name']; ?></td>
+                        <td class="app-row"><?= $item['acad_role_name']; ?></td>
+                        <td class="app-row"><?= $item['dept_name']; ?></td>
+                        <td class="app-row" style="display: flex; justify-content: center; align-items: center;">
+                            <a href="show.php?id=<?= $item['id']; ?>" class="btn btn-primary">Show More</a>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            } else {
+                echo "<tr><td colspan='6'>No records found</td></tr>";
+            }
+        ?>
+    </tbody>
+</table>
 
-                                $total_query = "SELECT COUNT(*) FROM credentials";
-                                $total_result = mysqli_query($con, $total_query);
-                                $total_applicants = mysqli_fetch_array($total_result)[0];
-                                $total_pages = ceil($total_applicants);
-
-                                if (mysqli_num_rows($applicants) > 0) {
-                                    foreach ($applicants as $item) {
-                                        ?>
-                                            <tr class="app-row">
-                                                <td class="app-row"><?= $item['id']; ?></td>
-                                                <td class="app-row"><?= $item['first_name']; ?></td>
-                                                <td class="app-row"><?= $item['last_name']; ?></td>
-                                                <td class="app-row"><?= $item['col_school']; ?></td>
-                                                <td class="app-row"><?= $item['course']; ?></td>
-                                                <td class="app-row"><?= $item['institutional_role']; ?></td>
-                                                <td class="app-row"><?= $item['academic_role']; ?></td>
-                                                <td class="app-row"><?= $item['department']; ?></td>
-                                                <td class="app-row" style="display: flex; justify-content: center; align-items: center;">
-                                                    <a href="show.php?id=<?= $item['id']; ?>" class="btn btn-primary">Show More</a>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='6'>No records found</td></tr>";
-                                }
-                            ?>
-        </tbody>
-    </table>
     </div>
     
 
