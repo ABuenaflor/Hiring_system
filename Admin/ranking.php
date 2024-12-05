@@ -1,7 +1,5 @@
 <?php 
 //session_start();
-//include("includes/header.php"); remove and placed inside wrapper
-include("../middleware/admin_middleware.php"); 
 
 ?>
 <!DOCTYPE html>

@@ -1,7 +1,6 @@
 <?php 
 //session_start();
 //include("includes/header.php"); placed inside wrapper
-include("../middleware/admin_middleware.php"); 
 
 if (isset($_GET['notif_id'])) {
     $id = $_GET['notif_id'];

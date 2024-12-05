@@ -1,7 +1,7 @@
 <?php 
 //session_start();
 //include("includes/header.php"); placed inside wrapper 
-include("../middleware/admin_middleware.php"); 
+// include("../middleware/admin_middleware.php"); 
 ?>
 
 <body>

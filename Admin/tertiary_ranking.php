@@ -1,7 +1,5 @@
 <?php 
 //session_start();
-/* include("includes/header.php");  */
-include("../middleware/admin_middleware.php"); 
 ?>
 
 
@@ -18,6 +16,9 @@ include("../middleware/admin_middleware.php");
                     <h1> Faculty Ranking for Tertiary Level</h1>
                     <p> Criterias For Ranking Faculties in College Department</p>
                </header>
+
+               <form action="tertiary_score.php" method="POST">
+
                <div class="container mt-5">
         <table class="table table-striped table-bordered">
        <thead class="table-dark">
@@ -38,6 +39,7 @@ include("../middleware/admin_middleware.php");
                     
                 </tr>
             </thead>
+
             <tbody>
     <?php
         // Retrieve emp_id from URL (query string)
@@ -112,24 +114,28 @@ include("../middleware/admin_middleware.php");
                     <!-- Display points or input field for criteria_id not in the disabled list -->
                     <input type="text" class="form-control input-field" name="educ_attain_sr[<?php echo $row['criteria_id']; ?>]" value="<?php echo $points; ?>">
                 <?php endif; ?>
+            </td>   
+            <td>
+                <input type="number" name="src_score[<?php echo $criteria_id; ?>]" class="form-control">
             </td>
             <td>
-                <input type="text">
-            </td>
-            <td>
-                <input type="text">
+                 <input type="number" name="crtc_score[<?php echo $criteria_id; ?>]" class="form-control">
             </td>
         </tr>
     <?php endwhile; ?>
 </tbody>
 
         </table>
-        <button type="submit" class="btn btn-primary" name="submit_basic_ed_sr">Submit Scores</button>
         <h2>LEGEND:</h2>
           <h3>SR</h3><p>Self Rating </p>
           <h3>SRC</h3><p>School Ranking Committee</p>
           <h3>CRTC</h3><p>College Ranking Committee</p>
+
+          <button type="submit" class="btn btn-primary" name="submit_tertiary_sr">Submit Scores</button>
+    </form>
+
     </div>
+
      </div>
 
    

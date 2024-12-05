@@ -41,7 +41,8 @@ $unread_count = $result->num_rows;
                     <ul class="navbar-nav">
         <li class="nav-item dropdown">
             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
+            <img src="../assets/images/default-profile.png" class="avatar img-fluid rounded" alt="">
+
             </a>
             <div class="dropdown-menu dropdown-menu-end">
                 <a href="../logout.php" class="dropdown-item">Logout</a>

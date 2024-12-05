@@ -1,6 +1,5 @@
 <?php 
 //session_start();
-include("../middleware/admin_middleware.php"); 
 ?>
 
 
