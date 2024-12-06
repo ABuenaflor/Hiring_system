@@ -56,6 +56,7 @@ include("includes/emp-nav.php");
                     <h2>LEGEND:</h2>
                     <h3>SR: Self Rating </h3>
                 </header>
+                
                 <form action="tertiary_sr.php" method="POST">
     <div class="container mt-5">
         <table class="table table-striped table-bordered">

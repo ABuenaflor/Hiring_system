@@ -257,7 +257,7 @@ tfoot tr {
 
                 <div class="col-md-4">
                     <label for="department" class="form-label">Institutional Role</label>
-                    <select class="form-select" name="inst_role" id="">
+                    <select class="form-select" name="inst_role" id="institutional_role">
                         <?php
                             $inst_role = mysqli_query($con, "SELECT inst_role_name FROM institutional_roles");
                             while ($i =mysqli_fetch_array($inst_role)){
@@ -269,7 +269,7 @@ tfoot tr {
 
                 <div class="col-md-4">
                     <label for="department" class="form-label">Job Role</label>
-                    <select class="form-select" name="job_role" id="">
+                    <select class="form-select" name="job_role" id="job_role">
                         <?php
                             $job_role = mysqli_query($con, "SELECT job_role FROM job_roles");
                             while ($j =mysqli_fetch_array($job_role)){
@@ -360,7 +360,7 @@ tfoot tr {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-    
+   
 <script>
     document.getElementById('addQualificationBtn').addEventListener('click', function() {
         let qualificationField = document.createElement('input');
@@ -414,6 +414,7 @@ tfoot tr {
     });
 });
 </script>
+
 
   
 
