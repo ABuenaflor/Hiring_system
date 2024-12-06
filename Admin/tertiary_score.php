@@ -7,9 +7,16 @@ if (isset($_POST['submit_tertiary_sr'])) {
         $emp_id = (int)$_POST['emp_id'];
         $sop_id = 1; // Example sop_id
 
+        // Debugging: Check if src_score is part of the POST data (remove this in production)
+        echo '<pre>';
+        print_r($_POST['src_score']);
+        echo '</pre>';
+
         foreach ($_POST['src_score'] as $criteria_id => $src_score) {
-            $points = isset($_POST['points'][$criteria_id]) ? (int)$_POST['points'][$criteria_id] : NULL;
-            $crtc_score = isset($_POST['crtc_score'][$criteria_id]) ? (int)$_POST['crtc_score'][$criteria_id] : NULL;
+            // Ensure src_score is not empty and convert it to NULL if needed
+            $src_score = (empty($src_score)) ? NULL : (int)$src_score;
+            $points = isset($_POST['points'][$criteria_id]) && $_POST['points'][$criteria_id] !== '' ? (int)$_POST['points'][$criteria_id] : NULL;
+            $crtc_score = isset($_POST['crtc_score'][$criteria_id]) && $_POST['crtc_score'][$criteria_id] !== '' ? (int)$_POST['crtc_score'][$criteria_id] : NULL;
 
             // Check if record exists
             $check_query = "SELECT * FROM tbl_tertiary_score WHERE criteria_id = ? AND sop_id = ? AND emp_id = ?";
@@ -28,7 +35,7 @@ if (isset($_POST['submit_tertiary_sr'])) {
                 $stmt = mysqli_prepare($con, $update_query);
                 mysqli_stmt_bind_param($stmt, "iiiiii", $points, $src_score, $crtc_score, $criteria_id, $sop_id, $emp_id);
                 if (!mysqli_stmt_execute($stmt)) {
-                    $_SESSION['message'] = "Error updating record: " . mysqli_error($con);
+                    $_SESSION['message'] = "Error executing query: " . mysqli_error($con);
                 }
             } else {
                 // Insert new record
@@ -43,11 +50,24 @@ if (isset($_POST['submit_tertiary_sr'])) {
                 }
             }
         }
+        
         $_SESSION['message'] = "Scores successfully saved!";
+        
+        // JavaScript to show alert and redirect
+        echo '<script type="text/javascript">
+                alert("Scores successfully saved!");
+                window.location.href = "tertiary_ranking.php?emp_id=' . $emp_id . '";
+              </script>';
+        exit();
     } else {
         $_SESSION['message'] = "Invalid form data.";
+        
+        // JavaScript to show alert and redirect
+        echo '<script type="text/javascript">
+                alert("Invalid form data.");
+                window.location.href = "tertiary_ranking.php?emp_id=' . $emp_id . '";
+              </script>';
+        exit();
     }
-    header("Location: tertiary_ranking.php?emp_id=" . urlencode($emp_id));
-    exit();
 }
 ?>
