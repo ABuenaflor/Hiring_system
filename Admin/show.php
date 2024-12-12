@@ -2,7 +2,7 @@
 //session_start();
 
 //changed from include to require once
-require_once ("../code.php");
+require_once ("code.php");
 include_once("../functions/myFunctions.php"); 
 /* require_once("includes/header.php"); */ ?>
 <style>
@@ -533,78 +533,6 @@ include_once("../functions/myFunctions.php");
                                     
                                 </div>
                             </div>
-                            <!-- <div class="card">
-                                <div class="card-header">
-                                    <h4>Criteria</h4>
-                                </div>
-                            <div class="card-body">
-                            <div class="card-header">
-                                    <h4>Rating Guide for the Evaluation of Applicants</h4>
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Rating</th>
-                                                <th>Interpretation</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Far more than what is expected</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>More than what is expected</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Presence of the expectation</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Less than what is expected</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Absence of the expectation</td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                        
-                                    </table>
-                                </div>
-                                <div class="container">
-                                    <div class="row mb-3">
-                                        <div class="col-md-2">
-                                            <label for="experience">Experience (1-5)</label>
-                                            <input type="number" name="experience" id="experience" min="1" max="5" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="education">Education Level (1-5)</label>
-                                            <input type="number" name="education" id="education" min="1" max="5" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="tech_skills">Technical Skills (1-5)</label>
-                                            <input type="number" name="tech_skills" id="tech_skills" min="1" max="5" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="soft_skills">Soft Skills (1-5)</label>
-                                            <input type="number" name="soft_skills" id="soft_skills" min="1" max="5" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="interview">Interview Score (1-5)</label>
-                                            <input type="number" name="interview" id="interview" min="1" max="5" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <label for="saw_score">SAW Score</label>
-                                            <input type="text" name="saw_score" id="saw_score" class="form-control" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                                            </div>
-                            </div> -->
 
                            
                             <div class="col-md-12">
