@@ -134,169 +134,153 @@ if(isset($_POST['submit_credentials'])){
     '$date_applied', '$institutional_role', 
     '$academic_role','$campus', '$department', '$certificatesJson')";
 
-    $cred_query_run = mysqli_query($con, $creds_query);
+   // Insert data into credentials table
+   if (mysqli_query($con, $creds_query)) {
+    // Get the last inserted ID to insert into credential_scores
+    $credentialId = mysqli_insert_id($con);
 
-    if (mysqli_query($con, $creds_query)) {
-        // Get the last inserted ID
-        $credentialId = mysqli_insert_id($con);
+    // Insert data into credential_scores table
+    $score_query = "INSERT INTO credential_scores (credential_id, grad_school_score, grad_honors_score, past_exp_score, 
+    seminars_attended_score, special_skills_score, certificates_score, total_score)
+    VALUES ('$credentialId', '$gradSchoolScore', '$gradHonorsScore', '$pastExpScore', '$seminarsScore', '$skillsScore', 
+    '$certificatesScore', '$totalScore')";
 
-        // Insert into `credential_scores` table
-        $score_query = "INSERT INTO credential_scores (credential_id, grad_school_score, grad_honors_score, past_exp_score, 
-        seminars_attended_score, special_skills_score, certificates_score, total_score)
-        VALUES ('$credentialId', '$gradSchoolScore', '$gradHonorsScore', '$pastExpScore', '$seminarsScore', '$skillsScore', 
-        '$certificatesScore', '$totalScore')";
-
-        mysqli_query($con, $score_query);
-
+    // Run the score insertion query
+    if (mysqli_query($con, $score_query)) {
         echo "<script>alert('Application Submitted Successfully with a total score of $totalScore');</script>";
         header('location: index.php');
         exit();
     } else {
-        echo "<script>alert('Submission Failed');</script>";
+        echo "<script>alert('Error submitting scores');</script>";
     }
+} else {
+    echo "<script>alert('Submission Failed');</script>";
+}
+}
+if (isset($_POST['edit_credentials'])) {
+    $credentials_id = mysqli_real_escape_string($con, $_POST['credentials_id']);  // Get credentials ID from the form
 
-}else if(isset($_POST['edit_credentials']))
-{
-    $credentials_id = $_POST['credentials_id'];
-    $first_name = $_POST['first_name'];
-    $middle_name = $_POST['middle_name'];
-    $last_name = $_POST['last_name'];
-    $date_of_birth = $_POST['date_of_birth'];
-    $place_of_birth = $_POST['place_of_birth'];
-    $sex = $_POST['sex'];
-    $civil_status = $_POST['civil_status'];
-    $citizenship = $_POST['citizenship'];
-    $height = $_POST['height'];
-    $weight = $_POST['weight'];
-    $blood_type = $_POST['blood_type'];
-    $pag_ibig = $_POST['pag_ibig'];
-    $philhealth = $_POST['philhealth'];
-    $tin = $_POST['tin'];
-    $sss = $_POST['sss'];
-    $residential_address = $_POST['residential_address'];
-    $permanent_address = $_POST['permanent_address'];
-    $contact_number = $_POST['contact_number'];
-    $email_address = $_POST['email_address'];
-    $religion = $_POST['religion'];
+    // Personal Information
+    $first_name = mysqli_real_escape_string($con, $_POST['first_name']);
+    $middle_name = mysqli_real_escape_string($con, $_POST['middle_name']);
+    $last_name = mysqli_real_escape_string($con, $_POST['last_name']);
+    $date_of_birth = mysqli_real_escape_string($con, $_POST['date_of_birth']);
+    $place_of_birth = mysqli_real_escape_string($con, $_POST['place_of_birth']);
+    $sex = mysqli_real_escape_string($con, $_POST['sex']);
+    $civil_status = mysqli_real_escape_string($con, $_POST['civil_status']);
+    $citizenship = mysqli_real_escape_string($con, $_POST['citizenship']);
+    $height = mysqli_real_escape_string($con, $_POST['height']);
+    $weight = mysqli_real_escape_string($con, $_POST['weight']);
+    $blood_type = mysqli_real_escape_string($con, $_POST['blood_type']);
+    $pag_ibig = mysqli_real_escape_string($con, $_POST['pag_ibig']);
+    $philhealth = mysqli_real_escape_string($con, $_POST['philhealth']);
+    $tin = mysqli_real_escape_string($con, $_POST['tin']);
+    $sss = mysqli_real_escape_string($con, $_POST['sss']);
+    $residential_address = mysqli_real_escape_string($con, $_POST['residential_address']);
+    $permanent_address = mysqli_real_escape_string($con, $_POST['permanent_address']);
+    $contact_number = mysqli_real_escape_string($con, $_POST['contact_number']);
+    $email_address = mysqli_real_escape_string($con, $_POST['email_address']);
+    $religion = mysqli_real_escape_string($con, $_POST['religion']);
 
-    $father_fname = $_POST['father_fname'];
-    $father_mname = $_POST['father_mname'];
-    $father_sname = $_POST['father_sname'];
-    $mother_fname = $_POST['mother_fname'];
-    $mother_mname = $_POST['mother_mname'];
-    $mother_sname = $_POST['mother_sname'];
+    // Family Information
+    $father_fname = mysqli_real_escape_string($con, $_POST['father_fname']);
+    $father_mname = mysqli_real_escape_string($con, $_POST['father_mname']);
+    $father_sname = mysqli_real_escape_string($con, $_POST['father_sname']);
+    $mother_fname = mysqli_real_escape_string($con, $_POST['mother_fname']);
+    $mother_mname = mysqli_real_escape_string($con, $_POST['mother_mname']);
+    $mother_sname = mysqli_real_escape_string($con, $_POST['mother_sname']);
 
-    $elem_school = $_POST['elem_school'];
-    $elem_year_graduated = $_POST['elem_year_graduated'];
-    $elem_inclusive_dates = $_POST['elem_inclusive_dates'];
-    $elem_honors_received = $_POST['elem_honors_received'];
-    $sec_school = $_POST['sec_school'];
-    $sec_year_graduated = $_POST['sec_year_graduated'];
-    $sec_inclusive_dates = $_POST['sec_inclusive_dates'];
-    $sec_honors_received = $_POST['sec_honors_received'];
-    $col_school = $_POST['col_school'];
-    $course = $_POST['course'];
-    $col_year_graduated = $_POST['col_year_graduated'];
-    $col_inclusive_dates = $_POST['col_inclusive_dates'];
-    $col_honors_received = $_POST['col_honors_received'];
-    $grad_school = $_POST['grad_school'];
-    $grad_year_graduated = $_POST['grad_year_graduated'];
-    $grad_inclusive_dates = $_POST['grad_inclusive_dates'];
-    $grad_honors_received = $_POST['grad_honors_received'];
-
-    $past_exp = $_POST['past_exp'];
-    $seminars_attended = $_POST['seminars_attended'];
-    $special_skills = $_POST['special_skills'];
-
-
-
-   
-
-    $date_applied= $_POST['date_applied'];
-    $job_type = $_POST['job_type'];
-    $job_schedule = $_POST['job_schedule'];
-    $campus = $_POST['campus_name'];
-    $department = $_POST['department'];
-
-    if($new_image != "")
-    {
-        $update_filename = $new_image;
-    }else
-    {
-        $update_filename = $old_image;
-    }
+    // Educational Background
+    $elem_school = mysqli_real_escape_string($con, $_POST['elem_school']);
+    $sec_school = mysqli_real_escape_string($con, $_POST['sec_school']);
+    $col_school = mysqli_real_escape_string($con, $_POST['col_school']);
+    $grad_school = mysqli_real_escape_string($con, $_POST['grad_school']);
     
-    $update_query = "UPDATE credentials SET first_name = '$first_name', middle_name='$middle_name', last_name='$last_name',
-    date_of_birth='$date_of_birth',place_of_birth='$place_of_birth', sex='$sex',civil_status='$civil_status',
-    citizenship ='$citizenship', height='$height', weight='$weight',blood_type='$blood_type',pag_ibig='$pag_ibig',
-    philhealth='$philhealth', tin='$tin', sss='$sss', residential_address='$residential_address',permanent_address='$permanent_address',
-    contact_number='$contact_number', email_address='$email_address',  religion='$religion', father_fname='$father_fname',
-    father_mname='$father_mname', father_sname='$father_sname',mother_fname='$mother_fname', mother_mname='$mother_mname',
-    mother_sname='$mother_sname', elem_school='$elem_school', elem_year_graduated='$elem_year_graduated',elem_inclusive_dates='$elem_inclusive_dates',
-    elem_honors_received ='$elem_honors_received', sec_school='$sec_school', sec_year_graduated='$sec_year_graduated',
-     sec_inclusive_dates='$sec_inclusive_dates', sec_honors_received='$sec_honors_received', col_school='$col_school',
-     course ='$course', col_year_graduated='$col_year_graduated', col_inclusive_dates = '$col_inclusive_dates', col_honors_received = '$col_honors_received',
-     grad_school = '$grad_school', grad_year_graduated = '$grad_year_graduated', grad_inclusive_dates = '$grad_inclusive_dates',
-     grad_honors_received = '$grad_honors_received', past_exp = '$past_exp', seminars_attended='$seminars_attended', special_skills = '$special_skills',
-     date_applied='$date_applied', job_type='$job_type', job_schedule='$job_schedule', campus_name='$campus',
-     department = '$department' WHERE id = '$credentials_id' ";
+    // Additional Information
+    $past_exp = mysqli_real_escape_string($con, $_POST['past_exp']);
+    $seminars_attended = mysqli_real_escape_string($con, $_POST['seminars_attended']);
+    $special_skills = mysqli_real_escape_string($con, $_POST['special_skills']);
 
-     $update_query_run = mysqli_query($con, $update_query);
+    // Prepare to handle file uploads
+    $uploadDir = 'uploads/certificates/';
+    $uploadedFiles = [];
 
-     if($update_query_run)
-     {
-        if($_FILES['image']['name'] != "")
-        {
-            move_uploaded_file($_FILES['imamge']['name'], $path.'/'.$new_image);
-        }redirect("show.php?id=$credentials_id", "Credentials Succesfully Updated");
-     }else
-     {
-        redirect("show.php?id=$credentials_id", "Something Went Wrong");
-     }
+    // Check if files are uploaded
+    if (isset($_FILES['certificates']) && !empty($_FILES['certificates']['name'][0])) {
+        // Loop through each uploaded file
+        foreach ($_FILES['certificates']['name'] as $key => $fileName) {
+            $fileTmpName = $_FILES['certificates']['tmp_name'][$key];
+            $fileSize = $_FILES['certificates']['size'][$key];
+            $fileError = $_FILES['certificates']['error'][$key];
+
+            // Check if file uploaded successfully and it's a PDF
+            if ($fileError === 0 && strtolower(pathinfo($fileName, PATHINFO_EXTENSION)) === 'pdf') {
+                // Create a unique file name to avoid overwriting
+                $uniqueFileName = uniqid('', true) . '.pdf';
+                $filePath = $uploadDir . $uniqueFileName;
+
+                // Move the file to the upload directory
+                if (move_uploaded_file($fileTmpName, $filePath)) {
+                    // Add the file path to the array
+                    $uploadedFiles[] = $filePath;
+                }
+            }
+        }
+    }
+
+    // Convert the uploaded file paths array into a JSON string
+    $certificatesJson = json_encode($uploadedFiles);
+
+    // Score Calculation Logic
+    $gradSchoolScore = !empty($_POST['grad_school']) ? 5 : 0;
+    $gradHonorsScore = !empty($_POST['grad_honors_received']) ? 5 : 0;
+    $pastExpScore = !empty($_POST['past_exp']) ? 5 : 0;
+    $seminarsScore = !empty($_POST['seminars_attended']) ? 5 : 0;
+    $skillsScore = !empty($_POST['special_skills']) ? 5 : 0;
+
+    // Score for certificates
+    $certificatesScore = count($uploadedFiles) * 5;
+
+    // Calculate total score
+    $totalScore = $gradSchoolScore + $gradHonorsScore + $pastExpScore + $seminarsScore + $skillsScore + $certificatesScore;
+
+    // Update Query
+    $update_query = "UPDATE credentials SET 
+        first_name = '$first_name', middle_name = '$middle_name', last_name = '$last_name',
+        date_of_birth = '$date_of_birth', place_of_birth = '$place_of_birth', sex = '$sex',
+        civil_status = '$civil_status', citizenship = '$citizenship', height = '$height',
+        weight = '$weight', blood_type = '$blood_type', pag_ibig = '$pag_ibig', philhealth = '$philhealth',
+        tin = '$tin', sss = '$sss', residential_address = '$residential_address', permanent_address = '$permanent_address',
+        contact_number = '$contact_number', email_address = '$email_address', religion = '$religion',
+        father_fname = '$father_fname', father_mname = '$father_mname', father_sname = '$father_sname',
+        mother_fname = '$mother_fname', mother_mname = '$mother_mname', mother_sname = '$mother_sname',
+        elem_school = '$elem_school', sec_school = '$sec_school', col_school = '$col_school', grad_school = '$grad_school',
+        past_exp = '$past_exp', seminars_attended = '$seminars_attended', special_skills = '$special_skills',
+        certificates = '$certificatesJson' WHERE id = '$credentials_id'";
+
+    // Execute the update query
+    if (mysqli_query($con, $update_query)) {
+        // Update the score table as well
+        $score_query = "UPDATE credential_scores SET 
+            grad_school_score = '$gradSchoolScore', grad_honors_score = '$gradHonorsScore', 
+            past_exp_score = '$pastExpScore', seminars_attended_score = '$seminarsScore', 
+            special_skills_score = '$skillsScore', certificates_score = '$certificatesScore', 
+            total_score = '$totalScore' WHERE credential_id = '$credentials_id'";
+
+        if (mysqli_query($con, $score_query)) {
+            echo "<script>alert('Credentials Successfully Updated');</script>";
+            header("location: show.php?id=$credentials_id");
+        } else {
+            echo "<script>alert('Error Updating Scores: " . mysqli_error($con) . "');</script>";
+        }
+    } else {
+        echo "<script>alert('Update Failed: " . mysqli_error($con) . "');</script>";
+    }
 }
-if(isset($_POST['edit_credentials'])) {
-    $id = $_POST['id'];
-    $experience = $_POST['experience'];
-    $education = $_POST['education'];
-    $tech_skills = $_POST['tech_skills'];
-    $soft_skills = $_POST['soft_skills'];
-    $interview = $_POST['interview'];
 
-    // Assign points based on the presence of entries
-    $experience_points = !empty($experience) ? 1 : 0;
-    $education_points = !empty($education) ? 1 : 0;
-    $tech_skills_points = !empty($tech_skills) ? 1 : 0;
-    $soft_skills_points = !empty($soft_skills) ? 1 : 0;
-    $interview_points = !empty($interview) ? 1 : 0;
 
-    // Calculate SAW score
-    $weights = [
-        'experience_weight' => 0.35,
-        'education_weight' => 0.20,
-        'tech_skills_weight' => 0.25,
-        'soft_skills_weight' => 0.10,
-        'interview_weight' => 0.10
-    ];
 
-    // $saw_score = ($experience_points * $weights['experience_weight']) +
-    //              ($education_points * $weights['education_weight']) +
-    //              ($tech_skills_points * $weights['tech_skills_weight']) +
-    //              ($soft_skills_points * $weights['soft_skills_weight']) +
-    //              ($interview_points * $weights['interview_weight']);
 
-    // // Update the credentials with the calculated SAW score
-    // $query = "UPDATE credentials SET experience='$experience', education='$education', tech_skills='$tech_skills', soft_skills='$soft_skills', interview='$interview', saw_score='$saw_score' WHERE id='$credentials_id'";
-
-    // if (mysqli_query($con, $query)) {
-    //     $_SESSION['message'] = "Updated Successfully";
-    //     header("Location: edit-credentials.php?id=".$credentials_id);
-    //     exit(0);
-    // } else {
-    //     $_SESSION['message'] = "Something Went Wrong";
-    //     header("Location: edit-credentials.php?id=".$credentials_id);
-    //     exit(0);
-    // }
-}
 if(isset($_POST['submit_credentials_notif'])){
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
