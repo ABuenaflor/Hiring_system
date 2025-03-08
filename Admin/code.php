@@ -195,6 +195,9 @@ if (isset($_POST['edit_credentials'])) {
     $sec_school = mysqli_real_escape_string($con, $_POST['sec_school']);
     $col_school = mysqli_real_escape_string($con, $_POST['col_school']);
     $grad_school = mysqli_real_escape_string($con, $_POST['grad_school']);
+    $grad_year_graduated = mysqli_real_escape_string($con, $_POST['grad_year_graduated']);
+    $grad_inclusive_dates = mysqli_real_escape_string($con, $_POST['grad_inclusive_dates']);
+    $grad_honors_received = mysqli_real_escape_string($con, $_POST['grad_honors_received']);
     
     // Additional Information (same as before)
     $past_exp = mysqli_real_escape_string($con, $_POST['past_exp']);
@@ -260,7 +263,9 @@ if (isset($_POST['edit_credentials'])) {
         contact_number = '$contact_number', email_address = '$email_address', religion = '$religion',
         father_fname = '$father_fname', father_mname = '$father_mname', father_sname = '$father_sname',
         mother_fname = '$mother_fname', mother_mname = '$mother_mname', mother_sname = '$mother_sname',
-        elem_school = '$elem_school', sec_school = '$sec_school', col_school = '$col_school', grad_school = '$grad_school',
+        elem_school = '$elem_school', sec_school = '$sec_school', col_school = '$col_school', grad_school = '$grad_school',  grad_year_graduated = '$grad_year_graduated',
+        grad_inclusive_dates = '$grad_inclusive_dates',
+        grad_honors_received = '$grad_honors_received',
         past_exp = '$past_exp', seminars_attended = '$seminars_attended', special_skills = '$special_skills',
         certificates = '$certificatesJson' WHERE id = '$credentials_id'";
 

@@ -420,32 +420,28 @@ include_once("../functions/myFunctions.php");
 
                            <div class="col-md-8 mb-5">
                                 <div class="col-md-6 mb-3">
-                                    <h5>Job Type</h5>
-                                    <select class="form-select" name="academic_role">
-                                        <option value="Academic" <?= $data['academic_role'] == 'Academic' ? 'selected' : '' ?>>Academic</option>
-                                        <option value="Non Academic" <?= $data['academic_role'] == 'Non Academic' ? 'selected' : '' ?>>Non Academic</option>
-                                    </select>
-                                </div>
+                                    <h5>Institutional Role</h5>
+                                        <select class="form-select" name="institutional_role">
+                                            <option value="Academic" <?= $data['institutional_role'] == 'Academic' ? 'selected' : '' ?>>Academic</option>
+                                            <option value="Non Academic" <?= $data['institutional_role'] == 'Non Academic' ? 'selected' : '' ?>>Non Academic</option>
+                                        </select>
 
-                                <div class="col-md-6 mb-3">
-                                    <h5>Job Schedule</h5>
-                                    <select class="form-select" name="campus_name">
-                                        <option value="Full Time Faculty" <?= $data['campus_name'] == 'Full Time Faculty' ? 'selected' : '' ?>>Full Time Faculty</option>
-                                        <option value="Part Time Faculty" <?= $data['campus_name'] == 'Part Time Faculty' ? 'selected' : '' ?>>Part Time Faculty</option>
-                                    </select>
-                                </div>
+                                        <h5>Academic Role</h5>
+                                        <select class="form-select" name="academic_role">
+                                            <option value="Full Time Faculty" <?= $data['academic_role'] == 'Full Time Faculty' ? 'selected' : '' ?>>Full Time Faculty</option>
+                                            <option value="Part Time Faculty" <?= $data['academic_role'] == 'Part Time Faculty' ? 'selected' : '' ?>>Part Time Faculty</option>
+                                        </select>
 
-                                    
                                         <h5>Department</h5>
                                         <div class="row">
                                             <div class="col-md-6">
-                                            <select class="form-select" name="department">
-                                                <option value="Grade School Department" <?= $data['department'] == 'Grade School Department' ? 'selected' : '' ?>>Grade School Department</option>
-                                                <option value="Junior High School Department" <?= $data['department'] == 'Junior High School Department' ? 'selected' : '' ?>>Junior High School Department</option>
-                                                <option value="Senior High School Department" <?= $data['department'] == 'Senior High School Department' ? 'selected' : '' ?>>Senior High School Department</option>
-                                                <option value="College Department" <?= $data['department'] == 'College Department' ? 'selected' : '' ?>>College Department</option>
-                                                <option value="Graduate School" <?= $data['department'] == 'Graduate School' ? 'selected' : '' ?>>Graduate School</option>
-                                            </select>
+                                                <select class="form-select" name="department">
+                                                    <option value="Grade School Department" <?= $data['department'] == 'Grade School Department' ? 'selected' : '' ?>>Grade School Department</option>
+                                                    <option value="Junior High School Department" <?= $data['department'] == 'Junior High School Department' ? 'selected' : '' ?>>Junior High School Department</option>
+                                                    <option value="Senior High School Department" <?= $data['department'] == 'Senior High School Department' ? 'selected' : '' ?>>Senior High School Department</option>
+                                                    <option value="College Department" <?= $data['department'] == 'College Department' ? 'selected' : '' ?>>College Department</option>
+                                                    <option value="Graduate School" <?= $data['department'] == 'Graduate School' ? 'selected' : '' ?>>Graduate School</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

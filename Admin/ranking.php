@@ -150,19 +150,24 @@ tfoot tr {
          <table id="example" class="table table-striped" style="width:180%">
         <thead>
             <tr>
-                <th>Index</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Department</th>
-                <th>Campus</th>
-                <th>Position</th>
-                <th>Actions</th>
+                <th style="width: 50px !important;">Index</th>
+                <th style="width: 50px !important;">First Name</th>
+                <th style="width: 50px !important;">Last Name</th>
+                <th style="width: 50px !important;">Department</th>
+                <th style="width: 50px !important;">Campus</th>
+                <th style="width: 50px !important;">Position</th>
+                <th style="width: 50px !important;">Actions</th>
 
             </tr>
         </thead>
         <tbody>
+          <style>
+            #example thead tr .sorting_asc{
+              width: 50px !important;
+            }
+          </style>
     <?php
-        // Query to fetch employee data along with emp_id
+        // Query to fetch employee data along with emp_idd
         $ranking_query = "
         SELECT 
             emp_login.emp_id,    -- Add emp_id to the select statement
